@@ -81,7 +81,9 @@
             createXML(filename);
             // alert(ipfs_hash);
             // saveSysLog(ipfs_hash);
-            location.href='/accounts/acceptList';
+            self.close();
+            parent.opener.location.href='/accounts/acceptList';
+            // location.href='/accounts/acceptList';
         }
     }
 
@@ -105,8 +107,8 @@
             client1.open("POST",'/admin/acceptContract',true);
             client1.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             client1.send(prams);
-
-            // location.href='productslist';
+            alert('신청서를 성공적으로 승인했습니다.');
+            location.href='productslist';
         }
     }
 

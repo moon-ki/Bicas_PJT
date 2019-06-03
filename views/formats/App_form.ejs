@@ -1,28 +1,28 @@
 <% include ../SC_header.ejs %>
-<form name="D190524PCapp_form" enctype="multipart/form-data">
+<form name="App_form">
 	<textarea id="calXMLcontent" name="calXMLcontent" style="display:none"></textarea>
 	<textarea id="inXMLcontent" name="inXMLcontent" style="display:none"></textarea>
 	<textarea id="calTextcontent" name="calTextcontent" style="display:none"></textarea>
 	<textarea id="outXMLcontent" name="outXMLcontent" style="display:none"></textarea>
 	<textarea id="outXMLurl" name="outXMLurl" style="display:none"></textarea>
 	<input type="hidden" name="xmlFileLink" id="xmlFileLink" value=""/>
-	<input type="hidden" name="title" id="title" value="D190524PCapp_form"/>
+	<input type="hidden" name="title" id="title" value="App_form"/>
 	<input type="hidden" name="savefilepath" value="">
 	<input type="hidden" name="imagesavepath" value="">
 	<input type="hidden" name="imagematchinfo" value="">
 	<input type="hidden" name="H_DownloadFilePath" value="">
 	<input type="hidden" name="DownloadFilePath" value="">
-	<input type="hidden" name="H_root/contents/name" value=""/>
-<input type="hidden" name="H_root/contents/major_department" value=""/>
-<input type="hidden" name="H_root/contents/Year_of_graduation" value=""/>
+	<input type="hidden" name="H_root/contents/title" value=""/>
+<input type="hidden" name="H_root/contents/name" value=""/>
+<input type="hidden" name="H_root/contents/department" value=""/>
+<input type="hidden" name="H_root/contents/birthday" value=""/>
 <input type="hidden" name="H_root/contents/class_of" value=""/>
 <input type="hidden" name="H_root/contents/purpose" value=""/>
-<input type="hidden" name="H_root/contents/date" value=""/>
-<input type="hidden" name="H_root/contents/Other_matters" value=""/>
+<input type="hidden" name="H_root/contents/Application_date" value=""/>
+<input type="hidden" name="H_root/contents/Other" value=""/>
 <input type="hidden" name="H_root/contents/sign" value=""/>
-<input type="hidden" name="H_root/contents/TITLE" value=""/>
 <P>
-<TABLE style="WIDTH: 700px" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=1>
+<TABLE style="WIDTH: 98%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=1>
 <COLGROUP>
 <COL width=700>
 </COL>
@@ -31,31 +31,54 @@
 <TR>
 <TD>
 <P>
-<TABLE id=20190524_173729 style="WIDTH: 95%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=0>
+<TABLE id=3 style="WIDTH: 95%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=0>
 <COLGROUP>
 <COL>
 </COL>
 </COLGROUP>
 <TBODY>
-<TR>
+<TR style="HEIGHT: 10px">
 <TD>
 <P align=center>
 <SPAN style="FONT-SIZE: 18pt">
-<SELECT id='form_type' name=root/contents/TITLE>
-<OPTION selected value="graduate">졸업 증명
-</OPTION>
-<OPTION value="attend">재학 증명
-</OPTION>
-<OPTION value="3">성적 증명
-</OPTION>
-</SELECT>&nbsp;
-<STRONG>신청서
+<STRONG>
+<SPAN style="FONT-SIZE: 16pt">
+<SPAN style="FONT-SIZE: 18pt">
+<STRONG>
+<SPAN style="FONT-SIZE: 16pt">&nbsp;
+</SPAN>
+</STRONG>
+</SPAN>
+</SPAN>
 </STRONG>
 </SPAN>
 </P>
 </TD>
 </TR>
-<TR style="HEIGHT: 30px">
+<TR>
+<TD>
+<P align=center>
+<FONT size=5>
+<SPAN style="FONT-SIZE: 18pt">
+<STRONG>
+<SPAN style="FONT-SIZE: 16pt">
+<SPAN style="FONT-SIZE: 18pt">
+<STRONG>
+<SPAN style="FONT-SIZE: 16pt">
+<INPUT class=titlefsize14 style="WIDTH: 20%" name=root/contents/title id='title1' readonly>&nbsp;
+</SPAN>
+</STRONG>
+</SPAN>
+</SPAN>
+</STRONG>
+</SPAN>
+<STRONG>증명 신청서
+</STRONG>
+</FONT>
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 10px">
 <TD>
 </TD>
 </TR>
@@ -63,23 +86,23 @@
 </TABLE>
 </P>
 <P>
-<TABLE style="WIDTH: 95%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=1>
+<TABLE id=20190531_162323 style="WIDTH: 95%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=1>
 <COLGROUP>
-<COL width="18%">
+<COL width="20%">
 </COL>
-<COL width="32%">
+<COL width="30%">
 </COL>
-<COL width="18%">
+<COL width="20%">
 </COL>
-<COL width="32%">
+<COL width="30%">
 </COL>
 </COLGROUP>
 <TBODY>
 <TR>
-<TD bgColor=#afeeee colSpan=4>
+<TD bgColor=#8cabf2 colSpan=4>
 <P align=center>
 <STRONG>
-<SPAN style="FONT-SIZE: 12pt">신청 내역
+<SPAN style="FONT-SIZE: 10pt">신청 내역
 </SPAN>
 </STRONG>
 </P>
@@ -88,85 +111,101 @@
 <TR>
 <TD bgColor=#e9e9e9>
 <P align=center>
-<STRONG>이름*
+<STRONG>
+<SPAN style="FONT-SIZE: 8pt">이름*
+</SPAN>
 </STRONG>
 </P>
 </TD>
 <TD>
 <P>
-<INPUT style="WIDTH: 95%" name=root/contents/name value="<%=user.user_name%>"/>
+<INPUT class=textboxs style="WIDTH: 90%" name=root/contents/name value="<%=user.user_name%>" readonly>
 </P>
 </TD>
 <TD bgColor=#e9e9e9>
 <P align=center>
-<STRONG>전공학과*
+<STRONG>
+<SPAN style="FONT-SIZE: 8pt">전공학과*
+</SPAN>
 </STRONG>
 </P>
 </TD>
 <TD>
 <P>
-<INPUT style="WIDTH: 95%" name=root/contents/major_department value="<%=user.major%>"/>
+<INPUT class=texts style="WIDTH: 90%" name=root/contents/department value="<%=user.major%>" readonly>
 </P>
 </TD>
 </TR>
 <TR>
 <TD bgColor=#e9e9e9>
 <P align=center>
-<STRONG>졸업(수료)년도
+<STRONG>
+<SPAN style="FONT-SIZE: 8pt">생년월일
+</SPAN>
 </STRONG>
 </P>
 </TD>
 <TD>
 <P>
-<INPUT id='datepicker_20190526_142300' style="WIDTH: 100px" name=root/contents/Year_of_graduation value="2019">
+<INPUT class=texts style="WIDTH: 90%" name=root/contents/birthday value="<%=user.user_birth%>" readonly>
 </P>
 </TD>
 <TD bgColor=#e9e9e9>
 <P align=center>
-<STRONG>학번*
+<STRONG>
+<SPAN style="FONT-SIZE: 8pt">학번*
+</SPAN>
 </STRONG>
 </P>
 </TD>
 <TD>
 <P>
-<INPUT style="WIDTH: 95%" name=root/contents/class_of value="<%=user.user_id%>"/>
+<INPUT class=texts style="WIDTH: 90%" name=root/contents/class_of value="<%=user.user_id%>" readonly>
 </P>
 </TD>
 </TR>
 <TR>
 <TD bgColor=#e9e9e9>
 <P align=center>
+<STRONG>
+<SPAN style="FONT-SIZE: 8pt">
 <STRONG>용도*
 </STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<INPUT style="WIDTH: 95%" name=root/contents/purpose>
-</P>
-</TD>
-<TD bgColor=#e9e9e9>
-<P align=center>
-<STRONG>신청일
+</SPAN>
 </STRONG>
 </P>
 </TD>
 <TD>
 <P>
-<INPUT id=datepicker_20190526_142502 style="WIDTH: 100px" name=root/contents/date>
+<INPUT class=texts style="WIDTH: 90%" name=root/contents/purpose>
+</P>
+</TD>
+<TD bgColor=#e9e9e9>
+<P align=center>
+<STRONG>
+<SPAN style="FONT-SIZE: 8pt">신청일
+</SPAN>
+</STRONG>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=texts style="WIDTH: 90%" name=root/contents/Application_date id='applyDate'>
 </P>
 </TD>
 </TR>
-<TR style="HEIGHT: 60px">
+<TR style="HEIGHT: 55px">
 <TD bgColor=#e9e9e9>
 <P align=center>
-<STRONG>기타사항
+<STRONG>
+<SPAN style="FONT-SIZE: 8pt">기타사항
+</SPAN>
 </STRONG>
 </P>
 </TD>
 <TD colSpan=3>
 <P>
-<TEXTAREA style="HEIGHT: 100px; WIDTH: 95%" name=root/contents/Other_matters>
+<TEXTAREA class=texts style="HEIGHT: 50px; WIDTH: 90%" name=root/contents/Other>
 </TEXTAREA>&nbsp;
 </P>
 </TD>
@@ -174,13 +213,13 @@
 </TBODY>
 </TABLE>
 </P>
-<TABLE id=20190526_142833 style="WIDTH: 95%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=0>
+<TABLE id=1 style="WIDTH: 95%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=0>
 <COLGROUP>
 <COL>
 </COL>
 </COLGROUP>
-<TBODY>
-<TR style="HEIGHT: 30px">
+<TBODY id=1>
+<TR style="HEIGHT: 10px">
 <TD>
 <P>&nbsp;
 </P>
@@ -189,12 +228,12 @@
 <TR>
 <TD>
 <P align=center>
-<SPAN style="FONT-SIZE: 11pt">상기 본인은&nbsp;증명서 발급을 요청 합니다.
+<SPAN style="FONT-SIZE: 9pt">상기 본인은&nbsp;증명서 발급을 요청 합니다.
 </SPAN>
 </P>
 </TD>
 </TR>
-<TR style="HEIGHT: 100px">
+<TR style="HEIGHT: 40px">
 <TD>
 <P>&nbsp;
 </P>
@@ -202,7 +241,7 @@
 </TR>
 <TR>
 <TD>
-<TABLE id=1 style="WIDTH: 40%" borderColor=#e0e0e0 cellSpacing=0 cellPadding=1 align=right border=1>
+<TABLE id=20190526_124756 style="WIDTH: 55%" borderColor=#e0e0e0 cellSpacing=0 cellPadding=1 align=right border=1>
 <COLGROUP>
 <COL>
 </COL>
@@ -210,34 +249,28 @@
 <TBODY>
 <TR>
 <TD>
-<P align=center>신청자
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">신청자
+</SPAN>
 </P>
 </TD>
 </TR>
-<TR style="HEIGHT: 205px">
+<TR style="HEIGHT: 180px">
 <TD>
 <DIV align=center>
-<DIV id=div_root_contents_sign class=signature style="HEIGHT: 200px; WIDTH: 95%; POSITION: relative">
+<DIV id=div_root_contents_sign class=signature style="HEIGHT: 175px; WIDTH: 95%; POSITION: relative">
 <DIV align=left>&nbsp;
 </DIV>
 </DIV>
 </DIV>
-<DIV align=center>&nbsp;
-</DIV>
+</TD>
+</TR>
+<TR style="HEIGHT: 10px">
+<TD>
 </TD>
 </TR>
 </TBODY>
 </TABLE>
-</TD>
-</TR>
-<TR style="HEIGHT: 30px">
-<TD>
-<P align=center>
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">
-</SPAN>
-</STRONG>&nbsp;
-</P>
 </TD>
 </TR>
 <TR>
@@ -250,7 +283,7 @@
 </P>
 </TD>
 </TR>
-<TR style="HEIGHT: 30px">
+<TR style="HEIGHT: 10px">
 <TD>
 </TD>
 </TR>
@@ -263,8 +296,8 @@
 </P>
 	<div class="docBtn_list">
 		<input type="button" value="Apply" onclick="ontx()" /> &#160;
-		<!-- <input type="button" value="List" onclick="javascript:bxfXmlListMongodb();" /> &#160; -->
-		<!-- <input type="button" value="Search" onclick="javascript:bxfXmlSearchMongodb();" /> -->
+		<!-- <input type="button" value="List" onclick="javascript:bxfXmlListMongodb();" /> &#160;
+		<input type="button" value="Search" onclick="javascript:bxfXmlSearchMongodb();" /> -->
 	</div>
 <input type="hidden" name="root/contents/sign" id="root_contents_sign">
 </form>
@@ -291,16 +324,17 @@
 		MakeInputSign($("#div_root_contents_sign"), $("#root_contents_sign"));
 	});
 </script>
+
 <script>
 	
-	function pad(n, width) {
-			n = n.toString();//string 변환
-			return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-	}
+    function pad(n, width) {
+        n = n.toString();//string 변환
+        return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+    }   
 
 	var date = new Date();
-	$("#form_type").val('<%=property%>');
-	$('#datepicker_20190526_142502').val(
+	$("#title1").val('<%=property%>');
+	$('#applyDate').val(
 		date.getFullYear()+
 		pad(date.getMonth(),2)+
 		pad(date.getDate(),2)

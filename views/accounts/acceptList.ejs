@@ -66,7 +66,7 @@
                         <%}else{%>
                             <td style="vertical-align: middle; font-size: 0.7em;">신청완료</td>
                         <%}%>
-                            <td style="vertical-align: middle; font-size: 0.7em;"><a href="http://220.76.95.91:8080/ipfs/<%=requestdetail.ipfs_hash%>">보기</a>  </td>
+                            <td style="vertical-align: middle; font-size: 0.7em;"><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.ipfs_hash%>','팝업창', 'height=800, width=500; return false;')">보기</a>  </td>
                     </tr>
                     <% }); %>
                 </tbody>

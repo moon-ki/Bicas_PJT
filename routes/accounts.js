@@ -101,7 +101,7 @@ router.post('/join', function(req, res){
         user_name : req.body.user_name,
         // user_phone : req.body.user_phone,
         // user_sex : req.body.user_sex,
-        // user_birth : req.body.user_birth,
+        user_birth : req.body.user_birth,
         // user_email : req.body.user_email,
         // user_addr : req.body.user_addr,
         // user_addr2 : req.body.user_addr2,
@@ -310,8 +310,15 @@ router.get('/studentlist', loginRequired, function(req, res){
 
 // 서식 호출
 router.get('/apply/:type', loginRequired, function(req, res){
-    console.log(req.params.type);
-    res.render('formats/D190524PCapp_form', { user : req.user, property:req.params.type }); 
+    // console.log(req.params.type);
+    var property='';
+    if(req.params.type=='graduate'){
+        property = '졸업';
+    }else if(req.params.type=='attend'){
+        property = '재학';
+    }
+
+    res.render('formats/App_form', { user : req.user, property:property }); 
 });
 // 졸업증명서 호출
 router.get('/graduate', loginRequired, function(req, res){
@@ -447,12 +454,12 @@ router.post('/callAPI',  function (req,res) {
     var ipfsClient = require('ipfs-http-client');
     var ipfs = ipfsClient('220.76.95.91', '5001', {protocol:'http'});
 
-    // console.log('-----------------------------------------------s_inXML Start!!!!');
-    // console.log(s_inXML);
-    // console.log('-----------------------------------------------s_inXML End!!!!');
-    // console.log('-----------------------------------------------s_calXML Start!!!');
-    // console.log(s_calXML);
-    // console.log('-----------------------------------------------s_calXML End!!!');
+    console.log('-----------------------------------------------s_inXML Start!!!!');
+    console.log(s_inXML);
+    console.log('-----------------------------------------------s_inXML End!!!!');
+    console.log('-----------------------------------------------s_calXML Start!!!');
+    console.log(s_calXML);
+    console.log('-----------------------------------------------s_calXML End!!!');
     request({
         uri: "http://xmlapi.datafarm.co.kr/soaxmlEngineApi.jsp?apiKey=5acda40a5de6a72c70b12679",
         method: "POST",
@@ -469,8 +476,8 @@ router.post('/callAPI',  function (req,res) {
                     //     console.log('1111111111');
                     // });
                     var xmlString = xmlResult.trim();
-                    // console.log('-----------------------------------------------XML 완성');
-                    // console.log(xmlString);
+                    console.log('-----------------------------------------------XML 완성');
+                    console.log(xmlString);
                     ipfs.add({
                         // path: './xmldata/'+file_name,
                         content: Buffer.from(xmlString)

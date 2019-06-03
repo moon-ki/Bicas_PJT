@@ -31,7 +31,8 @@ var UserSchema = new Schema({
     cur_balance:{
         type: Number,
         default:0
-    }
+    },
+    user_birth:String
     // cart: Array
 });
 

@@ -31,6 +31,9 @@
                             <input class="form-control" placeholder="블록체인 비밀번호" id="blockchainpwd" name="blockchainpwd" type="password" value="" required="">
                         </div>
                         <div class="form-group">
+                            <input class="form-control" id="onlyHangul" placeholder="생년월일" name="user_birth" type="text" autofocus="" required="">
+                        </div>
+                        <div class="form-group">
                             <input class="form-control" id="onlyHangul" placeholder="이름" name="user_name" type="text" autofocus="" required="">
                         </div>
                         <!-- <div class="form-group">
@@ -203,6 +206,7 @@ function etherjoin(){
                 var $blockchainid = $('#join_form input[name=blockchainid]');
                 var $blockchainpwd = $('#join_form input[name=blockchainpwd]');
                 var $user_name = $('#join_form input[name=user_name]');
+                var $user_birth = $('#join_form input[name=user_birth]');
                 // var $user_phone = $('#join_form input[name=user_phone]');
                 // var $user_sex = $('#join_form input[name=user_sex]');
                 // var $user_birth = $('#join_form input[name=user_birth]');
@@ -242,6 +246,11 @@ function etherjoin(){
                 if(!$blockchainpwd.val()){
                     alert("블록체인 비밀번호를 입력해주세요.");
                     $blockchainpwd.focus();
+                    return false;
+                }
+                if(!$birth_date.val()){
+                    alert("생년월일을 입력해주세요.");
+                    $birth_date.focus();
                     return false;
                 }
                 // if(!$user_name.val()){
