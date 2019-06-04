@@ -102,7 +102,7 @@ router.post('/adminlogin',
             failureRedirect : '/admin/adminlogin',
             failureFlash : true
         }), function(req, res){
-            res.send('<script>alert("로그인 성공");location.href="/admin/adminhome";</script>');
+            res.send('<script>alert("로그인 성공");location.href="/admin/products/productslist";</script>');
         }
 );
 

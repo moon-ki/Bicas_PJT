@@ -22,6 +22,12 @@
                             <input class="form-control" placeholder="패스워드 확인" name="password2" type="password" value="" required="">
                         </div>
                         <div class="form-group">
+                            <input class="form-control" id="onlyHangul" placeholder="이름" name="user_name" type="text" autofocus="" required="">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="onlyHangul" placeholder="생년월일" name="user_birth" type="text" autofocus="" required="">
+                        </div>
+                        <div class="form-group">
                             <input class="form-control" placeholder="전공" name="major" type="text" value="" required="">
                         </div>
                         <div class="form-group">
@@ -29,13 +35,12 @@
                         </div>
                         <div class="form-group">
                             <input class="form-control" placeholder="블록체인 비밀번호" id="blockchainpwd" name="blockchainpwd" type="password" value="" required="">
+                            <span>
+                                <button class="btn btn-default" onclick="etherjoin()" > 블록체인 계정생성
+                            </span>
                         </div>
-                        <div class="form-group">
-                            <input class="form-control" id="onlyHangul" placeholder="생년월일" name="user_birth" type="text" autofocus="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" id="onlyHangul" placeholder="이름" name="user_name" type="text" autofocus="" required="">
-                        </div>
+
+
                         <!-- <div class="form-group">
                             <input class="form-control" id="onlyNumber" placeholder="핸드폰 번호" name="user_phone" type="text" value="" required="">
                         </div>
@@ -63,7 +68,7 @@
                         </div> -->
                         
                         <!-- Change this to a button or input when using this as a form -->
-                        <input type="button" class="btn btn-lg btn-success btn-block" onclick="etherjoin()" value="블록체인 계정생성">
+                        <!-- <input type="button" class="btn btn-lg btn-success btn-block" onclick="etherjoin()" value="블록체인 계정생성"> -->
                         <input type="submit" class="btn btn-lg btn-success btn-block" value="가입하기">
                     </fieldset>
                 </form>

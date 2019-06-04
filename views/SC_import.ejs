@@ -51,7 +51,9 @@
 
         var inXML = $('#inXMLcontent').val();
         var calXML= $('#calXMLcontent').val();
-        var params = 's_inXML='+inXML+'&s_calXML='+calXML+'&file_name='+file_name;
+        var form_name = $('#title1').val();
+        var form_type = $('#form_type').val();
+        var params = 's_inXML='+inXML+'&s_calXML='+calXML+'&file_name='+file_name+'&form_name='+form_name+'&form_type='+form_type;
         // console.log('----------------+++++++++++++++++++++++++++++++++++++++++++');
         // console.log(calXML);
         var client = new XMLHttpRequest();

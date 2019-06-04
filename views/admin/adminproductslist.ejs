@@ -27,24 +27,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="/admin/adminhome">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">대시보드</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="/admin/products/productslist">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">접수목록</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
             <a class="nav-link" href="/admin/studentregedit">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">학생등록</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
               <a class="nav-link" href="/admin/adminstudentlist">
                 <i class="fa fa-fw fa-area-chart"></i>
@@ -83,12 +83,12 @@
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
+      <!-- <ol class="breadcrumb"> -->
+        <!-- <li class="breadcrumb-item">
           <a href="#">대시보드</a>
-        </li>
+        </li> -->
         
-      </ol>
+      <!-- </ol> -->
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
@@ -102,10 +102,11 @@
                     <th width="7%" style="vertical-align: middle;">번호</th>
                     <th width="15%" style="vertical-align: middle;">사용자ID</th>
                     <th width="20%" style="vertical-align: middle;">이름</th>
-                    <th width="15%" style="vertical-align: middle;">승인여부</th>
+                    <th width="20%" style="vertical-align: middle;">구분</th>
+                    <!-- <th width="15%" style="vertical-align: middle;">승인여부</th> -->
                     <th width="15%" style="vertical-align: middle;">신청시간</th>
+                    <!-- <th width="10%" style="vertical-align: middle;">신청서 보기</th> -->
                     <th width="10%" style="vertical-align: middle;">승인</th>
-                    <th width="10%" style="vertical-align: middle;">view</th>
                     <!-- <th width="7%" style="vertical-align: middle;">삭제</th> -->
                 </tr>
             </thead>
@@ -122,21 +123,24 @@
                     <td style="vertical-align: middle; font-size: 0.7em;">
                         </a><%= requestdetail.name %></a>
                     </td>
-                    <td style="vertical-align: middle; font-size: 0.7em;"><%=requestdetail.accept_yn %></td>
+                    <td style="vertical-align: middle; font-size: 0.7em;"><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.ipfs_hash%>','팝업창', 'height=700, width=500; return false;')"><%=requestdetail.form_name %></a></td>
                     <td style="vertical-align: middle; font-size: 0.7em;">
-                      <%=requestdetail.getDate.year%>.
-                      <%=requestdetail.getDate.month%>.
-                      <%=requestdetail.getDate.day %>.
-                      <%=requestdetail.getDate.hour%>:
-                      <%=requestdetail.getDate.minute%>:
-                      <%=requestdetail.getDate.second%></td>
-                      
+                      <%=requestdetail.getCreatedTime.year%>.
+                      <%=requestdetail.getCreatedTime.month%>.
+                      <%=requestdetail.getCreatedTime.day %>.
+                      <%=requestdetail.getCreatedTime.hour%>:
+                      <%=requestdetail.getCreatedTime.minute%>
+                      <!-- <%=requestdetail.getCreatedTime.second%> -->
+                    </td>
+                    
+                    <!-- <td style="vertical-align: middle; font-size: 0.7em; cursor: pointer"><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.ipfs_hash%>','팝업창', 'height=700, width=500; return false;')">보기</a></td>   -->
                     <% if (requestdetail.accept_yn=='N'){ %>
-                        <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="승인"  onclick="adminAccept(<%=requestdetail.seq%>, '<%=requestdetail.file_name%>')" />  </td>
+                        <!-- <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="승인"  onclick="adminAccept(<%=requestdetail.seq%>, '<%=requestdetail.file_name%>')" />  </td> -->
+                        <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="승인"  onclick="window.open('accounts/cetificate/<%=requestdetail.form_type%>','팝업창', 'height=800, width=600; return false;')" />  </td>
                     <%}else{%>
-                        <td style="vertical-align: middle; font-size: 0.7em;"></td>
+                        <td style="vertical-align: middle; font-size: 0.7em;">승인 완료</td>
                     <%}%>
-                    <td style="vertical-align: middle; font-size: 0.7em;"><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.ipfs_hash%>','팝업창', 'height=700, width=500; return false;')">보기</a>  </td>
+                    
                 </tr> 
                 <% }); %>
               </tbody>
