@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.btn {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.success {background-color: #4CAF50;} /* Green */
+.success:hover {background-color: #46a049;}
+
+.info {background-color: #2196F3;} /* Blue */
+.info:hover {background: #0b7dda;}
+
+.warning {background-color: #ff9800;} /* Orange */
+.warning:hover {background: #e68a00;}
+
+.danger {background-color: #f44336;} /* Red */ 
+.danger:hover {background: #da190b;}
+
+.default {background-color: #e7e7e7; color: black;} /* Gray */ 
+.default:hover {background: #ddd;}
+</style>
+</head>
+<body>
+<a href="/accounts/wallet">뒤로가기</a>
+<h2>&emsp;&emsp;&emsp;내 증명서 보기</h2>
+
+&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn success" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=myCerti.graduate_ipfs%>','window_name','width=430,height=670,location=no,status=no,scrollbars=yes');">졸업증명서</button><br><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn info" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=myCerti.attend_ipfs%>','window_name','width=430,height=670,location=no,status=no,scrollbars=yes');">재학증명서</button><br><br>
+&emsp;&emsp;&emsp;&emsp;&emsp;<button class="btn warning" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=myCerti.score_ipfs%>','window_name','width=430,height=670,location=no,status=no,scrollbars=yes');">성적증명서</button><br><br>
+<!-- <button class="btn danger" onclick="">Danger</button><br>
+<button class="btn default" onclick="">Default</button> -->
+
+</body>
+</html>

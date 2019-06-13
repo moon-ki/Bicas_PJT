@@ -8,6 +8,8 @@ var UserSchema = new Schema({
     user_id : {
         type : String,
         required : [true, '아이디는 필수입니다.']
+        // ,type: mongoose.Schema.Types.ObjectId,
+        // ref:'requestdetail'
     },
     password : {
         type : String,

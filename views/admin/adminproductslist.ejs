@@ -26,32 +26,34 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+      <!-- 좌측툴바 시작 -->
+      <!-- <ul class="navbar-nav navbar-sidenav" id="exampleAccordion"> -->
         <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="/admin/adminhome">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">대시보드</span>
           </a>
         </li> -->
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="/admin/products/productslist">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">접수목록</span>
           </a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
             <a class="nav-link" href="/admin/studentregedit">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">학생등록</span>
             </a>
           </li> -->
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+          <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
               <a class="nav-link" href="/admin/adminstudentlist">
                 <i class="fa fa-fw fa-area-chart"></i>
                 <span class="nav-link-text">학생관리</span>
               </a>
-            </li>
-      </ul>
+          </li> -->
+      <!-- </ul> -->
+      <!-- 좌측툴바끝 -->
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
           <a class="nav-link text-center" id="sidenavToggler">
@@ -60,8 +62,8 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        
-        <li class="nav-item">
+        <!-- 검색 주석처리 -->
+        <!-- <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
               <input class="form-control" type="text" placeholder="Search for...">
@@ -72,7 +74,22 @@
               </span>
             </div>
           </form>
+        </li> -->
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="/admin/products/productslist">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">접수목록</span>
+          </a>
         </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+          <a class="nav-link" href="/admin/adminstudentlist">
+            <i class="fa fa-fw fa-area-chart"></i>
+            <span class="nav-link-text">학생관리</span>
+          </a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
@@ -102,9 +119,10 @@
                     <th width="7%" style="vertical-align: middle;">번호</th>
                     <th width="15%" style="vertical-align: middle;">사용자ID</th>
                     <th width="20%" style="vertical-align: middle;">이름</th>
-                    <th width="20%" style="vertical-align: middle;">구분</th>
+                    <th width="20%" style="vertical-align: middle;">신청서식</th>
                     <!-- <th width="15%" style="vertical-align: middle;">승인여부</th> -->
                     <th width="15%" style="vertical-align: middle;">신청시간</th>
+                    <th width="15%" style="vertical-align: middle;">승인시간</th>
                     <!-- <th width="10%" style="vertical-align: middle;">신청서 보기</th> -->
                     <th width="10%" style="vertical-align: middle;">승인</th>
                     <!-- <th width="7%" style="vertical-align: middle;">삭제</th> -->
@@ -123,22 +141,36 @@
                     <td style="vertical-align: middle; font-size: 0.7em;">
                         </a><%= requestdetail.name %></a>
                     </td>
-                    <td style="vertical-align: middle; font-size: 0.7em;"><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.ipfs_hash%>','팝업창', 'height=700, width=500; return false;')"><%=requestdetail.form_name %></a></td>
+                    <!-- 구분 -->
+                    <!-- IPFS -->
+                    <td style="vertical-align: middle; font-size: 0.7em;"><a style="cursor: pointer" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.apply_ipfs%>?seq=<%=requestdetail.seq%>','팝업창', 'height=600, width=500; return false;')"><%=requestdetail.form_name %> 신청서</a></td>
+                    <!-- Test -->
+                    <!-- <td style="vertical-align: middle; font-size: 0.7em;"><a style="cursor: pointer" onclick="window.open('http://220.76.95.91:3000/xmldata/<%=requestdetail.file_name%>?seq=<%=requestdetail.seq%>&fileName=<%=requestdetail.file_name%>','팝업창', 'height=600, width=500; return false;')"><%=requestdetail.form_name %></a></td> -->
+                    <!-- Local -->
+                    <!-- <td style="vertical-align: middle; font-size: 0.7em;"><a style="cursor: pointer" onclick="window.open('http://localhost:3000/xmldata/<%=requestdetail.file_name%>?seq=<%=requestdetail.seq%>&fileName=<%=requestdetail.file_name%>','팝업창', 'height=600, width=500; return false;')"><%=requestdetail.form_name %></a></td> -->
                     <td style="vertical-align: middle; font-size: 0.7em;">
-                      <%=requestdetail.getCreatedTime.year%>.
-                      <%=requestdetail.getCreatedTime.month%>.
-                      <%=requestdetail.getCreatedTime.day %>.
-                      <%=requestdetail.getCreatedTime.hour%>:
+                      <%=requestdetail.getCreatedTime.year%>
+                      <%=requestdetail.getCreatedTime.month%>
+                      <%=requestdetail.getCreatedTime.day %>
+                      <%=requestdetail.getCreatedTime.hour%>
                       <%=requestdetail.getCreatedTime.minute%>
                       <!-- <%=requestdetail.getCreatedTime.second%> -->
                     </td>
+                    <td style="vertical-align: middle; font-size: 0.7em;">
+                        <%=requestdetail.getAcceptTime.year%>
+                        <%=requestdetail.getAcceptTime.month%>
+                        <%=requestdetail.getAcceptTime.day %>
+                        <%=requestdetail.getAcceptTime.hour%>
+                        <%=requestdetail.getAcceptTime.minute%>
+                        <!-- <%=requestdetail.getCreatedTime.second%> -->
+                      </td>
                     
                     <!-- <td style="vertical-align: middle; font-size: 0.7em; cursor: pointer"><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.ipfs_hash%>','팝업창', 'height=700, width=500; return false;')">보기</a></td>   -->
                     <% if (requestdetail.accept_yn=='N'){ %>
-                        <!-- <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="승인"  onclick="adminAccept(<%=requestdetail.seq%>, '<%=requestdetail.file_name%>')" />  </td> -->
-                        <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="승인"  onclick="window.open('accounts/cetificate/<%=requestdetail.form_type%>','팝업창', 'height=800, width=600; return false;')" />  </td>
+                        <!-- <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="승인"  onclick="window.open('cetificate/<%=requestdetail.form_type%>/<%=requestdetail.seq%>/<%=requestdetail.file_name%>','팝업창', 'height=700, width=500; return false;')" /></td> -->
+                        <td style="vertical-align: middle; font-size: 0.7em;"></td>
                     <%}else{%>
-                        <td style="vertical-align: middle; font-size: 0.7em;">승인 완료</td>
+                        <td style="vertical-align: middle; font-size: 0.7em;">승인완료</td>
                     <%}%>
                     
                 </tr> 
@@ -147,7 +179,7 @@
             </table>
           </div>
         </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
       </div>
     </div>
 
@@ -210,10 +242,9 @@
 <input type="hidden" id='blockchainpwd' value="<%= user.blockchainpwd %>"></input>
 <!-- 세션 정보 받아오기 user_id, blockChainid, blockChainpw -->
 
-<style type="text/css">
-
-</style>
+<script>
 
 
 
+</script>
 <% include ../SC_import.ejs %>

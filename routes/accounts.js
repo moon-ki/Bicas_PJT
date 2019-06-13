@@ -3,6 +3,7 @@ var router = express.Router();
 
 //DB Schema Load
 var UserModel = require('../models/UserModel');
+var CertiYnModeil=require('../models/certiYnModel');
 var TransactionModel = require('../models/Transaction');
 var RequestDetailModel = require('../models/RequestDetail');
 var TransactionListModel = require('../models/TransactionList');
@@ -111,6 +112,11 @@ router.post('/join', function(req, res){
         res.send('<script>alert("회원가입 성공");\
         location.href="/accounts/login";</script>');
     });
+
+    var CertiYn = new CertiYnModeil({
+        user_id : req.body.user_id
+    });
+    CertiYn.save();
 });
 
 // 로그인 페이지
@@ -322,6 +328,36 @@ router.get('/apply/:type', loginRequired, function(req, res){
 
     res.render('formats/App_form', { user : req.user, form_type:req.params.type, form_name:form_name }); 
 });
+
+// 이더리움 트랜젝션 팝업 호출
+router.get('/getTransaction/:txHash', function(req, res){
+    console.log('txHash: '+req.params.txHash);
+    var Web3 = require('web3');
+    var provider = 'http://220.76.95.91:8485';
+    var web3 = new Web3(new Web3.providers.HttpProvider(provider));
+    web3.eth.getTransaction(req.params.txHash, 
+        function(err, txInfo){
+            res.render('txPop', { txInfo : txInfo });  
+    });
+});
+
+// 이더리움 트랜젝션 팝업 호출
+router.get('/txHashPop/:seq', async(req, res)=>{
+
+    var result = await RequestDetailModel.findOne({"seq" : req.params.seq}).limit(req.query.limit).skip(req.skip).exec();
+
+    res.render('txHashsPop', { txHashs : result });  
+});
+
+// 내 증명서 화면 호출
+router.get('/myCerti/:user_id', async(req, res)=>{
+
+    console.log('req.params.user_id: '+req.params.user_id);
+    var result = await CertiYnModeil.findOne({"user_id" : req.params.user_id}).limit(req.query.limit).skip(req.skip).exec();
+    console.log(result);
+    res.render('certiButton', { myCerti : result });  
+});
+
 // 졸업증명서 호출
 router.get('/graduate', loginRequired, function(req, res){
     console.log(req.params.type);
@@ -346,27 +382,6 @@ router.get('/acceptList', paginate.middleware(10, 50), async (req,res) => {
             user: req.user //user 세션 정보
         });
 
-});
-
-//내역저장 호출
-router.post('/saveLog', function(req,res){
-    var form_name='';
-    if(req.body.form_type=='/accounts/graduate'){
-        form_name = '졸업증명서 신청';
-    }
-
-    // console.log(req.body.ipfs_hash);
-
-    var RequestDetail = new RequestDetailModel({
-        user_id : req.user.user_id,
-        name : req.user.name,
-        form_type : req.body.form_type,
-        form_name : form_name,
-        ifps_hash : req.body.ifps_hash
-    });
-    RequestDetail.save(function(err){
-        
-    });
 });
 
 //트랜젝션 내역 저장
@@ -451,20 +466,24 @@ router.post('/updateLog', function(req, res){
 
 router.post('/callAPI',  function (req,res) {
     var s_inXML = req.body.s_inXML;
-    var s_calXML = req.body.s_calXML.replace(/ /gi, "+");
-    var file_name = req.body.file_name;
-    var form_name = req.body.form_name+' 증명서 신청';
+    
+    var spot = req.body.spot;
     var ipfsClient = require('ipfs-http-client');
     var ipfs = ipfsClient('220.76.95.91', '5001', {protocol:'http'});
 
-    // console.log('-----------------------------------------------s_inXML Start!!!!');
-    // console.log(s_inXML);
-    // console.log('-----------------------------------------------s_inXML End!!!!');
-    // console.log('-----------------------------------------------s_calXML Start!!!');
-    // console.log(s_calXML);
-    // console.log('-----------------------------------------------s_calXML End!!!');
+    // console.log('file_name:'+file_name+', form_name:'+form_name+', spot: '+spot);
+    var s_calXML = req.body.s_calXML.replace(/ /gi, "+");
+    console.log('-----------------------------------------------s_inXML Start!!!!');
+    console.log(s_inXML);
+    console.log('-----------------------------------------------s_inXML End!!!!');
+    console.log('-----------------------------------------------s_calXML Start!!!');
+    console.log(s_calXML);
+    console.log('-----------------------------------------------s_calXML End!!!');
+    
     request({
-        uri: "http://xmlapi.datafarm.co.kr/soaxmlEngineApi.jsp?apiKey=5acda40a5de6a72c70b12679",
+        // uri: "http://xmlapi.datafarm.co.kr/soaxmlEngineApi.jsp?apiKey=5acda40a5de6a72c70b12679",
+        uri:'http://220.76.95.91:8011',
+        // uri:'http://192.168.0.159:8001',
         method: "POST",
         enctype: 'multipart/form-data',
         form: {
@@ -472,41 +491,70 @@ router.post('/callAPI',  function (req,res) {
             s_calXML: s_calXML
         }
     }, async (error, response, xmlResult)=>{
-            // fs.exists(file_name, async(exists)=>{
+            // fs.exists('./xmldata/'+req.body.file_name, async(exists)=>{
+                var xmlString = await xmlResult.trim();
+                
                 // if(!exists){
-                    // await fs.writeFile('./xmldata/'+file_name, xmlString.trim(), 'utf8', function(error){
-                    //     if (error) {throw error};
-                    // });
-                    var xmlString = await xmlResult.trim();
+                //     await fs.writeFile('./xmldata/'+req.body.file_name, xmlString, 'utf8', function(error){
+                //         if (error) {throw error};
+                //     });
+                    
                     // console.log('-----------------------------------------------XML 완성');
                     // console.log(xmlString);
                     await ipfs.add({
                         // path: './xmldata/'+file_name,
                         content: Buffer.from(xmlString)
                     },async (err,res)=>{
-                        // console.log(res[0].hash);
-                        if(err==null){
+                        console.log('IPFS hash: '+res[0].hash);
+                        if(err==null && spot=='user'){
+                            // console.log('ipfsHash: '+res[0].hash);
+                            // console.log('--------------------------------------------저장로직 실행');
                             var RequestDetail = await new RequestDetailModel({
                                 user_id : req.user.user_id,
                                 name : req.user.user_name,
-                                // form_type : req.body.form_type,
-                                form_name : form_name,
-                                ipfs_hash : res[0].hash,
-                                file_name : file_name,
-                                xml_string: xmlString,
-                                form_type:req.body.form_type
+                                form_type : req.body.form_type,
+                                form_name : req.body.form_name,
+                                apply_ipfs : res[0].hash,
+                                file_name : req.body.file_name,
+                                apply_xml: xmlString
+                                // spot:req.body.spot
                             });
-                            await RequestDetail.save(function(err){
-                            });
+                                setTimeout(()=>
+                                    RequestDetail.save(function(err){})
+                                ,3000);    
+
+                            // await response.end('<script>alert("신청서 제출 완료");parent.opener.location.href="/accounts/acceptList";</script>');
+
+                        // }else if(spot=='admin'){
+                        //     //승인시간 업데이트
+                        //     await RequestDetailModel.update(
+                        //         {seq : req.body.seq},
+                        //         {   $set : {
+                        //                 accept_at : Date.now(),
+                        //                 // accept_yn : 'Y',
+                        //                 accept_ipfs:res[0].hash,
+                        //                 accept_xml:xmlString
+                        //             }
+                        //         }, function(err){
+                        //             if(err){
+                        //                 throw err;
+                        //             }
+                        //         }
+                        //     );
+                        }else{
+                            console.error('정의되지 않은 spot!!');
                         }
-                    });
+                        // res.send('<script>alert("내역저장 성공");\
+                        // location.href="/accounts/songguem";</script>');
+                    }
+                    );//ipfs.add END
                 // }else{
                 //     console.error('동일한 파일명이 있습니다.');
                 // }
         // });
-    }); 
-
+    }); //request END
 });
+
 
 
 router.get('/history', paginate.middleware(5, 50), async (req,res) => {

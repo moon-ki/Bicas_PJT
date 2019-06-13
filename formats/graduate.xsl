@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/">
 <xsl:decimal-format name="digit" decimal-separator="." grouping-separator="," infinity="&#x221E;" minus-sign="-" NaN="0" percent="%" per-mille="&#x03BC;" zero-digit="0" digit="#" pattern-separator=";" />
 <xsl:output method="html" doctype-system="http://www.w3.org/TR/html4/strict.dtd" doctype-public="-//W3C//DTD HTML 4.01//EN" indent="yes" />
@@ -8,15 +8,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title> App_form </title>
+	<title> graduate </title>
 	<link rel="shortcut icon" href="http://www.3ksoftware.com/favicon.ico"/>
 	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/soaxml_webformReset.css" rel="stylesheet"  media="screen"/>
 	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/uniform.default.css" rel="stylesheet" media="screen" />
 	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/jquery-ui.1.10.3.smoothness.css" rel="stylesheet" media="screen" />
 	<style></style>
 <style>
-.titlefsize14 { font-size: 14pt; }
-.textboxs { font-size: 8pt; }
+.texts { background-color: rgba( 255, 255, 255, 0.5 ); }
+.inputs { font-size: 10pt }
 </style>
 
 	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxControl.js"></script>
@@ -42,206 +42,49 @@
 	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxFormForMongo.js"></script>
 </head>
 <body onLoad='javascript:basexml_checktype( );'>
-<form name="App_form">
+<form name="graduate">
 <P>
-<TABLE style="WIDTH: 98%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="1">
+<TABLE id="1" style="WIDTH: 98%" borderColor="#000000" cellSpacing="0" cellPadding="5" align="center" border="2">
 <COLGROUP>
 <COL width="700">
 </COL>
 </COLGROUP>
-<TBODY>
-<TR>
-<TD>
-<P>
-<TABLE id="3" style="WIDTH: 95%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="0">
-<COLGROUP>
-<COL>
-</COL>
-</COLGROUP>
-<TBODY>
-<TR style="HEIGHT: 10px">
-<TD>
-<P align="center">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">&#160;
-</SPAN>
-</STRONG>
-</SPAN>
-</SPAN>
-</STRONG>
-</SPAN>
-</P>
-</TD>
-</TR>
-<TR>
-<TD>
-<P align="center">
-<FONT size="5">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">
-<xsl:value-of select="root/contents/title"/>
-&#160;
-</SPAN>
-</STRONG>
-</SPAN>
-</SPAN>
-</STRONG>
-</SPAN>
-<STRONG>증명 신청서
-</STRONG>
-</FONT>
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 10px">
-<TD>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
-<P>
-<TABLE id="20190531_162323" style="WIDTH: 95%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="1">
-<COLGROUP>
-<COL width="20%">
-</COL>
-<COL width="30%">
-</COL>
-<COL width="20%">
-</COL>
-<COL width="30%">
-</COL>
-</COLGROUP>
-<TBODY>
-<TR>
-<TD bgColor="#8cabf2" colSpan="4">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 10pt">신청 내역
-</SPAN>
-</STRONG>
-</P>
-</TD>
-</TR>
-<TR>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">이름
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/name"/>
-</P>
-</TD>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">전공학과
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/department"/>
-</P>
-</TD>
-</TR>
-<TR>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">생년월일
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/birthday"/>
-</P>
-</TD>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">학번
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/class_of"/>
-</P>
-</TD>
-</TR>
-<TR>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">
-<STRONG>용도
-</STRONG>
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/purpose"/>
-</P>
-</TD>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">신청일
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/Application_date"/>
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 55px">
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">기타사항
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD colSpan="3">
-<P>
-<xsl:apply-templates select="root/contents/Other"/>&#160;
-</P>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
-<TABLE id="1" style="WIDTH: 95%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="0">
-<COLGROUP>
-<COL>
-</COL>
-</COLGROUP>
 <TBODY id="1">
-<TR style="HEIGHT: 10px">
+<TR>
+<TD>
+<P>
+<TABLE style="WIDTH: 100%" borderColor="#e0e0e0" cellSpacing="0" cellPadding="3" align="center" border="1">
+<COLGROUP>
+<COL>
+</COL>
+</COLGROUP>
+<TBODY>
+<TR>
+<TD style="BACKGROUND-IMAGE: url(http://www.uccxml.com/SOAXML/XCMS/sys/client/kr/usr/kura71/uploads/images/Image/Ethereumlogo.png); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center center" bgColor="#ffffff">
+<P>
+<TABLE id="20190531_192027" class="texts" style="WIDTH: 100%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="0">
+<COLGROUP>
+<COL width="7%">
+</COL>
+<COL width="43%">
+</COL>
+<COL width="43%">
+</COL>
+<COL width="7%">
+</COL>
+</COLGROUP>
+<TBODY>
+<TR style="HEIGHT: 25px">
+<TD>
+<P>&#160;
+</P>
+</TD>
+<TD>
+</TD>
+<TD>
+<P>&#160;
+</P>
+</TD>
 <TD>
 <P>&#160;
 </P>
@@ -249,13 +92,106 @@
 </TR>
 <TR>
 <TD>
+<P>&#160;
+</P>
+</TD>
+<TD colSpan="2">
 <P align="center">
-<SPAN style="FONT-SIZE: 9pt">상기 본인은&#160;증명서 발급을 요청 합니다.
+<STRONG>
+<SPAN style="FONT-SIZE: 16pt">졸&#160; 업&#160; 증 &#160;명 &#160;서
+</SPAN>
+</STRONG>
+</P>
+</TD>
+<TD>
+<P>&#160;
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 35px">
+<TD>
+<P>&#160;
+</P>
+</TD>
+<TD>
+</TD>
+<TD>
+<P>&#160;
+</P>
+</TD>
+<TD>
+<P>&#160;
+</P>
+</TD>
+</TR>
+<TR>
+<TD>
+<P>&#160;
+</P>
+</TD>
+<TD colSpan="2">
+<SPAN style="FONT-SIZE: 10pt">
+<STRONG>성명 :
+<xsl:value-of select="root/contents/name"/>
+</STRONG>
+</SPAN>
+</TD>
+<TD>
+<P>&#160;
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 4px">
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+<P>&#160;
+</P>
+</TD>
+<TD colSpan="2">
+<P>
+<SPAN style="FONT-SIZE: 10pt">
+<STRONG>주민등록번호 :
+<xsl:value-of select="root/contents/registration_num"/>
+</STRONG>
 </SPAN>
 </P>
 </TD>
+<TD>
+<P>&#160;
+</P>
+</TD>
 </TR>
-<TR style="HEIGHT: 40px">
+<TR style="HEIGHT: 4px">
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+<P>&#160;
+</P>
+</TD>
+<TD colSpan="2">
+<SPAN style="FONT-SIZE: 10pt">
+<STRONG>학과/전공 :
+<xsl:value-of select="root/contents/department_major"/>
+</STRONG>
+</SPAN>
+</TD>
 <TD>
 <P>&#160;
 </P>
@@ -263,7 +199,153 @@
 </TR>
 <TR>
 <TD>
-<TABLE id="20190526_124756" style="WIDTH: 55%" borderColor="#e0e0e0" cellSpacing="0" cellPadding="1" align="right" border="1">
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+<P>&#160;
+</P>
+</TD>
+<TD colSpan="2">
+<SPAN style="FONT-SIZE: 10pt">
+<STRONG>학위 :
+<xsl:value-of select="root/contents/degree"/>
+</STRONG>
+</SPAN>
+</TD>
+<TD>
+<P>&#160;
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 4px">
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+</TD>
+<TD colSpan="2">
+<SPAN style="FONT-SIZE: 10pt">
+<STRONG>졸업일자 :&#160;
+<xsl:value-of select="root/contents/graduation_date"/>
+</STRONG>
+</SPAN>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR style="HEIGHT: 4px">
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+</TD>
+<TD colSpan="2">
+<SPAN style="FONT-SIZE: 10pt">
+<STRONG>학위등록번호 :&#160;
+<xsl:value-of select="root/contents/degree_num"/>
+</STRONG>
+</SPAN>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR style="HEIGHT: 30px">
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+</TD>
+<TD colSpan="2">
+<P align="center">
+<SPAN style="FONT-SIZE: 10pt">위의 사실을 증명 합니다.
+</SPAN>
+</P>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR style="HEIGHT: 10px">
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+</TD>
+<TD colSpan="2">
+<P align="center">
+<xsl:value-of select="root/contents/date"/>
+</P>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR style="HEIGHT: 15px">
+<TD>
+</TD>
+<TD colSpan="2">
+<P align="center">&#160;
+</P>
+</TD>
+<TD>
+</TD>
+</TR>
+<TR>
+<TD>
+</TD>
+<TD>
+<P>&#160;
+</P>
+<P>&#160;
+</P>
+<P>&#160;
+</P>
+<P>&#160;
+</P>
+<P>&#160;
+</P>
+<P>&#160;
+</P>
+<P>&#160;
+</P>
+</TD>
+<TD>
+<P align="center">&#160;
+</P>
+<TABLE style="HEIGHT: 85px; WIDTH: 100px" borderColor="#000000" cellSpacing="0" cellPadding="1" align="center" border="0">
 <COLGROUP>
 <COL>
 </COL>
@@ -272,89 +354,56 @@
 <TR>
 <TD>
 <P align="center">
-<SPAN style="FONT-SIZE: 8pt">신청자
-</SPAN>
+<IMG src="http://www.uccxml.com/SOAXML/XCMS/sys/client/kr/usr/kura71/uploads/images/Image/dojang_signature.jpg" width="95" height="80"/>
 </P>
 </TD>
 </TR>
-<TR style="HEIGHT: 180px">
-<TD>
-<DIV align="center">
-<DIV id="div_root_contents_sign" class="signature" style="HEIGHT: 175px; WIDTH: 95%; POSITION: relative">
-<DIV align="left">&#160;
-</DIV>
-</DIV>
-</DIV>
-</TD>
-</TR>
-<TR style="HEIGHT: 10px">
-<TD>
-</TD>
-</TR>
 </TBODY>
-</TABLE>
+</TABLE>&#160;
+</TD>
+<TD>
 </TD>
 </TR>
 <TR>
 <TD>
+</TD>
+<TD colSpan="2">
 <P align="center">
 <STRONG>
-<SPAN style="FONT-SIZE: 16pt">3K BICAS 대학교 교무처 귀중
+<SPAN style="FONT-SIZE: 16pt">3K BICAS 대학교 총장
 </SPAN>
 </STRONG>
 </P>
 </TD>
+<TD>
+</TD>
 </TR>
-<TR style="HEIGHT: 10px">
+<TR style="HEIGHT: 25px">
+<TD>
+</TD>
+<TD>
+</TD>
+<TD>
+</TD>
 <TD>
 </TD>
 </TR>
 </TBODY>
 </TABLE>
+</P>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+</P>
 </TD>
 </TR>
 </TBODY>
 </TABLE>
 </P>
 </form>
-<script type="text/javascript">
+<script language="JavaScript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxXsl.js"></script>
 
-    function adminAccept(seq, file_name){
-        var answer = confirm('해당 신청서를 승인하겠습니까?');
-		if(answer){
-			var url =new URL(window.location.href);
-			var seq = url.searchParams.get('seq');
-			var param = 'seq='+seq;
-			var client = new XMLHttpRequest();
-            client.open("POST",'http://localhost:3000/admin/createContract/accept/'+seq, true);
-            client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            client.send(param);
-			alert('신청서가 승인되었습니다.');
-			alert(seq);
-			location.href='http://localhost:3000/admin/cetificate/'+seq;
-		}
-    }
-
-    function adminReject(){
-        var answer = confirm('해당 증명서를 반려하겠습니까?');
-		if(answer){
-			alert('반려업무는 개발중입니다.');
-		}
-    }
-</script>
-
-	<div class="docBtn_list">
-		<input type="button" value="반려" onclick='adminReject();'/> &#160;
-		<input type="button" value="승인" onclick='adminAccept();'/> &#160;
-	</div>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$signImg = $("#div_root_contents_sign");
-	sign = new Image();
-	sign.src = '<xsl:value-of select="root/contents/sign"/>';
-	$(sign).appendTo($signImg);
-	});
-</script>
 </body>
 </html>
 </xsl:template>

@@ -94,44 +94,47 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> 학생 목록</div>
+          <i class="fa fa-table"></i> 학생관리</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr align="center">
                     <th width="1%" style="vertical-align: middle;">학번</th>
-                    <th width="1%" style="vertical-align: middle;">전공</th>
-                    <th width="1%" style="vertical-align: middle;">성별</th>
                     <th width="1%" style="vertical-align: middle;">이름</th>
+                    <th width="1%" style="vertical-align: middle;">전공</th>
+                    <th width="1%" style="vertical-align: middle;">생년월일</th>
+                    
+                    <!-- <th width="1%" style="vertical-align: middle;">이메일</th> -->
                     <th width="10%" style="vertical-align: middle;">블록체인ID</th>
                     <th width="1%" style="vertical-align: middle;">삭제</th>
                 </tr>
             </thead>
-            <tfoot>
+            <!-- <tfoot>
                 <tr align="center">
                     <th>학번</th>
                     <th>전공</th>
-                    <th>성별</th>
+                    <th>생년월일</th>
                     <th>이름</th>
+                    <th>이메일</th>
                     <th>블록체인ID</th>
                     <th>삭제</th>
                 </tr>
-            </tfoot>
+            </tfoot> -->
                 <tbody>
                 <% stulist.forEach(function(stulist){ %>
                 <tr align="center">
                     <td style="vertical-align: middle; font-size: 0.7em;">
                         <%= stulist.user_id %></a>
                     </td>
+                    <td style="vertical-align: middle; font-size: 0.7em;"><%=stulist.user_name %></td>
                     <td style="vertical-align: middle; font-size: 0.7em;">
                         </a><%= stulist.major %></a>
                     </td>
-                    <td style="vertical-align: middle;"><%=stulist.user_sex%></td>
-                    <td style="vertical-align: middle; font-size: 0.7em;"><%-stulist.user_name %></td>
-                    <td style="vertical-align: middle; font-size: 0.7em;">
-                      <%= stulist.blockchainid %>
-                    </td>
+                    <td style="vertical-align: middle;"><%=stulist.user_birth%></td>
+                    
+                    <!-- <td style="vertical-align: middle; font-size: 0.7em;"><%=stulist.user_email %></td> -->
+                    <td style="vertical-align: middle; font-size: 0.7em;"><%= stulist.blockchainid %></td>
                     <td style="vertical-align: middle; font-size: 0.7em;">
                         <a href="/admin/adminstudentlist/delete/<%=stulist.id %>" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
                     </td>

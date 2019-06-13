@@ -5,31 +5,71 @@ var autoIncrement = require('mongoose-auto-increment');
 // 트랜잭션 스키마를 정의한다.
 var RequestSchema = new Schema({
     user_id : String,
+    // {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref:'user'
+    // },
+    
     name : String,
     form_type: String,
     form_name: String,
-    created_at : {
-        type : Date,
-        default : Date.now()
-    },
+    // ##################################################
+    //                  0. 신청업무
+    //신청 xmlString
+    apply_xml:String,
+    //신청 ipfs
+    apply_ipfs:String,
+    //신청 xmlString
+    accept_xml:String,
+    // ##################################################
+    //                  1. 납부업무
+    //수수료납부여부
     fee_yn : {
         type: String,
         default: 'N'
     },
+    //수수료 납부거래 트랜젝션
+    fee_tx:String,
+    // ##################################################
+    //                  2. 승인업무
+    // 승인여부
     accept_yn : {
         type: String,
         default: 'N'
     },
-    ipfs_hash:String,
-    fee_tx:String,
+    //승인 컨트랙트 생성 트랜젝션
     accept_tx:String,
-    accept_at:{
+    // ##################################################
+    //                  3. 증명업무
+    //증명서승인여부
+    certi_yn : {
+        type: String,
+        default: 'N'
+    },
+    //증명 컨트랙트 생성 트랜젝션
+    certi_tx:String,
+    //증명 컨트랙트 xmlString
+    certi_xml:String,
+    //증명 ipfs
+    certi_ipfs:String,
+    //증명서 승인여부
+    certi_yn:{
+        type: String,
+        default: 'N'
+    },
+    // ##################################################
+    // 신청시간
+    created_at : {
+        type : Date,
+        default : Date.now()
+    },
+    // 납부시간
+    certi_at:{
         type : Date
         // default : Date.now()
     },
     file_name:String,
-    xml_string:String,
-    form_type : String
+    form_type : String,
 });
 
 // 회원정보 id 자동증가
@@ -70,18 +110,17 @@ RequestSchema.virtual('getAcceptTime').get(function(){
     }   
 
     // 변수 date에 Date객체를 생성하고 해당 스키마의 accept_at 라는 데이터를 받아온다.
-    var date = new Date(this.accept_at);
+    var date = new Date(this.certi_at);
     var result;
 
-    console.log(date.getFullYear());
     if(isNaN(date.getFullYear())){
         result = {
             year : '',
             month : '',
             day : '',
             hour : '',
-            minute : '',
-            second : ''
+            minute : ''
+            // second : ''
         };
     }else{
         result = {

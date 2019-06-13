@@ -74,9 +74,13 @@ app.use(cookieParser());
 // 업로드일 때 정적 path 추가 
 app.use('/accounts', express.static('formats'));
 app.use('/accounts/apply', express.static('formats'));
+app.use('/admin/products/cetificate/', express.static('formats'));
 app.use('/images', express.static('images'));
 app.use('/EAO', express.static('EAO'));
+app.use('/common', express.static('views'));
 app.use('/xmldata', express.static('xmldata'));
+
+
 
 // // 부트스트랩 파일 정적 라우팅
 app.use('/public', express.static('public'));

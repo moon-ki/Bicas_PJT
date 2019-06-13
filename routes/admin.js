@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var StudentsModel = require('../models/StudentsModel');
+var request = require('request');
+// var StudentsModel = require('../models/StudentsModel');
 // 댓글을 작성해야 하므로 코멘트를 라우트로 불러와야 한다.
 var CommentsModel = require('../models/CommentsModel');
 var repleModel = require('../models/RepleModel');
@@ -10,6 +11,7 @@ var CheckoutModel = require('../models/CheckoutModel');
 var UserModel = require('../models/UserModel');
 var passwordHash = require('../libs/passwordHash');
 var RequestDetailModel = require('../models/RequestDetail');
+var CertiYnModeil=require('../models/certiYnModel');
 // 콜백헬 개선
 var co = require('co');
 var paginate = require('express-paginate');
@@ -220,8 +222,8 @@ router.post('/products/productsregist', loginRequired, upload.single('thumbnail'
     // });
 });
 
-// 제품 목록페이지
-router.get('/products/productslist', paginate.middleware(10, 50), async (req,res) => {
+// 접수목록 페이지
+router.get('/products/productslist', paginate.middleware(100, 50), async (req,res) => {
     const [ results, itemCount ] = await Promise.all([
         // sort : minus 하면 내림차순(날짜명)이다.
         RequestDetailModel.find({"fee_yn" : 'Y'}).sort('-seq').limit(req.query.limit).skip(req.skip).exec(),
@@ -240,9 +242,107 @@ router.get('/products/productslist', paginate.middleware(10, 50), async (req,res
         });
 });
 
-// 관라자 승인 시, 스마트 컨트랙트 생성 및 accept_yn, accept_tx 업데이트
-router.post('/acceptContract', async (req,res) =>{
 
+// 증명서 출력
+router.get('/cetificate/:seq', async (req,res)=>{
+    await console.log('/cetificate/:seq-> req.params.seq: '+req.params.seq);
+    const txInfo = await Promise.all([
+        RequestDetailModel.findOne({"seq" : req.params.seq}).limit(req.query.limit).skip(req.skip).exec()
+    ]);
+    const userInfo = await Promise.all([
+        UserModel.findOne({"user_id" : txInfo[0].user_id}).limit(req.query.limit).skip(req.skip).exec()
+    ]);
+
+    //동적으로 증명서 화면을 호출함
+    await res.render('formats/'+txInfo[0].form_type, {
+        user : userInfo[0], 
+        txInfo : txInfo[0]
+    }); 
+    
+});
+
+router.post('/callAPI',  async (req,res)=> {
+    var s_inXML = req.body.s_inXML;
+    var s_calXML = req.body.s_calXML.replace(/ /gi, "+");
+    var spot = req.body.spot;
+    var ipfsClient = require('ipfs-http-client');
+    var ipfs = ipfsClient('220.76.95.91', '5001', {protocol:'http'});
+
+    // console.log('file_name:'+file_name+', form_name:'+form_name+', spot: '+spot);
+    
+    console.log('-----------------------------------------------s_inXML Start!!!!');
+    console.log(s_inXML);
+    console.log('-----------------------------------------------s_inXML End!!!!');
+    console.log('-----------------------------------------------s_calXML Start!!!');
+    console.log(s_calXML);
+    console.log('-----------------------------------------------s_calXML End!!!');
+    
+    await request({
+        // uri: "http://xmlapi.datafarm.co.kr/soaxmlEngineApi.jsp?apiKey=5acda40a5de6a72c70b12679",
+        uri:'http://220.76.95.91:8011',
+        // uri:'http://192.168.0.159:8001',
+        method: "POST",
+        enctype: 'multipart/form-data',
+        form: {
+            s_inXML: s_inXML,
+            s_calXML: s_calXML
+        }
+    }, function (error, response, xmlResult){
+            // fs.exists('./xmldata/'+req.body.file_name, async(exists)=>{
+                var xmlString =  xmlResult.trim();
+                
+                // if(!exists){
+                    // await fs.writeFile('./xmldata/'+req.body.file_name, xmlString, 'utf8', function(error){
+                    //     if (error) {throw error};
+                    // });
+                    console.log('-------------seq:'+req.body.seq);
+                    console.log('-----------------------------------------------XML 완성');
+                    console.log(xmlString);
+                    ipfs.add({
+                        // path: './xmldata/'+file_name,
+                        content: Buffer.from(xmlString)
+                    },async (err,res)=>{
+                        console.log('IPFS hash: '+res[0].hash);
+                        if(spot=='admin'){
+                            //승인시간 업데이트
+                            await RequestDetailModel.update(
+                                {seq : req.body.seq},
+                                {   $set : {
+                                        // accept_at : Date.now(),
+                                        certi_yn : 'Y',
+                                        certi_ipfs:res[0].hash,
+                                        certi_xml:xmlString
+                                    }
+                                }, function(result){
+                                    // if(err){
+                                    //     throw err;
+                                    // }
+                                    console.log('------------------------------업데이트 완료!!: '+result);
+                                }
+                            );
+                        }else{
+                            console.error('정의되지 않은 spot!!');
+                        }
+                        // res.send('<script>alert("내역저장 성공");\
+                        // location.href="/accounts/songguem";</script>');
+                    });
+                // }else{
+                //     console.error('동일한 파일명이 있습니다.');
+                // }
+        // });
+
+        
+    });
+    //비동기적인 특징으로 인한, certi_xml업데이트 되기전 select하여 undefinded 되는 문제 해결
+    setTimeout(()=>res.redirect(307,'/admin/createContract/certi/'+req.body.seq),3000);
+});
+
+
+// 서식을 이더리움에 업로드!
+//1.신청서 업로드할 경우, App_form.xsl에서 호출
+//2.증명서 업로드할 경우, 
+router.post('/createContract/:from/:seq', async (req,res) =>{
+    // 0. web3 초기화
     var Web3 = require('web3');
     var abi = [
                 {
@@ -310,39 +410,109 @@ router.post('/acceptContract', async (req,res) =>{
     var web3 = new Web3(new Web3.providers.HttpProvider(provider));
     var contract = new web3.eth.Contract(abi,addr);
     web3.eth.defaultAccount = '0xf963d99d7635c604b132dc495476d931ac642ed1'; //Fixed 관리자 계정
-    
-    //request prams
-    var seq = req.body.seq;
-    var file_name = req.body.file_name;
 
-    //1.xmlString 가져오기
-    const results = await Promise.all(
-        // sort : minus 하면 내림차순(날짜명)이다.
-        [RequestDetailModel.findOne({"seq" : seq}).limit(req.query.limit).skip(req.skip).exec()]
-    );
-    
-    //2.이더리움 계정 unlock
+    // 1.xmlString 가져오기
+    const results = await Promise.all([
+        RequestDetailModel.findOne({"seq" : req.params.seq}).limit(req.query.limit).skip(req.skip).exec()
+    ]);
+
+    //2.이더리움 관리자 계정 unlock
     var unlocked = await web3.eth.personal.unlockAccount(web3.eth.defaultAccount,'moonki',600).then(console.log('Account unlocked!'));
-
+    console.log('web3.eth.personal.unlockAccoun result===>'+unlocked);
     //3.블록체인 write
     if(unlocked){
-        await contract.methods.issue(file_name, web3.utils.sha3(results[0].xml_string)).send({from:web3.eth.defaultAccount, gas: 500000}, 
-            function(err, hash){
-                // console.log(hash);
+        //4.신청서를 이더리움에 업로드
+        // console.log('---------------------------------------------------req.params.from: '+req.params.from);
+        if(req.params.from=='accept'){
+            // console.log('------------------------------------신청서 컨트렉트 생성로직 시작!')
+            await contract.methods.issue(results[0].file_name, web3.utils.sha3(results[0].apply_xml)).send({from:web3.eth.defaultAccount, gas: 500000}, 
+                function(err, hash){
+                    // console.log('------------------------------------컨트렉트 생성: '+hash)
+                    RequestDetailModel.update(
+                        {seq : req.params.seq},
+                        {
+                            $set : {
+                                accept_yn: 'Y',
+                                accept_tx: hash
+                            }
+                        }, function(err){
+                            if(err){ throw err;}
+                        }
+                    );
+                }
+            );
+        //4.증명서를 이더리움에 업로드    
+        }else if(req.params.from=='certi'){
+            await contract.methods.issue(results[0].file_name, web3.utils.sha3(results[0].certi_xml)).send({from:web3.eth.defaultAccount, gas: 500000}, 
+                function(err, hash){
+                    // console.log('--------------------------------------------certi_hash: '+hash);
+                    RequestDetailModel.update(
+                        {seq : req.params.seq},
+                        {
+                            $set : {
+                                certi_yn: 'Y',
+                                certi_tx: hash,
+                                certi_at:Date.now()
 
-                // 4.hash값 update!
-                RequestDetailModel.update(
-                {seq : seq},
-                {   // seq를 키로 fee_yn을 업데이트 한다.
-                    $set : {
-                        accept_yn: 'Y',
-                        accept_tx: hash
-                    }
-                }, function(err){
-                    if(err){ throw err;}
-                });
-            }
-        );
+                            }
+                        }, function(err, result){
+                            
+                            //certiYn 업데이트!
+                            // console.log('+++++++++++++++++++++++++++++++++++++++++++results[0].form_type: '+results[0].form_type);
+                            // console.log('+++++++++++++++++++++++++++++++++++++++++++user_id:results[0].user_id: '+results[0].user_id);
+                            if(results[0].form_type=='graduate'){
+                                console.log('graduate 업데이트!!!!');
+                                // setTimeout(()=> 
+                                    CertiYnModeil.update(
+                                        {user_id:results[0].user_id},
+                                        {
+                                            $set : {
+                                                graduate_yn: 'Y',
+                                                graduate_ipfs: results[0].certi_ipfs
+                                            }
+                                        }
+                                    , function(err){
+                                        console.log('graduate update 완료');
+                                    })
+                                // ,3000);
+                            }else if(results[0].form_type=='attend'){
+                                console.log('attend 업데이트!!!!');
+                                // setTimeout(()=> 
+                                    CertiYnModeil.update(
+                                        {user_id:results[0].user_id},
+                                        {
+                                            $set : { 
+                                                attend_yn: 'Y',
+                                                attend_ipfs: results[0].certi_ipfs
+                                            }
+                                        }
+                                    ), function(err){
+                                        console.log('attend_ipfs update 완료');
+                                    }
+                                // ,3000);
+                            }else if(results[0].form_type=='score'){
+                                console.log('score 업데이트!!!!');
+                                // setTimeout(()=> 
+                                    CertiYnModeil.update(
+                                        {user_id:results[0].user_id},
+                                        {
+                                            $set : {
+                                                score_yn: 'Y',
+                                                score_ipfs: results[0].certi_ipfs
+                                            }
+                                        }
+                                    ), function(err){
+                                        console.log('score_ipfs update 완료');
+                                    }
+                                // ,3000);
+                            }else{
+                                console.error('잘못된 증명서 타입!');
+                            }
+                        }
+                    );
+                }//send callback 함수 끝!
+            );//send 끝!
+        }
     }
 });
 
@@ -351,10 +521,10 @@ router.get('/adminstudentlist', function(req, res){
     
     UserModel.find( function(err, stuList){ //첫번째 인자는 err, 두번째는 받을 변수명
     
-                res.render( 'admin/adminstudentlist' ,   
-                    { stulist : stuList }
-                );
-        });
+        res.render( 'admin/adminstudentlist' ,   
+            { stulist : stuList }
+        );
+    });
 });
    
 

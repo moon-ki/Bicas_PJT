@@ -1,7 +1,5 @@
 <script src="http://220.76.95.91:3000/EAO/web3.js"></script>
 
-<script type="text/javascript">
-
     //세션정보
     const blockchainid = $('#blockchainid').val();
     const blockchainpwd = $('#blockchainpwd').val();
@@ -45,14 +43,14 @@
     //              - 결과값으로 파일생성
     //              - 해당 파일을 IPFS에 업로드
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    function createXML(seq, file_name, spot){
+    function createXML(file_name, spot){
         bxfXmlSaveCspPrepare();
         bxfSearchTextPrepare();
 
         var inXML = $('#inXMLcontent').val();
         var calXML= $('#calXMLcontent').val();
         var params ='';
-        var client = new XMLHttpRequest();
+
         // 홈에서 증명서 신청
         if(spot=='user'){ //App_form.ejs에서 받아옴
             var form_name = $('#title1').val();
@@ -63,52 +61,69 @@
                      '&form_name='+form_name+
                      '&form_type='+form_type+
                      '&spot='+spot;
-            client.open('POST','/accounts/callAPI/', true);
         // 관라자 승인
         }else if(spot=='admin'){
-            // var seq=$('#seq').val();  //ReauestDetail의 키값
+            var seq=$('#seq');  //업데이트 위한 키값
             params = 's_inXML='+inXML+
                      '&s_calXML='+calXML+
                      '&spot='+spot+
                      '&seq='+seq;
-            client.open('POST','/admin/callAPI/', true);
         }else{
             alert('정의되지 않은 spot');
         }
+        // alert('createXML spot: '+spot);
+        // console.log('----------------+++++++++++++++++++++++++++++++++++++++++++');
+        // console.log(calXML);
+        var client = new XMLHttpRequest();
 
+        //API 호출!
+        client.open('POST','/accounts/callAPI/', true);
         client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         client.send(params);
+
+        // client.onreadystatechange = function(){
+        //     if(client.readyState == 4 && client.status == 200){
+        //         var result = client.responseText;
+        //         alert(result);
+        //         // callback(result);
+        //     }
+        // };
     }
 
-    function certiAccept(seq, file_name){
-        var answer = confirm('해당 증명서를 발급하겠습니까?');
+    function adminAccept(seq, file_name){
+        var answer = confirm('해당 증명서를 승인하겠습니까?');
 
-        if(answer){
-            //1. authXML엔진을 통해 xml파일생성 및 IPFS 업로드
-            createXML(seq, file_name, 'admin');
+        // if(answer){
+        //     //1. authXML엔진을 통해 xml파일생성 및 IPFS 업로드
+        //     createXML(file_name, 'admin');
+        //     // alert(ipfs_hash);
+        //     // saveSysLog(ipfs_hash);
+        //     // self.close();
             
-            // alert('신청서를 성공적으로 승인했습니다.');
-            // parent.opener.location.href='/admin/products/productslist';
-            // location.href='/accounts/acceptList';
-        }
+        //     //이더리움 write
+        //     // etherAccept(seq, file_name);
+
+        //     alert('신청서를 성공적으로 승인했습니다.');
+        //     parent.opener.location.href='/admin/products/productslist';
+        //     // location.href='/accounts/acceptList';
+        // }
     }
 
     function adminReject(){
         var answer = confirm('해당 증명서를 반려하겠습니까?');
     }
 
-    //신청 버튼 onclick 이벤트
     function ontx(){
         var answer = confirm('신청서를 제출하겠습니까?');
         if(answer){
             //1. authXML엔진을 통해 xml파일생성 및 IPFS 업로드
             var filename = getFileName();
-            createXML(0,filename,'user');
+            createXML(filename,'user');
             // alert(ipfs_hash);
             // saveSysLog(ipfs_hash);
 
             self.close();
-            // parent.opener.location.href='/accounts/acceptList';
+            parent.opener.location.href='/accounts/acceptList';
             // location.href='/accounts/acceptList';
         }
     }
@@ -188,5 +203,3 @@
         n = n + '';//string 변환
         return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
     }   
-
-</script>
