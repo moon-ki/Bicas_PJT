@@ -84,12 +84,12 @@
         var answer = confirm('해당 증명서를 발급하겠습니까?');
 
         if(answer){
-            //1. authXML엔진을 통해 xml파일생성 및 IPFS 업로드
+            //1. autoXML엔진을 통해 xml파일생성 및 IPFS 업로드
             createXML(seq, file_name, 'admin');
-            
-            // alert('신청서를 성공적으로 승인했습니다.');
+            alert('승인하였습니다.');
+            // self.close();
             // parent.opener.location.href='/admin/products/productslist';
-            // location.href='/accounts/acceptList';
+
         }
     }
 
@@ -106,33 +106,13 @@
             createXML(0,filename,'user');
             // alert(ipfs_hash);
             // saveSysLog(ipfs_hash);
-
-            self.close();
-            // parent.opener.location.href='/accounts/acceptList';
-            // location.href='/accounts/acceptList';
+            setTimeout(function(){
+                alert('신청을 완료했습니다.');
+                self.close();
+                parent.opener.location.href='/accounts/acceptList';
+                // location.href='/accounts/acceptList';
+            },3000);
         }
-    }
-
-    // function txpop(txHash){
-
-    //     var client = new XMLHttpRequest();
-
-    //     params = 'txHash='+txHash;
-
-    //     client.open('POST','/accounts/getTransaction', true);
-    //     client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    //     client.send(params);
-    // }
-
-    // 관리자 승인 메서드
-    function etherAccept(seq, file_name) {
-       
-            var prams = 'seq='+seq+'&file_name='+file_name;
-            var client1 = new XMLHttpRequest();
-            client1.open("POST",'/admin/acceptContract',true);
-            client1.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            client1.send(prams);
-            
     }
 
     //수수료를 관리자 계정으로 이체
@@ -143,7 +123,7 @@
             if(result=='fail auth'){
                 alert('계정이 유효하지 않습니다. 관리자에게 문의하세요.');
             }else{
-                var answer = confirm('수수료는 0.1eth 입니다. 진행하겠습니까?');
+                var answer = confirm('수수료는 0.1 ether 입니다. 진행하겠습니까?');
 
                 if(answer){
                     //2. 관리자 계정으로 수수료 송부
@@ -164,6 +144,7 @@
 
                                 alert('정상적으로 수수료를 납부하였습니다.');
                                 location.href='/accounts/acceptList';
+
 
                             }else{
                                 alert('이더가 충분하지 않습니다.');

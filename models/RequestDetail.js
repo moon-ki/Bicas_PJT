@@ -70,6 +70,11 @@ var RequestSchema = new Schema({
     },
     file_name:String,
     form_type : String,
+    reject_tx:String,
+    reject_yn:{
+        type: String,
+        default: 'N'
+    }
 });
 
 // 회원정보 id 자동증가

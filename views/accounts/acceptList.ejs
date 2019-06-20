@@ -48,11 +48,11 @@
 
                         <td style="vertical-align: middle; font-size: 0.7em;">
                             <!-- <a href="/accounts/transaction.id %>"> -->
-                            <%= requestdetail.form_name %>
+                            <%= requestdetail.form_name %> 증명서 신청
                         </td>
                         <td style="vertical-align: middle; font-size: 0.7em;">
                             <!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
-                            <a style="cursor: pointer" onclick="window.open('txHashPop/<%=requestdetail.seq%>','팝업창', 'height=370, width=950; return false;')" >트렌젝션처리 보기</a>
+                            <a style="cursor: pointer" onclick="window.open('txHashPop/<%=requestdetail.seq%>','팝업창', 'height=350, width=1000; return false;')" >트렌젝션처리 보기</a>
                         </td>
                         <!-- <td style="vertical-align: middle; font-size: 0.7em;"> -->
                             <!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
@@ -87,18 +87,22 @@
 
                         <% if (requestdetail.fee_yn=='N'){ %>
                             <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="납부"  onclick="sendFee(<%=requestdetail.seq%>)" />  </td>
-                        <%}else{%>
+                        <%}else {%>
                             <td style="vertical-align: middle; font-size: 0.7em;">완료</td>
                         <%}%>
-
-                        <% if (requestdetail.accept_yn=='N'){ %>
-                            <td style="vertical-align: middle; font-size: 0.7em;"></td>
-                        <%}else{%>
+                            
+                        <% if (requestdetail.certi_yn=='N' && requestdetail.reject_yn=='N'&& requestdetail.fee_yn=='Y'){ %>
+                            <td style="vertical-align: middle; font-size: 0.7em;">승인중</td>
+                        <%}else if(requestdetail.certi_yn=='Y'){%>
                             <td style="vertical-align: middle; font-size: 0.7em;">
                                 <!-- <a href="/accounts/transaction.id %>"> -->
                                 <a style="cursor: pointer" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.certi_ipfs%>','팝업창', 'height=700, width=500; return false;')">보기</a>
                                 
                             </td>
+                        <%}else if(requestdetail.fee_yn=='Y' && requestdetail.reject_yn=='Y'){%>
+                            <td style="vertical-align: middle; font-size: 0.7em;">반려</td>
+                        <%}else{%>
+                            <td style="vertical-align: middle; font-size: 0.7em;"></td>
                         <%}%>
 
                     </tr>

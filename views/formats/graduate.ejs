@@ -416,7 +416,7 @@ $( ".bxTimePicker" ).timepicker({ 'scrollDefaultNow': true });
 </TABLE>
 </P>
 	<div class="docBtn_list">
-		<input type="button" value="승인" onclick="certiAccept(<%=txInfo.seq%>, '<%=txInfo.file_name%>');" /> &#160;
+		<input type="button" value="발급" onclick="certiAccept(<%=txInfo.seq%>, '<%=txInfo.file_name%>');" /> &#160;
 		<!-- <input type="button" value="List" onclick="javascript:bxfXmlListMongodb();" /> &#160;
 		<input type="button" value="Search" onclick="javascript:bxfXmlSearchMongodb();" /> -->
 	</div>
@@ -452,9 +452,8 @@ $( ".bxTimePicker" ).timepicker({ 'scrollDefaultNow': true });
 		var date = new Date();
 		$('#acceptDate').val(
 			date.getFullYear()+'-'+
-			pad(date.getMonth(),2)+'-'+
+			pad(date.getMonth()+1,2)+'-'+
 			pad(date.getDate(),2)
 		);
-	</script>
-	
+</script>
 <% include ../SC_import.ejs %>

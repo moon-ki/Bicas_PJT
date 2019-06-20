@@ -227,22 +227,31 @@ router.post('/myinfo', loginRequired, function(req, res){
 });
 
 // get 내 wallet보기 페이지
-router.get('/wallet', loginRequired, function(req, res){
-
-    console.log('wallet 페이지 경로요청!!!!!!!!!!!');
-    console.log(req.user);
+router.get('/wallet', loginRequired, async(req, res)=>{
 
     if(!req.user){
 
         console.log('사용자 인증불가');
         res.redirect('/accounts/login');
-    }else{
 
-        if(Array.isArray(req.user)){
-            res.render('accounts/wallet.ejs', { user : req.user[0]._id });
-        }else{
-            res.render('accounts/wallet.ejs', { user : req.user });
-        }
+    }else{
+        // if(Array.isArray(req.user)){
+        //     res.render('accounts/wallet.ejs', { user : req.user[0]._id });
+        // }else{
+        //     res.render('accounts/wallet.ejs', { user : req.user });
+        // }
+
+        var result = await CertiYnModeil.findOne({"user_id" : req.user.user_id}).limit(req.query.limit).skip(req.skip).exec();
+        console.log(result);
+        var Web3 = require('web3');
+        var provider = 'http://220.76.95.91:8485';
+        var web3 = new Web3(new Web3.providers.HttpProvider(provider));
+        web3.eth.getBalance(req.user.blockchainid, 
+            function(err, balance){
+                res.render('accounts/wallet', { user:req.user, 
+                                                balance : balance/1000000000000000000,
+                                                certiData:result});  
+            });
     }   
 });
 
@@ -446,25 +455,25 @@ router.post('/updateLog', function(req, res){
         }
     );
 
-    UserModel.update(
-        {
-            user_id : req.user.user_id
-        },
-        {
-            $set : {
-                cur_balance: (req.body.cur_balance)/1000000000000000000 //wei->Ether로 환산
-            }
-        }, function(err){
-            // 에러가 발생하면 Error
-            if(err){
-                throw err;
-            }
-        }
-    );
+    // UserModel.update(
+    //     {
+    //         user_id : req.user.user_id
+    //     },
+    //     {
+    //         $set : {
+    //             cur_balance: (req.body.cur_balance)/1000000000000000000 //wei->Ether로 환산
+    //         }
+    //     }, function(err){
+    //         // 에러가 발생하면 Error
+    //         if(err){
+    //             throw err;
+    //         }
+    //     }
+    // );
     
 });
 
-router.post('/callAPI',  function (req,res) {
+router.post('/callAPI',  function (req,resp) {
     var s_inXML = req.body.s_inXML;
     
     var spot = req.body.spot;
@@ -473,12 +482,12 @@ router.post('/callAPI',  function (req,res) {
 
     // console.log('file_name:'+file_name+', form_name:'+form_name+', spot: '+spot);
     var s_calXML = req.body.s_calXML.replace(/ /gi, "+");
-    console.log('-----------------------------------------------s_inXML Start!!!!');
-    console.log(s_inXML);
-    console.log('-----------------------------------------------s_inXML End!!!!');
-    console.log('-----------------------------------------------s_calXML Start!!!');
-    console.log(s_calXML);
-    console.log('-----------------------------------------------s_calXML End!!!');
+    // console.log('-----------------------------------------------s_inXML Start!!!!');
+    // console.log(s_inXML);
+    // console.log('-----------------------------------------------s_inXML End!!!!');
+    // console.log('-----------------------------------------------s_calXML Start!!!');
+    // console.log(s_calXML);
+    // console.log('-----------------------------------------------s_calXML End!!!');
     
     request({
         // uri: "http://xmlapi.datafarm.co.kr/soaxmlEngineApi.jsp?apiKey=5acda40a5de6a72c70b12679",
@@ -492,7 +501,7 @@ router.post('/callAPI',  function (req,res) {
         }
     }, async (error, response, xmlResult)=>{
             // fs.exists('./xmldata/'+req.body.file_name, async(exists)=>{
-                var xmlString = await xmlResult.trim();
+                var xmlString = xmlResult.trim();
                 
                 // if(!exists){
                 //     await fs.writeFile('./xmldata/'+req.body.file_name, xmlString, 'utf8', function(error){
@@ -500,28 +509,41 @@ router.post('/callAPI',  function (req,res) {
                 //     });
                     
                     // console.log('-----------------------------------------------XML 완성');
-                    // console.log(xmlString);
+                    // await setTimeout(function(){
+                    //     console.log(xmlString);
+                    // },5000);
+                    
                     await ipfs.add({
                         // path: './xmldata/'+file_name,
                         content: Buffer.from(xmlString)
                     },async (err,res)=>{
-                        console.log('IPFS hash: '+res[0].hash);
+                         await setTimeout(function(){
+                            console.log(res);
+                            console.log('----------------------------------------IPFS hash: '+res[0].hash);
+                        },0);
+                        // console.log('----------------------------------------err: '+err);
+                        // console.log('----------------------------------------spot: '+spot);
                         if(err==null && spot=='user'){
                             // console.log('ipfsHash: '+res[0].hash);
                             // console.log('--------------------------------------------저장로직 실행');
-                            var RequestDetail = await new RequestDetailModel({
-                                user_id : req.user.user_id,
-                                name : req.user.user_name,
-                                form_type : req.body.form_type,
-                                form_name : req.body.form_name,
-                                apply_ipfs : res[0].hash,
-                                file_name : req.body.file_name,
-                                apply_xml: xmlString
-                                // spot:req.body.spot
-                            });
-                                setTimeout(()=>
-                                    RequestDetail.save(function(err){})
-                                ,3000);    
+                            
+                            var RequestDetail = await 
+                                new RequestDetailModel({
+                                    user_id : req.user.user_id,
+                                    name : req.user.user_name,
+                                    form_type : req.body.form_type,
+                                    form_name : req.body.form_name,
+                                    apply_ipfs : res[0].hash,
+                                    file_name : req.body.file_name,
+                                    apply_xml: xmlString
+                                    // spot:req.body.spot
+                                });
+                            await RequestDetail.save(
+                                function(err){
+                                    // resp.send('<script>alert("신청완료");\
+                                    // location.href="/admin/adminstudentslist";</script>');
+                                }
+                            );
 
                             // await response.end('<script>alert("신청서 제출 완료");parent.opener.location.href="/accounts/acceptList";</script>');
 
@@ -542,7 +564,7 @@ router.post('/callAPI',  function (req,res) {
                         //         }
                         //     );
                         }else{
-                            console.error('정의되지 않은 spot!!');
+                            console.error('IPFS '+err);
                         }
                         // res.send('<script>alert("내역저장 성공");\
                         // location.href="/accounts/songguem";</script>');
@@ -553,6 +575,8 @@ router.post('/callAPI',  function (req,res) {
                 // }
         // });
     }); //request END
+
+    // resp.redirect('/accounts/acceptList');
 });
 
 

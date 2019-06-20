@@ -59,6 +59,15 @@ table#t01 {
     <td></td>
     <%}%>
   </tr>
+  <tr>
+    <td>신청서반려 트랜젝션</td>
+    <td><a href='http://localhost:3000/accounts/getTransaction/<%=txHashs.reject_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.reject_tx%></a></td>
+    <% if (txHashs.reject_yn=='Y'){ %>
+    <td><a href='https://ropsten.etherscan.io/tx/<%=txHashs.reject_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
+    <%}else{%>
+    <td></td>
+    <%}%>
+  </tr>
 </table>
 <br>
 

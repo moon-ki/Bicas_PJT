@@ -370,7 +370,7 @@
 <TD colSpan="2">
 <P align="center">
 <STRONG>
-<SPAN style="FONT-SIZE: 16pt">3K BICAS 대학교 총장
+<SPAN style="FONT-SIZE: 16pt">3K 대학교 총장
 </SPAN>
 </STRONG>
 </P>

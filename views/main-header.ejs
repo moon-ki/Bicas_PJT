@@ -1,0 +1,66 @@
+<% include ./app-header.ejs %>
+
+<script>
+	function comma(str) {
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+</script>
+<body class="page-main">
+<div id="wrap">
+	<!-- S: Header -->
+	<header id="header">
+		<div class="container">
+			<!-- 오른쪽 메뉴바 -->
+			<button type="button" class="btn menu-btn"></button>
+			<h1 class="logo">
+				<a href="/home"><span class="sr-only">3K대학교</span></a>
+			</h1>
+			<div class="gnb">
+				<div class="gnb-header">
+					<button class="btn gnb-close"><span class="sr-only">닫기</span></button>
+					<h1 class="gnb-logo">
+						<a href="/home"><span class="sr-only">3K대학교</span></a>
+					</h1>
+				</div>
+				<ul>
+					<% if(isLogin){%>
+						<li class="gnb-logout">
+							<a href="/accounts/logout" onclick="return confirm('로그아웃 하시겠습니까?')">
+							<i class="icon icon-login"></i>LOGOUT</a>
+						</li>
+						<li>
+							<a href="/accounts/myinfo">
+							<i class="icon icon-person"></i>내 정보</a>
+						</li>
+						<li>
+							<a href="/accounts/acceptList">
+							<i class="icon icon-view"></i>승인내역 조회</a>
+						</li>
+						<li>
+							<a class="point-orange" style="cursor: pointer" onclick="window.open('/accounts/wallet','팝업창', 'height=600, width=400; return false;')">
+							<i class="icon icon-wallet"></i>Wallet</a>
+						</li>
+						<!-- <li><a href="/accounts/transactionList/">내역조회</a></li> -->
+					<%}else{%>
+						<li class="gnb-login">
+							<a href="/accounts/login">
+							<i class="icon icon-login"></i>Login</a>
+						</li>
+						<li>
+							<a href="/accounts/join">
+							<i class="icon icon-person"></i>회원가입</a>
+						</li>
+					<%}%>
+				</ul>
+				<div class="gnb-footer">
+					<address>서울특별시 송파구 송파대로  201 송파테라타워2 A동 712호<br>
+					Tel : 070 . 7525 . 0785 | Fax : 02 . 6902 . 0665 | E-mail : support@3kbicas.net</address>
+					<div class="copyright">Copyright ⓒ 2018 3KBICAS, Inc.  All Rights Reserved</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- E: Header -->
+	<!-- S: Container -->
+	<div id="container">

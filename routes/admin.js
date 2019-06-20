@@ -245,7 +245,6 @@ router.get('/products/productslist', paginate.middleware(100, 50), async (req,re
 
 // 증명서 출력
 router.get('/cetificate/:seq', async (req,res)=>{
-    await console.log('/cetificate/:seq-> req.params.seq: '+req.params.seq);
     const txInfo = await Promise.all([
         RequestDetailModel.findOne({"seq" : req.params.seq}).limit(req.query.limit).skip(req.skip).exec()
     ]);
@@ -260,6 +259,52 @@ router.get('/cetificate/:seq', async (req,res)=>{
     }); 
     
 });
+
+// 신청서 반려
+router.post('/reject/:seq', async (req,res)=>{
+    console.log('reject called!!');
+    const txInfo = await Promise.all([
+        RequestDetailModel.findOne({"seq" : req.params.seq}).limit(req.query.limit).skip(req.skip).exec()
+    ]);
+    const userInfo = await Promise.all([
+        UserModel.findOne({"user_id" : txInfo[0].user_id}).limit(req.query.limit).skip(req.skip).exec()
+    ]);
+
+    var Web3 = require('web3');
+    var provider = 'http://220.76.95.91:8485';
+    var web3 = new Web3(new Web3.providers.HttpProvider(provider));
+    var unlocked = await web3.eth.personal.unlockAccount('0xf963d99d7635c604b132dc495476d931ac642ed1','moonki',600).then(console.log('반려 Account unlocked!'));
+    if(unlocked){
+        web3.eth.sendTransaction({
+            from: '0xf963d99d7635c604b132dc495476d931ac642ed1', //관리자 계정(고정)
+            to:userInfo[0].blockchainid,
+            value:web3.utils.toWei('0.1','ether')
+        },function(err, res){
+            console.log('rejectTX: '+res);
+            console.log('err: '+err);
+            RequestDetailModel.update(
+                {seq : req.params.seq},
+                {   $set : {
+                        // accept_at : Date.now(),
+                        reject_tx : res,
+                        reject_yn : 'Y'
+                    }
+                }, function(err){
+                }
+            );
+        });
+    }
+
+
+
+    //동적으로 증명서 화면을 호출함
+    await res.render('formats/'+txInfo[0].form_type, {
+        user : userInfo[0], 
+        txInfo : txInfo[0]
+    }); 
+    
+});
+
 
 router.post('/callAPI',  async (req,res)=> {
     var s_inXML = req.body.s_inXML;
@@ -302,7 +347,9 @@ router.post('/callAPI',  async (req,res)=> {
                         // path: './xmldata/'+file_name,
                         content: Buffer.from(xmlString)
                     },async (err,res)=>{
-                        console.log('IPFS hash: '+res[0].hash);
+                        // await setTimeout(function(){
+                            console.log('----------------------------------------IPFS hash: '+res[0].hash);
+                        // },3000);
                         if(spot=='admin'){
                             //승인시간 업데이트
                             await RequestDetailModel.update(
@@ -314,10 +361,9 @@ router.post('/callAPI',  async (req,res)=> {
                                         certi_xml:xmlString
                                     }
                                 }, function(result){
-                                    // if(err){
-                                    //     throw err;
-                                    // }
-                                    console.log('------------------------------업데이트 완료!!: '+result);
+                                    //#####################################################################################
+
+                                    //#####################################################################################
                                 }
                             );
                         }else{
@@ -331,10 +377,18 @@ router.post('/callAPI',  async (req,res)=> {
                 // }
         // });
 
-        
+                    
     });
     //비동기적인 특징으로 인한, certi_xml업데이트 되기전 select하여 undefinded 되는 문제 해결
-    setTimeout(()=>res.redirect(307,'/admin/createContract/certi/'+req.body.seq),3000);
+    // await setTimeout(function(){
+    //     console.log('####callAPI: redirect to createContract START!!!');
+    //     res.redirect(307,'/admin/createContract/certi/'+req.body.seq);
+    // },8000);
+    // res.send('<script>alert("증명서 발급 완료");</script>');
+    setTimeout(()=>
+        res.redirect(307,'/admin/createContract/certi/'+req.body.seq)
+    ,3000);
+
 });
 
 
@@ -343,6 +397,7 @@ router.post('/callAPI',  async (req,res)=> {
 //2.증명서 업로드할 경우, 
 router.post('/createContract/:from/:seq', async (req,res) =>{
     // 0. web3 초기화
+    console.log('createContract 시작!!!!');
     var Web3 = require('web3');
     var abi = [
                 {
@@ -455,12 +510,12 @@ router.post('/createContract/:from/:seq', async (req,res) =>{
                                 certi_at:Date.now()
 
                             }
-                        }, function(err, result){
+                        }, function (err, result){
                             
                             //certiYn 업데이트!
                             // console.log('+++++++++++++++++++++++++++++++++++++++++++results[0].form_type: '+results[0].form_type);
                             // console.log('+++++++++++++++++++++++++++++++++++++++++++user_id:results[0].user_id: '+results[0].user_id);
-                            if(results[0].form_type=='graduate'){
+                            if( results[0].form_type=='graduate'){
                                 console.log('graduate 업데이트!!!!');
                                 // setTimeout(()=> 
                                     CertiYnModeil.update(
@@ -475,10 +530,11 @@ router.post('/createContract/:from/:seq', async (req,res) =>{
                                         console.log('graduate update 완료');
                                     })
                                 // ,3000);
-                            }else if(results[0].form_type=='attend'){
+                            }else if( results[0].form_type=='attend'){
                                 console.log('attend 업데이트!!!!');
+                                console.log('user_id: '+results[0].user_id+', certi_ipfs:'+results[0].certi_ipfs);
                                 // setTimeout(()=> 
-                                    CertiYnModeil.update(
+                                     CertiYnModeil.update(
                                         {user_id:results[0].user_id},
                                         {
                                             $set : { 
@@ -486,12 +542,13 @@ router.post('/createContract/:from/:seq', async (req,res) =>{
                                                 attend_ipfs: results[0].certi_ipfs
                                             }
                                         }
-                                    ), function(err){
+                                    , function(err){
                                         console.log('attend_ipfs update 완료');
-                                    }
+                                    })
                                 // ,3000);
-                            }else if(results[0].form_type=='score'){
+                            }else if( results[0].form_type=='score'){
                                 console.log('score 업데이트!!!!');
+                                console.log('user_id: '+results[0].user_id+', certi_ipfs:'+results[0].certi_ipfs);
                                 // setTimeout(()=> 
                                     CertiYnModeil.update(
                                         {user_id:results[0].user_id},
@@ -501,9 +558,9 @@ router.post('/createContract/:from/:seq', async (req,res) =>{
                                                 score_ipfs: results[0].certi_ipfs
                                             }
                                         }
-                                    ), function(err){
+                                    , function(err){
                                         console.log('score_ipfs update 완료');
-                                    }
+                                    })
                                 // ,3000);
                             }else{
                                 console.error('잘못된 증명서 타입!');
@@ -514,6 +571,8 @@ router.post('/createContract/:from/:seq', async (req,res) =>{
             );//send 끝!
         }
     }
+    
+    
 });
 
 // GET 어드민 홈 전체 학생목록 불러오기 
@@ -988,4 +1047,3 @@ router.post('/studentregedit', function(req, res){
 });
 
 module.exports = router;
-

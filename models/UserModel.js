@@ -30,10 +30,6 @@ var UserSchema = new Schema({
     user_addr : String,
     user_addr2 : String,
     user_post : String,
-    cur_balance:{
-        type: Number,
-        default:0
-    },
     user_birth:String
     // cart: Array
 });

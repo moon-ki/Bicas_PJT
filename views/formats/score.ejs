@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv=content-type>
+	<meta name=generator content="mshtml 8.00.6001.18852">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title> score </title>
+	<link rel="shortcut icon" href="http://www.3ksoftware.com/favicon.ico"/>
+	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/soaxml_webformReset.css" rel="stylesheet"  media="screen"/>
+	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/uniform.default.css" rel="stylesheet" media="screen" />
+	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/jquery-ui.1.10.3.smoothness.css" rel="stylesheet" media="screen" />
+	<style></style>
+<style>
+.nobdr { border: none; }
+</style>
+
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxControl.js"></script>
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxCommon.js"></script>
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery-ui.1.10.3.min.js"></script>
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery.uniform.js"></script>
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery.timepicker.js"></script>
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jSignature.custom.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(function(){
+			$("input, textarea, select, button").uniform();
+$( ".bxTimePicker" ).timepicker({ 'scrollDefaultNow': true });
+		});
+	</script>
+	<script type="text/javascript">
+		function basexml_checktype() {
+		}
+	</script>
+	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxFormForMongo.js"></script>
+</head>
+<body>
+<form name="score">
+	<textarea id="calXMLcontent" name="calXMLcontent" style="display:none"></textarea>
+	<textarea id="inXMLcontent" name="inXMLcontent" style="display:none"></textarea>
+	<textarea id="calTextcontent" name="calTextcontent" style="display:none"></textarea>
+	<textarea id="outXMLcontent" name="outXMLcontent" style="display:none"></textarea>
+	<textarea id="outXMLurl" name="outXMLurl" style="display:none"></textarea>
+	<input type="hidden" name="xmlFileLink" id="xmlFileLink" value=""/>
+	<input type="hidden" name="title" id="title" value="score"/>
+	<input type="hidden" name="savefilepath" value="">
+	<input type="hidden" name="imagesavepath" value="">
+	<input type="hidden" name="imagematchinfo" value="">
+	<input type="hidden" name="H_DownloadFilePath" value="">
+	<input type="hidden" name="DownloadFilePath" value="">
+	<input type="hidden" name="H_root/contents/name" value=""/>
+<input type="hidden" name="H_root/contents/major_course" value=""/>
+<input type="hidden" name="H_root/contents/class_of" value=""/>
+<input type="hidden" name="H_root/contents/graduation_year" value=""/>
+<input type="hidden" name="H_root/Sortation/s1" value=""/>
+<input type="hidden" name="H_root/Subject_name/sn1" value=""/>
+<input type="hidden" name="H_root/Grades/g1" value=""/>
+<input type="hidden" name="H_root/Sortation/s2" value=""/>
+<input type="hidden" name="H_root/Subject_name/sn2" value=""/>
+<input type="hidden" name="H_root/Grades/g2" value=""/>
+<input type="hidden" name="H_root/Completion/c1" value=""/>
+<input type="hidden" name="H_root/Completion/c2" value=""/>
+<input type="hidden" name="H_root/Sortation/s3" value=""/>
+<input type="hidden" name="H_root/Subject_name/sn3" value=""/>
+<input type="hidden" name="H_root/Grades/g3" value=""/>
+<input type="hidden" name="H_root/Completion/c3" value=""/>
+<input type="hidden" name="H_root/Sortation/s4" value=""/>
+<input type="hidden" name="H_root/Subject_name/sn4" value=""/>
+<input type="hidden" name="H_root/Grades/g4" value=""/>
+<input type="hidden" name="H_root/Completion/c4" value=""/>
+<input type="hidden" name="H_root/Sortation/s5" value=""/>
+<input type="hidden" name="H_root/Subject_name/sn5" value=""/>
+<input type="hidden" name="H_root/Grades/g5" value=""/>
+<input type="hidden" name="H_root/Completion/c5" value=""/>
+<input type="hidden" name="H_root/recognized_credit/rc1" value=""/>
+<input type="hidden" name="H_root/recognized_credit/rc2" value=""/>
+<input type="hidden" name="H_root/recognized_credit/rc3" value=""/>
+<input type="hidden" name="H_root/recognized_credit/rc4" value=""/>
+<input type="hidden" name="H_root/recognized_credit/total" value=""/>
+<input type="hidden" name="H_root/contents/date" value=""/>
+<P>
+<TABLE style="WIDTH: 98%" borderColor=#808080 cellSpacing=0 cellPadding=5 align=center border=1>
+<COLGROUP>
+<COL width=700>
+</COL>
+</COLGROUP>
+<TBODY>
+<TR>
+<TD>
+<P>
+<TABLE id=2 style="WIDTH: 100%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=0>
+<COLGROUP>
+<COL width="20%">
+</COL>
+<COL width="30%">
+</COL>
+<COL width="20%">
+</COL>
+<COL width="30%">
+</COL>
+</COLGROUP>
+<TBODY>
+<TR style="HEIGHT: 20px">
+<TD>
+<P>
+</P>
+</TD>
+<TD>
+<P>
+</P>
+</TD>
+<TD>
+<P>
+</P>
+</TD>
+<TD>
+<P>
+</P>
+</TD>
+</TR>
+<TR>
+<TD colSpan=4>
+<P align=center>
+<SPAN style="FONT-SIZE: 14pt">
+<STRONG>성 적 증 명 서
+</STRONG>
+</SPAN>
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 20px">
+<TD>
+<P>
+</P>
+</TD>
+<TD>
+<P>
+</P>
+</TD>
+<TD>
+<P>
+</P>
+</TD>
+<TD>
+<P>
+</P>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+</P>
+<TABLE id=9 style="WIDTH: 100%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=1>
+<COLGROUP>
+<COL width="22%">
+</COL>
+<COL width="28%">
+</COL>
+<COL width="22%">
+</COL>
+<COL width="28%">
+</COL>
+</COLGROUP>
+<TBODY id=9>
+<TR style="HEIGHT: 25px">
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 9pt">이름
+</SPAN>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/contents/name value="<%=user.user_name%>" readonly>
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 9pt">전공학과
+</SPAN>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/contents/major_course value="<%=user.major%>" readonly>
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 9pt">학번
+</SPAN>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/contents/class_of readonly value="<%=user.user_id%>">
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 9pt">졸업년도
+</SPAN>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/contents/graduation_year value="2019년2월">
+</P>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+<HR style="HEIGHT: 0px; WIDTH: 100%; BACKGROUND-COLOR: #e0e0e0">
+<TABLE id=44 style="HEIGHT: 0px; WIDTH: 100%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=1>
+<COLGROUP>
+<COL width="15%">
+</COL>
+<COL width="45%">
+</COL>
+<COL width="15%">
+</COL>
+<COL width="25%">
+</COL>
+</COLGROUP>
+<TBODY>
+<TR style="HEIGHT: 30px">
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>구분
+</STRONG>
+</SPAN>
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>과목명
+</STRONG>
+</SPAN>
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>학점
+</STRONG>
+</SPAN>
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>이수년월
+</STRONG>
+</SPAN>
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD>
+<P align=left>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Sortation/s1 value="전필" readonly>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 90%" name=root/Subject_name/sn1 value="식물과광합성" readonly>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Grades/g1 value="4.0" readonly>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/Completion/c1 value="201812" readonly>
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Sortation/s2 value="전선" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 90%" name=root/Subject_name/sn2 value="C프로그래밍" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Grades/g2 value="4.0" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/Completion/c2 value="201812" readonly>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Sortation/s3 value="전선" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 90%" name=root/Subject_name/sn3 value="xml의활용" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Grades/g3 value="4.0" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/Completion/c3 value="201812" readonly>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Sortation/s4 value="교양" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 90%" name=root/Subject_name/sn4 value="결혼과가족" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Grades/g4 value="4.0" readonly>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/Completion/c4 value="201812" readonly>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Sortation/s5>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 90%" name=root/Subject_name/sn5>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 70%" name=root/Grades/g5>
+</TD>
+<TD>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/Completion/c5>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+<HR style="HEIGHT: 0px; WIDTH: 100%; BACKGROUND-COLOR: #e0e0e0">
+<TABLE style="WIDTH: 100%" borderColor=#000000 cellSpacing=0 cellPadding=3 align=center border=1>
+<COLGROUP>
+<COL width="25%">
+</COL>
+<COL width="25%">
+</COL>
+<COL width="25%">
+</COL>
+<COL width="25%">
+</COL>
+</COLGROUP>
+<TBODY>
+<TR>
+<TD colSpan=4>
+<P align=center>
+<STRONG>
+<SPAN style="FONT-SIZE: 9pt">인정학점
+</SPAN>
+</STRONG>
+</P>
+</TD>
+</TR>
+<TR>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>전공필수
+</STRONG>
+</SPAN>
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>전공선택
+</STRONG>
+</SPAN>
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>교양
+</STRONG>
+</SPAN>
+</P>
+</TD>
+<TD>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>일반선택
+</STRONG>
+</SPAN>
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/recognized_credit/rc1 value="3" readonly>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/recognized_credit/rc2 value="6" readonly>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/recognized_credit/rc3 value="3" readonly>
+</P>
+</TD>
+<TD>
+<P>
+<INPUT class=nobdr style="WIDTH: 85%" name=root/recognized_credit/rc4>
+</P>
+</TD>
+</TR>
+<TR>
+<TD colSpan=4>
+<P align=right>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>학점합계
+</STRONG>
+</SPAN>
+</P>
+</TD>
+</TR>
+<TR style="HEIGHT: 25px">
+<TD colSpan=4>
+<P align=right>
+<INPUT class=nobdr style="WIDTH: 20%" name=root/recognized_credit/total value="12" readonly>
+</P>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+<TABLE id=6 style="HEIGHT: 125px; WIDTH: 100%" borderColor=#c0c0c0 cellSpacing=0 cellPadding=3 align=center border=0>
+<COLGROUP>
+<COL>
+</COL>
+</COLGROUP>
+<TBODY>
+<TR>
+<TD class=texts style="BACKGROUND-IMAGE: url(http://www.uccxml.com/SOAXML/XCMS/sys/client/kr/usr/kura71/uploads/images/Image/SCdojang_signature.jpg); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: 85% 65%">
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>상기인의 학습과목별 성적을 위와
+</STRONG>
+</SPAN>
+</P>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>같이 증명합니다.
+</STRONG>
+</SPAN>
+</P>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+</SPAN>&nbsp;
+</P>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<INPUT class=nobdr style="WIDTH: 20%" name=root/contents/date id="acceptDate" readonly>
+</SPAN>
+</P>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+</SPAN>&nbsp;
+</P>
+<P align=center>
+<SPAN style="FONT-SIZE: 8pt">
+<STRONG>
+<SPAN style="FONT-SIZE: 14pt">3K BICAS 대학교
+</SPAN>
+</STRONG>
+</SPAN>
+</P>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+</P>
+	<div class="docBtn_list">
+		<input type="button" value="발급" onclick="certiAccept(<%=txInfo.seq%>, '<%=txInfo.file_name%>');" /> &#160;
+		<!-- <input type="button" value="List" onclick="javascript:bxfXmlListMongodb();" /> &#160;
+		<input type="button" value="Search" onclick="javascript:bxfXmlSearchMongodb();" /> -->
+	</div>
+</form>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/sys/lib/bxComponent/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/sys/lib/bxComponent/bxComponent.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		loaded('/accounts/score.xml');
+	});
+</script>
+<script LANGUAGE="JavaScript" FOR="XMLfile" EVENT="XMLdown(lFile)">
+	if(lFile != "" ) {
+		document.forms[0].outXMLcontent.value=lFile;
+		document.title=lFile;
+	}
+</script>
+<script LANGUAGE="JScript" FOR="XMLfile" EVENT="XMLupdate(lFile)">
+	if(lFile != "" ) {
+		bxfXmlDisplay(lFile);
+	}
+</script>
+</body>
+</html>
+
+<script>
+	//증명서 명 셋팅, 현재날짜 셋팅
+	function pad(n, width) {
+		n = n.toString();//string 변환
+		return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
+
+	var date = new Date();
+	$('#acceptDate').val(
+		date.getFullYear()+'-'+
+		pad(date.getMonth()+1,2)+'-'+
+		pad(date.getDate(),2)
+	);
+</script>
+<% include ../SC_import.ejs %>

@@ -299,7 +299,7 @@
 <TD>
 <P align="center">
 <STRONG>
-<SPAN style="FONT-SIZE: 16pt">3K BICAS 대학교 교무처 귀중
+<SPAN style="FONT-SIZE: 16pt">3K 대학교 교무처 귀중
 </SPAN>
 </STRONG>
 </P>
@@ -330,7 +330,6 @@
             client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             client.send(param);
 			alert('신청서가 승인되었습니다.');
-			alert(seq);
 			location.href='http://localhost:3000/admin/cetificate/'+seq;
 		}
     }
@@ -338,7 +337,15 @@
     function adminReject(){
         var answer = confirm('해당 증명서를 반려하겠습니까?');
 		if(answer){
-			alert('반려업무는 개발중입니다.');
+			var url =new URL(window.location.href);
+			var seq = url.searchParams.get('seq');
+			var param = 'seq='+seq;
+			var client = new XMLHttpRequest();
+            client.open("POST",'http://localhost:3000/admin/reject/'+seq, true);
+            client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            client.send(param);
+			alert('반려 되었습니다.');
+			self.close();
 		}
     }
 </script>
