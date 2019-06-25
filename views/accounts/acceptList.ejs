@@ -1,153 +1,113 @@
 <% include ../header.ejs %>
 
-    <br/>   
-    <div class="content-wrapper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <!-- <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/home">홈</a></li>
-              <li class="breadcrumb-item active">승인조회</li>
-            </ol> -->
-        <div class="card mb-3">
-            <div class="card-header">
-              <i class="fa fa-table"></i>승인내역 조회</div>
-              <br>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr align="center">
-                        <th width="2%" style="vertical-align: middle;">번호</th>
-                        <th width="8%" style="vertical-align: middle;" >신청 서식</th>
-                        <th width="10%" style="vertical-align: middle;">블록체인 처리</th>
-                        <!-- <th width="10%" style="vertical-align: middle;">승인 트랜젝션</th> -->
-                        <th width="8%" style="vertical-align: middle;">신청시간</th>
-                        <th width="8%" style="vertical-align: middle;">승인시간</th>
-                        <th width="5%" style="vertical-align: middle;">신청</th>
-                        <th width="6%" style="vertical-align: middle;">증명서</th>
-                        <!-- <th width="5%" style="vertical-align: middle;">view</th> -->
-                        <!-- <th width="1%" style="vertical-align: middle;">GasPrice</th> -->
-                    </tr>
-                </thead>
-                <!-- <tfoot>
-                    <tr align="center">
-                        <th>번호</th>
-                        <th>증명서</th>
-                        <th>접수</th>
-                        <th>승인</th>
-                        <th>시간</th>
-                        <th>신청</th>
-                        <th>view</th>
-                    </tr>
-                </tfoot> -->
-                <tbody>
-                    <% requestdetail.forEach(function(requestdetail){ %>
-                    <tr align="center">
-                        <td style="vertical-align: middle; font-size: 0.7em;"><%= requestdetail.seq %></td>
+<div class="table-responsive">
+	<table class="table-style" id="dataTable" width="100%" cellspacing="0">
+		<thead>
+			<tr align="center">
+				<th width="2%" class="d-none d-lg-th">번호</th>
+				<th width="8%">구분</th>
+				<th width="10%">접수 트랜젝션</th>
+				<!-- <th width="10%">승인 트랜젝션</th> -->
+				<th width="8%">신청시간</th>
+				<th width="8%">승인시간</th>
+				<th width="5%">신청</th>
+				<th width="6%">증명서</th>
+				<!-- <th width="5%">view</th> -->
+				<!-- <th width="1%">GasPrice</th> -->
+			</tr>
+		</thead>
+		<!-- <tfoot>
+                <tr align="center">
+                    <th>번호</th>
+                    <th>증명서</th>
+                    <th>접수</th>
+                    <th>승인</th>
+                    <th>시간</th>
+                    <th>신청</th>
+                    <th>view</th>
+                </tr>
+            </tfoot> -->
+		<tbody>
+			<% requestdetail.forEach(function(requestdetail){ %>
+			<tr>
+				<td class="d-none d-lg-td"><%= requestdetail.seq %></td>
 
-                        <td style="vertical-align: middle; font-size: 0.7em;">
-                            <!-- <a href="/accounts/transaction.id %>"> -->
-                            <%= requestdetail.form_name %> 증명서 신청
-                        </td>
-                        <td style="vertical-align: middle; font-size: 0.7em;">
-                            <!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
-                            <a style="cursor: pointer" onclick="window.open('txHashPop/<%=requestdetail.seq%>','팝업창', 'height=350, width=1000; return false;')" >트렌젝션처리 보기</a>
-                        </td>
-                        <!-- <td style="vertical-align: middle; font-size: 0.7em;"> -->
-                            <!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
-                            <!-- <a style="cursor: pointer" onclick="window.open('getTransaction/<%=requestdetail.accept_tx%>','팝업창', 'height=450, width=400; return false;')" ><%= requestdetail.accept_tx %></a>
-                        </td> -->
-                        <!-- <td style="vertical-align: middle; font-size: 0.7em;">
-                            <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.accept_tx%>'><%= requestdetail.accept_tx %></a>
-                        </td> -->
-                        <!-- <td style="vertical-align: middle; font-size: 0.7em;">
-                            <a style="cursor: pointer" onclick=txpop('<%= requestdetail.fee_tx %>');><%= requestdetail.fee_tx %></a>
-                        </td> -->
-                        <!-- <td style="vertical-align: middle; font-size: 0.7em;">
-                            <a onclick=""><%= requestdetail.accept_tx %></a>
-                        </td> -->
+				<td>
+					<!-- <a href="/accounts/transaction.id %>"> -->
+					<span class="point-blue2"><%= requestdetail.form_name %>증명서 신청</span>
+				</td>
+				<td>
+					<!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
+					<a onclick="window.open('txHashPop/<%=requestdetail.seq%>','_blank', 'height=490, width=1000; return false;')">트렌젝션처리 보기</a>
+				</td>
+				<!-- <td> -->
+				<!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
+				<!-- <a onclick="window.open('getTransaction/<%=requestdetail.accept_tx%>','팝업창', 'height=450, width=400; return false;')" ><%= requestdetail.accept_tx %></a>
+                    </td> -->
+				<!-- <td>
+                        <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.accept_tx%>'><%= requestdetail.accept_tx %></a>
+                    </td> -->
+				<!-- <td>
+                        <a onclick=txpop('<%= requestdetail.fee_tx %>');><%= requestdetail.fee_tx %></a>
+                    </td> -->
+				<!-- <td>
+                        <a onclick=""><%= requestdetail.accept_tx %></a>
+                    </td> -->
 
-                        <td style="vertical-align: middle; font-size: 0.7em;">
-                                <%=requestdetail.getCreatedTime.year%>
-                                <%=requestdetail.getCreatedTime.month%>
-                                <%=requestdetail.getCreatedTime.day %>
-                                <%=requestdetail.getCreatedTime.hour%>
-                                <%=requestdetail.getCreatedTime.minute%>
-                                <!-- <%=requestdetail.getCreatedTime.second%> -->
-                        </td>
-                        <td style="vertical-align: middle; font-size: 0.7em;">
-                                <%=requestdetail.getAcceptTime.year%>
-                                <%=requestdetail.getAcceptTime.month%>
-                                <%=requestdetail.getAcceptTime.day %>
-                                <%=requestdetail.getAcceptTime.hour%>
-                                <%=requestdetail.getAcceptTime.minute%>
-                                <!-- <%=requestdetail.getAcceptTime.second%> -->
-                        </td>
+				<td>
+					<%=requestdetail.getCreatedTime.year%> <%=requestdetail.getCreatedTime.month%> <%=requestdetail.getCreatedTime.day %> <%=requestdetail.getCreatedTime.hour%> <%=requestdetail.getCreatedTime.minute%>
+					<!-- <%=requestdetail.getCreatedTime.second%> -->
+				</td>
+				<td>
+					<%=requestdetail.getAcceptTime.year%> <%=requestdetail.getAcceptTime.month%> <%=requestdetail.getAcceptTime.day %> <%=requestdetail.getAcceptTime.hour%> <%=requestdetail.getAcceptTime.minute%>
+					<!-- <%=requestdetail.getAcceptTime.second%> -->
+				</td>
 
-                        <% if (requestdetail.fee_yn=='N'){ %>
-                            <td style="vertical-align: middle; font-size: 0.7em;"><input type="button" value="납부"  onclick="sendFee(<%=requestdetail.seq%>)" />  </td>
-                        <%}else {%>
-                            <td style="vertical-align: middle; font-size: 0.7em;">완료</td>
-                        <%}%>
-                            
-                        <% if (requestdetail.certi_yn=='N' && requestdetail.reject_yn=='N'&& requestdetail.fee_yn=='Y'){ %>
-                            <td style="vertical-align: middle; font-size: 0.7em;">승인중</td>
-                        <%}else if(requestdetail.certi_yn=='Y'){%>
-                            <td style="vertical-align: middle; font-size: 0.7em;">
-                                <!-- <a href="/accounts/transaction.id %>"> -->
-                                <a style="cursor: pointer" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.certi_ipfs%>','팝업창', 'height=700, width=500; return false;')">보기</a>
-                                
-                            </td>
-                        <%}else if(requestdetail.fee_yn=='Y' && requestdetail.reject_yn=='Y'){%>
-                            <td style="vertical-align: middle; font-size: 0.7em;">반려</td>
-                        <%}else{%>
-                            <td style="vertical-align: middle; font-size: 0.7em;"></td>
-                        <%}%>
+				<% if (requestdetail.fee_yn=='N'){ %>
+				<td>
+					<input class="btn btn-sm btn-border btn-sky" type="button" value="납부" onclick="sendFee(<%=requestdetail.seq%>)" />
+				</td>
+				<%}else {%>
+				<td>완료</td>
+				<%}%> <% if (requestdetail.certi_yn=='N' && requestdetail.reject_yn=='N'&& requestdetail.fee_yn=='Y'){ %>
+				<td>승인중</td>
+				<%}else if(requestdetail.certi_yn=='Y'){%>
+				<td>
+					<!-- <a href="/accounts/transaction.id %>"> -->
+					<a class="btn btn-link-arrow" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.certi_ipfs%>','팝업창', 'height=700, width=500; return false;')">보기</a>
 
-                    </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+				</td>
+				<%}else if(requestdetail.fee_yn=='Y' && requestdetail.reject_yn=='Y'){%>
+				<td>반려</td>
+				<%}else{%>
+				<td></td>
+				<%}%>
+
+			</tr>
+			<% }); %>
+		</tbody>
+	</table>
+</div>
+
+<div class="pagination-wrap">
+	<ul class="pagination">
+		<li class="pagination-prev">
+			<a href="<%= paginate.href(true) %>" aria-label="Previous"></a>
+		</li>
+		<% pages.forEach(function(page){ %>
+		<li class="<%= paginate.page == page.number ? 'active' : ''%>">
+			<a href="<%= page.url %>"><%= page.number %></a>
+		</li>
+		<%})%> <%if(paginate.hasNextPages(pageCount)){%>
+		<li class="pagination-next">
+			<a href="<%= paginate.href() %>"></a>
+		</li>
+		<%}%>
+	</ul>
+</div>
 
 
-    <div class="container">
-        <div class="row">
-          <div class="col-lg-12" align="center">
-                <!-- 페이징 처리 -->
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="<%= paginate.href(true) %>" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    <% pages.forEach(function(page){ %>
-                        <li class="<%= paginate.page == page.number ? 'active' : ''%>">
-                            <a href="<%= page.url %>"><%= page.number %></a>
-                        </li>
-                    <%})%>
-                    <%if(paginate.hasNextPages(pageCount)){%>
-                        <li>
-                            <a href="<%= paginate.href() %>">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    <%}%>
-                    </ul>
-                </nav>
-          </div>
-        </div>
-      </div>
-    
-        
 
-<style type="text/css">
-.masonry-grid img { max-width: 260px; }
-</style>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
 <script type="text/javascript">
@@ -160,13 +120,10 @@
     });
 </script>
 
-  <!-- 사용자 정보 받아오기 user_id, blockChainid, blockChainpw -->
-  <input type="hidden" id='user_id' value="<%=user.user_id%>"></input>
-  <input type="hidden" id='name' value="<%= user.user_name %>"></input>
-  <input type="hidden" id='blockchainpwd' value="<%= user.blockchainpwd %>"></input>
-  <input type="hidden" id='blockchainid' value="<%= user.blockchainid %>"></input>
-  
-  <!-- 사용자 정보 받아오기 user_id, blockChainid, blockChainpw -->
+<!-- 사용자 정보 받아오기 user_id, blockChainid, blockChainpw -->
+<input type="hidden" id='user_id' value="<%=user.user_id%>"></input> <input type="hidden" id='name' value="<%= user.user_name %>"></input> <input type="hidden" id='blockchainpwd' value="<%= user.blockchainpwd %>"></input> <input type="hidden" id='blockchainid' value="<%= user.blockchainid %>"></input>
+
+<!-- 사용자 정보 받아오기 user_id, blockChainid, blockChainpw -->
 
 <% include ../SC_import.ejs %>
 <% include ../footer.ejs %>

@@ -3,320 +3,120 @@
 <xsl:decimal-format name="digit" decimal-separator="." grouping-separator="," infinity="&#x221E;" minus-sign="-" NaN="0" percent="%" per-mille="&#x03BC;" zero-digit="0" digit="#" pattern-separator=";" />
 <xsl:output method="html" doctype-system="http://www.w3.org/TR/html4/strict.dtd" doctype-public="-//W3C//DTD HTML 4.01//EN" indent="yes" />
 <xsl:template match="/">
-<html>
+<html lang="ko">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title> App_form </title>
-	<link rel="shortcut icon" href="http://www.3ksoftware.com/favicon.ico"/>
-	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/soaxml_webformReset.css" rel="stylesheet"  media="screen"/>
-	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/uniform.default.css" rel="stylesheet" media="screen" />
-	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/jquery-ui.1.10.3.smoothness.css" rel="stylesheet" media="screen" />
-	<style></style>
-<style>
-.titlefsize14 { font-size: 14pt; }
-.textboxs { font-size: 8pt; }
-</style>
 
-	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxControl.js"></script>
-	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxCommon.js"></script>
-	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery-ui.1.10.3.min.js"></script>
-	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery.uniform.js"></script>
-	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jSignature.custom.js"></script>
-	<script type="text/javascript">
-		function basexml_checktype() {
-			$("input, textarea, select, button").uniform();
-			$("input[type='radio']").each(function(){
-				$(this).attr("disabled","true");
-			});
-			$("input[type='checkbox']").each(function(){
-				$(this).attr("disabled","true");
-			});
-			$("select").each(function(){
-				$(this).attr("disabled","true");
-			});
-		}
-	</script>
-	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxFormForMongo.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+<title> App_form </title>
+<link rel="shortcut icon" href="http://www.3ksoftware.com/favicon.ico"/>
+<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/soaxml_webformReset.css" rel="stylesheet"  media="screen"/>
+<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/uniform.default.css" rel="stylesheet" media="screen" />
+<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/jquery-ui.1.10.3.smoothness.css" rel="stylesheet" media="screen" />
+<!-- CSS -->
+<!-- <xsl:template match="/*//*[1]"> -->
+<!-- <link rel="stylesheet" type="text/css" href="/public/vendor/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/public/css/sm-admin.css" />
+<link rel="stylesheet" type="text/css" href="/public/css/md-admin.css" media="screen and (min-width: 768px)" />
+<link rel="stylesheet" type="text/css" href="/public/css/lg-admin.css" media="screen and (min-width: 1240px)" /> -->
+<!-- </xsl:template> -->
+<!-- <style type="text/css"></style> -->
+
+<link type="text/css" href="http://220.76.95.91:3000/public/vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+<link type="text/css" href="http://220.76.95.91:3000/public/css/sm-admin.css" rel="stylesheet"/>
+<link type="text/css" href="http://220.76.95.91:3000/public/css/md-admin.css" rel="stylesheet" media="screen and (min-width: 768px)" />
+<link type="text/css" href="http://220.76.95.91:3000/public/css/lg-admin.css" rel="stylesheet" media="screen and (min-width: 1240px)" />
+
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxControl.js"></script>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxCommon.js"></script>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery-ui.1.10.3.min.js"></script>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery.uniform.js"></script>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jSignature.custom.js"></script>
+<script type="text/javascript">
+	function basexml_checktype() {
+		$("input, textarea, select, button").uniform();
+		$("input[type='radio']").each(function(){
+			$(this).attr("disabled","true");
+		});
+		$("input[type='checkbox']").each(function(){
+			$(this).attr("disabled","true");
+		});
+		$("select").each(function(){
+			$(this).attr("disabled","true");
+		});
+	}
+</script>
+<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxFormForMongo.js"></script>
+
 </head>
-<body onLoad='javascript:basexml_checktype( );'>
+<body onLoad='javascript:basexml_checktype( );' class="app-form-body">
 <form name="App_form">
-<P>
-<TABLE style="WIDTH: 98%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="1">
-<COLGROUP>
-<COL width="700">
-</COL>
-</COLGROUP>
-<TBODY>
-<TR>
-<TD>
-<P>
-<TABLE id="3" style="WIDTH: 95%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="0">
-<COLGROUP>
-<COL>
-</COL>
-</COLGROUP>
-<TBODY>
-<TR style="HEIGHT: 10px">
-<TD>
-<P align="center">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">&#160;
-</SPAN>
-</STRONG>
-</SPAN>
-</SPAN>
-</STRONG>
-</SPAN>
-</P>
-</TD>
-</TR>
-<TR>
-<TD>
-<P align="center">
-<FONT size="5">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">
-<SPAN style="FONT-SIZE: 18pt">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">
-<xsl:value-of select="root/contents/title"/>
-&#160;
-</SPAN>
-</STRONG>
-</SPAN>
-</SPAN>
-</STRONG>
-</SPAN>
-<STRONG>증명 신청서
-</STRONG>
-</FONT>
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 10px">
-<TD>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
-<P>
-<TABLE id="20190531_162323" style="WIDTH: 95%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="1">
-<COLGROUP>
-<COL width="20%">
-</COL>
-<COL width="30%">
-</COL>
-<COL width="20%">
-</COL>
-<COL width="30%">
-</COL>
-</COLGROUP>
-<TBODY>
-<TR>
-<TD bgColor="#8cabf2" colSpan="4">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 10pt">신청 내역
-</SPAN>
-</STRONG>
-</P>
-</TD>
-</TR>
-<TR>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">이름
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/name"/>
-</P>
-</TD>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">전공학과
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/department"/>
-</P>
-</TD>
-</TR>
-<TR>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">생년월일
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/birthday"/>
-</P>
-</TD>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">학번
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/class_of"/>
-</P>
-</TD>
-</TR>
-<TR>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">
-<STRONG>용도
-</STRONG>
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/purpose"/>
-</P>
-</TD>
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">신청일
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>
-<xsl:value-of select="root/contents/Application_date"/>
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 55px">
-<TD bgColor="#e9e9e9">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 8pt">기타사항
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD colSpan="3">
-<P>
-<xsl:apply-templates select="root/contents/Other"/>&#160;
-</P>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
-<TABLE id="1" style="WIDTH: 95%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="0">
-<COLGROUP>
-<COL>
-</COL>
-</COLGROUP>
-<TBODY id="1">
-<TR style="HEIGHT: 10px">
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR>
-<TD>
-<P align="center">
-<SPAN style="FONT-SIZE: 9pt">상기 본인은&#160;증명서 발급을 요청 합니다.
-</SPAN>
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 40px">
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR>
-<TD>
-<TABLE id="20190526_124756" style="WIDTH: 55%" borderColor="#e0e0e0" cellSpacing="0" cellPadding="1" align="right" border="1">
-<COLGROUP>
-<COL>
-</COL>
-</COLGROUP>
-<TBODY>
-<TR>
-<TD>
-<P align="center">
-<SPAN style="FONT-SIZE: 8pt">신청자
-</SPAN>
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 180px">
-<TD>
-<DIV align="center">
-<DIV id="div_root_contents_sign" class="signature" style="HEIGHT: 175px; WIDTH: 95%; POSITION: relative">
-<DIV align="left">&#160;
-</DIV>
-</DIV>
-</DIV>
-</TD>
-</TR>
-<TR style="HEIGHT: 10px">
-<TD>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</TD>
-</TR>
-<TR>
-<TD>
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">3K 대학교 교무처 귀중
-</SPAN>
-</STRONG>
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 10px">
-<TD>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
+	<div id="3" class="app-form-header">
+		<xsl:value-of select="root/contents/title"/>증명 신청서
+	</div>
+	<div class="app-form-body">
+		<table id="20190531_162323" class="table-style2">
+			<tbody>
+				<tr>
+					<th>이  름</th>
+					<td><div class="form-group">
+							<xsl:value-of select="root/contents/name"/>
+						</div></td>
+					<th>전공학과</th>
+					<td><div class="form-group">
+							<xsl:value-of select="root/contents/department"/>
+						</div></td>
+				</tr>
+				<tr>
+					<th>생년월일</th>
+					<td><div class="form-group">
+							<xsl:value-of select="root/contents/birthday"/>
+						</div></td>
+					<th>학  번</th>
+					<td><div class="form-group">
+							<xsl:value-of select="root/contents/class_of"/>
+						</div></td>
+				</tr>
+				<tr>
+					<th>용  도</th>
+					<td><div class="form-group">
+							<xsl:value-of select="root/contents/purpose"/>
+						</div></td>
+					<th>신청일</th>
+					<td><div class="form-group">
+							<xsl:value-of select="root/contents/Application_date"/>
+						</div></td>
+				</tr>
+				<tr >
+					<th>기타사항</th>
+					<td colspan="3"><div class="form-group">
+							<xsl:apply-templates select="root/contents/Other"/>
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="1" class="app-form-footer">
+		<p class="app-form-txt">상기 본인은 증명서 발급을 요청 합니다.</p>
+		<div class="app-form-sign-wrap">
+			<div class="app-form-sign-box"> 
+				<span class="app-form-sign-txt">신청자</span>
+				<div id="20190526_124756">
+					<div id="div_root_contents_sign" class="app-form-sign"></div>
+				</div>
+			</div>
+		</div>
+		<p class="app-form-txt2">3K BICAS 대학교 교무처 귀중</p>
+	</div>
 </form>
+
+<div class="btn-wrap btn-flex">
+	<input type="button" value="반려" onclick='adminReject();'/>
+	<input type="button" value="승인" onclick='adminAccept();'/>
+</div>
+
 <script type="text/javascript">
 
     function adminAccept(seq, file_name){
@@ -326,11 +126,11 @@
 			var seq = url.searchParams.get('seq');
 			var param = 'seq='+seq;
 			var client = new XMLHttpRequest();
-            client.open("POST",'http://localhost:3000/admin/createContract/accept/'+seq, true);
+            client.open("POST",'http://220.76.95.91:3000/admin/createContract/accept/'+seq, true);
             client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             client.send(param);
 			alert('신청서가 승인되었습니다.');
-			location.href='http://localhost:3000/admin/cetificate/'+seq;
+			location.href='http://220.76.95.91:3000/admin/cetificate/'+seq;
 		}
     }
 
@@ -341,7 +141,7 @@
 			var seq = url.searchParams.get('seq');
 			var param = 'seq='+seq;
 			var client = new XMLHttpRequest();
-            client.open("POST",'http://localhost:3000/admin/reject/'+seq, true);
+            client.open("POST",'http://220.76.95.91:3000/admin/reject/'+seq, true);
             client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             client.send(param);
 			alert('반려 되었습니다.');
@@ -349,11 +149,6 @@
 		}
     }
 </script>
-
-	<div class="docBtn_list">
-		<input type="button" value="반려" onclick='adminReject();'/> &#160;
-		<input type="button" value="승인" onclick='adminAccept();'/> &#160;
-	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$signImg = $("#div_root_contents_sign");

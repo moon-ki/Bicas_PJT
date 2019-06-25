@@ -1,30 +1,31 @@
-<% include ../header.ejs %>
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <% if(typeof flashMessage !== 'undefined'){ %>
-            <div class="alert alert-danger" role="alert"><%=flashMessage%></div>
-        <% } %>
-        <div class="login-panel panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">로그인</h3>
-            </div>
-            <div class="panel-body">
-                <form role="form" action="" id="login_form" method="post">
-                    <fieldset>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="ID" name="user_id" type="text" autofocus="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Password" name="password" type="password" value="" required="">
-                        </div>
-                        <!-- Change this to a button or input when using this as a form -->
-                        <input type="submit" class="btn btn-lg btn-success btn-block" value="로그인">
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
+<% include ../member-header.ejs %>
+
+
+<div class="member">
+	<div class="page-logo"><span class="sr-only">3K 대학교 블록체인 기반의 인터넷증명발급센터</span></div>
+	<h4 class="tit-line"><span>LOGIN</span></h4>
+	
+	<% if(typeof flashMessage !== 'undefined'){ %>
+        <div class="alert alert-danger" role="alert"><%=flashMessage%></div>
+    <% } %>
+    <form role="form" action="" id="login_form" method="post">
+         <fieldset>
+             <div class="form-group">
+                 <input class="form-control" placeholder="ID를 입력해주세요." name="user_id" type="text" autofocus="" required="">
+             </div>
+             <div class="form-group">
+                 <input class="form-control" placeholder="PASSWORD를 입력해 주세요." name="password" type="password" value="" required="">
+             </div>
+             <input type="submit" class="btn btn-lg btn-success btn-block" value="LOGIN">
+         </fieldset>
+     </form>
+     <div class="login-txt">
+     	<p>아직 <span class="point-blue">3K 대학교에</span> 가입이 되지 않으셨나요?</p>
+     	<a href="/accounts/join">회원가입 바로가기</a>
+     </div>
 </div>
+
+
 <script type="text/javascript">
 (function(){
     $(document).ready(function() {
@@ -50,5 +51,5 @@
 })();
 </script>
 
-<% include ../footer.ejs %>
+<% include ../member-footer.ejs %>
 

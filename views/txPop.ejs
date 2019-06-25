@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
+<title>3K대학교 증명정보시스템</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>트랜젝션 상세</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="3K대학교 증명정보시스템 홈페이지 입니다." />
+<meta name="theme-color" content="#0b4e92">
+<meta name="msapplication-navbutton-color" content="#0b4e92">
+<meta name="msapplication-TileColor" content="#0b4e92">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta property="og:title" content="3K대학교 증명정보시스템">
+<meta property="og:description" content="3K대학교 증명정보시스템 홈페이지 입니다.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3K대학교 증명정보시스템">
+<meta name="twitter:description" content="3K대학교 증명정보시스템 홈페이지 입니다.">
+
+<!-- favicon -->
+<link rel="apple-touch-startup-image" href="/public/favicon/android-icon-192x192.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/public/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/public/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/public/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/public/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/public/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/public/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/public/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/public/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/public/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/public/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
+<link rel="shortcut icon" href="/public/favicon/favicon.ico">
+<link rel="manifest" href="/public/favicon/manifest.json">
+<meta property="og:image" content="/public/favicon/android-icon-192x192.png">
+<meta name="twitter:image" content="/public/favicon/android-icon-192x192.png">
+<meta name="msapplication-TileImage" content="/public/favicon/android-icon-192x192.png">
 
 <!-- CSS -->
+<link rel="stylesheet" href="/public/vendor/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="/public/css/sm.css">
+<link rel="stylesheet" href="/public/css/md.css" media="screen and (min-width: 768px)">
+<link rel="stylesheet" href="/public/css/lg.css" media="screen and (min-width: 1240px)">
 <style>
-.myForm {
+/* .myForm {
 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 font-size: 0.8em;
 width: 30em;
@@ -55,68 +92,61 @@ margin-top: 1.8em;
 .myForm button:hover {
 background: #ccc;
 cursor: pointer;
-}
+} */
 </style>
 
 </head>
-<body>
+<body class="popup-body">
 
-<form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
-
-<p>
-<label>transactionHash 
-<input type="text" name="transactionHash"  value="<%=txInfo.hash%>" readonly>
-</label> 
-</p>
-
-<p>
-<label>blockNumber 
-<input type="text" name="blockNumber" value="<%=txInfo.blockNumber%>" readonly>
-</label>
-</p>
-
-<p>
-<label>blockHash 
-<input type="text" name="blockHash" value="<%=txInfo.blockHash%>" readonly>
-</label> 
-</p>
-
-<p>
-<label>from 
-<input type="text" name="from" value="<%=txInfo.from%>" readonly>
-</label>
-</p>
-
-<p>
-<label>to 
-<input type="text" name="to" value="<%=txInfo.to%>" readonly>
-</label> 
-</p>
-
-<p>
-<label>nonce 
-<input type="text" name="nonce" value="<%=txInfo.nonce%>" readonly>
-</label>
-</p>
-
-<p>
-<label>value 
-<input type="text" name="value" value="<%=txInfo.value%>" readonly>
-</label>
-</p>
-
-<p>
-<label>gas 
-<input type="text" name="gas" value="<%=txInfo.gas%>" readonly>
-</label>
-</p>
-
-<p>
-<label>gasPrice 
-<input type="text" name="gasPrice" value="<%=txInfo.gasPrice%>" readonly>
-</label>
-</p>
-</form>
+<div class="popup-box">
+	<div class="popup-box-header">
+		<h4>상세 데이터 확인</h4>
+	</div>
+	<div class="popup-box-body">
+		<form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
+			<div class="form-group">
+				<label>transactionHash</label>
+				<input type="text" name="transactionHash"  value="<%=txInfo.hash%>" readonly>
+			</div>
+			<div class="form-group">
+				<label>blockNumber</label>
+				<input type="text" name="blockNumber" value="<%=txInfo.blockNumber%>" readonly>
+			</div>
+			<div class="form-group">
+				<label>blockHash</label>
+				<input type="text" name="blockHash" value="<%=txInfo.blockHash%>" readonly>
+			</div>
+			<div class="form-group">
+				<label>from</label>
+				<input type="text" name="from" value="<%=txInfo.from%>" readonly>
+			</div>
+			<div class="form-group">
+				<label>to</label>
+				<input type="text" name="to" value="<%=txInfo.to%>" readonly>
+			</div>
+			<div class="form-group">
+				<label>nonce</label>
+				<input type="text" name="nonce" value="<%=txInfo.nonce%>" readonly>
+			</div>
+			<div class="form-group">
+				<label>value</label>
+				<input type="text" name="value" value="<%=txInfo.value%>" readonly>
+			</div>
+			<div class="form-group">
+				<label>gas</label>
+				<input type="text" name="gas" value="<%=txInfo.gas%>" readonly>
+				
+			</div>
+			<div class="form-group">
+				<label>gasPrice</label>
+				<input type="text" name="gasPrice" value="<%=txInfo.gasPrice%>" readonly>
+			</div>
+			<div class="btn-wrap">
+				<button class="btn btn-md btn-blue">확인</button>
+			</div>
+		</form>
+	</div>
+</div>
 
 </body>
 </html>

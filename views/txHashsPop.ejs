@@ -1,75 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-table#t01 {
-  width: 100%;    
-  background-color: #f1f1c1;
-}
-</style>
+<meta charset="UTF-8">
+<title>3K대학교 증명정보시스템</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="3K대학교 증명정보시스템 홈페이지 입니다." />
+<meta name="theme-color" content="#0b4e92">
+<meta name="msapplication-navbutton-color" content="#0b4e92">
+<meta name="msapplication-TileColor" content="#0b4e92">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta property="og:title" content="3K대학교 증명정보시스템">
+<meta property="og:description" content="3K대학교 증명정보시스템 홈페이지 입니다.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3K대학교 증명정보시스템">
+<meta name="twitter:description" content="3K대학교 증명정보시스템 홈페이지 입니다.">
+
+<!-- favicon -->
+<link rel="apple-touch-startup-image" href="/public/favicon/android-icon-192x192.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/public/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/public/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/public/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/public/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/public/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/public/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/public/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/public/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/public/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/public/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png">
+<link rel="shortcut icon" href="/public/favicon/favicon.ico">
+<link rel="manifest" href="/public/favicon/manifest.json">
+<meta property="og:image" content="/public/favicon/android-icon-192x192.png">
+<meta name="twitter:image" content="/public/favicon/android-icon-192x192.png">
+<meta name="msapplication-TileImage" content="/public/favicon/android-icon-192x192.png">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/public/vendor/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="/public/css/sm.css">
+<link rel="stylesheet" href="/public/css/md.css" media="screen and (min-width: 768px)">
+<link rel="stylesheet" href="/public/css/lg.css" media="screen and (min-width: 1240px)">
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/public/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
-<body>
 
-<h2>블록체인 처리 보기</h2>
+<body class="popup-body">
 
-<table style="width:100%">
-  <tr>
-    <th>구분</th>
-    <th>블록체인 처리 Hash</th> 
-    <th>EtherScan 조회</th>
-  </tr>
-  <tr>
-    <td>수수료납부 트랜젝션</td>
-    <td><a href='http://localhost:3000/accounts/getTransaction/<%=txHashs.fee_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.fee_tx%></a></td>
-    <% if (txHashs.fee_yn=='Y'){ %>
-    <td><a href='https://ropsten.etherscan.io/tx/<%=txHashs.fee_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
-    <%}else{%>
-    <td></td>
-    <%}%>
-    <!-- <td><a href='https://ropsten.etherscan.io/tx/<%=txHashs.fee_tx%>' target="_blank">조회</a></td> -->
-  </tr>
-  <tr>
-    <td>신청서승인 트랜젝션</td>
-    <td><a href='http://localhost:3000/accounts/getTransaction/<%=txHashs.accept_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.accept_tx%></a></td>
-    <% if (txHashs.accept_yn=='Y'){ %>
-    <td><a href='https://ropsten.etherscan.io/tx/<%=txHashs.accept_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
-    <%}else{%>
-    <td></td>
-    <%}%>    
-  </tr>
-  <tr>
-    <td>증명서승인 트랜젝션</td>
-    <td><a href='http://localhost:3000/accounts/getTransaction/<%=txHashs.certi_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.certi_tx%></a></td>
-    <% if (txHashs.certi_yn=='Y'){ %>
-    <td><a href='https://ropsten.etherscan.io/tx/<%=txHashs.certi_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
-    <%}else{%>
-    <td></td>
-    <%}%>
-  </tr>
-  <tr>
-    <td>신청서반려 트랜젝션</td>
-    <td><a href='http://localhost:3000/accounts/getTransaction/<%=txHashs.reject_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.reject_tx%></a></td>
-    <% if (txHashs.reject_yn=='Y'){ %>
-    <td><a href='https://ropsten.etherscan.io/tx/<%=txHashs.reject_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
-    <%}else{%>
-    <td></td>
-    <%}%>
-  </tr>
-</table>
-<br>
+<div class="popup-box">
+	<div class="popup-box-header">
+		<h4>블록체인 처리 보기</h4>
+	</div>
+	<div class="popup-box-body">
+		<div class="table-responsive">
+			<table class="table-style">
+				<tr>
+					<th>구분</th>
+					<th>블록체인 처리 Hash</th>
+					<th>EtherScan 조회</th>
+				</tr>
+				<tr>
+					<td>수수료납부 트랜젝션</td>
+					<td><a href='http://220.76.95.91:3000/accounts/getTransaction/<%=txHashs.fee_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.fee_tx%></a></td>
+					<% if (txHashs.fee_yn=='Y'){ %>
+					<td><a class="btn btn-link-arrow" href='https://ropsten.etherscan.io/tx/<%=txHashs.fee_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
+					<%}else{%>
+					<td></td>
+					<%}%>
+					<!-- <td><a href='https://ropsten.etherscan.io/tx/<%=txHashs.fee_tx%>' target="_blank">조회</a></td> --> 
+				</tr>
+				<tr>
+					<td>신청서승인 트랜젝션</td>
+					<td><a href='http://220.76.95.91:3000/accounts/getTransaction/<%=txHashs.accept_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.accept_tx%></a></td>
+					<% if (txHashs.accept_yn=='Y'){ %>
+					<td><a class="btn btn-link-arrow" href='https://ropsten.etherscan.io/tx/<%=txHashs.accept_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
+					<%}else{%>
+					<td></td>
+					<%}%>
+				</tr>
+				<tr>
+					<td>증명서승인 트랜젝션</td>
+					<td><a href='http://220.76.95.91:3000/accounts/getTransaction/<%=txHashs.certi_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.certi_tx%></a></td>
+					<% if (txHashs.certi_yn=='Y'){ %>
+					<td><a class="btn btn-link-arrow" href='https://ropsten.etherscan.io/tx/<%=txHashs.certi_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
+					<%}else{%>
+					<td></td>
+					<%}%>
+				</tr>
+				<tr>
+					<td>신청서반려 트랜젝션</td>
+					<td><a href='http://220.76.95.91:3000/accounts/getTransaction/<%=txHashs.reject_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=400'); return false"><%=txHashs.reject_tx%></a></td>
+					<% if (txHashs.reject_yn=='Y'){ %>
+					<td><a class="btn btn-link-arrow" href='https://ropsten.etherscan.io/tx/<%=txHashs.reject_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>
+					<%}else{%>
+					<td></td>
+					<%}%>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

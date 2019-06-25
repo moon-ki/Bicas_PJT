@@ -11,17 +11,17 @@
   <!-- Bootstrap core CSS-->
   <link href="../../public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="../../public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- <link href="../../public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
   <!-- Page level plugin CSS-->
   <link href="../../public/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="../../public/css/sb-admin.css" rel="stylesheet">
+  <!-- <link href="../../public/css/sb-admin.css" rel="stylesheet"> -->
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="/admin/adminhome">3K대학교 Administrator</a>
+    <a class="navbar-brand" href="/admin/products/productslist">3K대학교 Administrator</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -111,8 +111,16 @@
         <div class="card-header">
           <i class="fa fa-table"></i>증명서 접수목록</div>
         <div class="card-body">
-
+          신청서식 필터
           <div class="table-responsive">
+              <select id="format_filter">
+                  <option value="graduate">졸업</option>
+                  <option value="attend">재학</option>
+                  <option value="score">성적</option>
+              </select>
+
+              이름검색<input type="text" id="user_name" onclick="adminSearch()"></input>
+              <input type="button" value="검색"> 
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr align="center">
@@ -143,10 +151,12 @@
                     </td>
                     <!-- 구분 -->
                     <!-- IPFS -->
-                    <% if (requestdetail.reject_yn=='N' ){ %>
+                    <% if (requestdetail.reject_yn=='N' && requestdetail.certi_yn=='N'){ %>
                     <td style="vertical-align: middle; font-size: 0.7em;"><a style="cursor: pointer" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.apply_ipfs%>?seq=<%=requestdetail.seq%>','팝업창', 'height=700, width=500; return false;')"><%=requestdetail.form_name %> 신청서</a></td>
-                    <%}else{%>
+                    <%}else if(requestdetail.reject_yn=='Y'){%>
                     <td style="vertical-align: middle; font-size: 0.7em;"><a href="javascript:window.alert('반려된 신청서 입니다.');"><%=requestdetail.form_name %> 신청서</a></td>
+                    <%}else if(requestdetail.reject_yn=='N' && requestdetail.certi_yn=='Y'){%>
+                      <td style="vertical-align: middle; font-size: 0.7em;"><a href="javascript:window.alert('이미 승인된 신청서 입니다.');"><%=requestdetail.form_name %> 신청서</a></td>
                     <%}%>
                     <!-- Test -->
                     <!-- <td style="vertical-align: middle; font-size: 0.7em;"><a style="cursor: pointer" onclick="window.open('http://220.76.95.91:3000/xmldata/<%=requestdetail.file_name%>?seq=<%=requestdetail.seq%>&fileName=<%=requestdetail.file_name%>','팝업창', 'height=600, width=500; return false;')"><%=requestdetail.form_name %></a></td> -->
@@ -191,6 +201,22 @@
       </div>
     </div>
 
+    <div class="pagination-wrap">
+      <ul class="pagination">
+        <li class="pagination-prev">
+          <a href="<%= paginate.href(true) %>" aria-label="Previous"></a>
+        </li>
+        <% pages.forEach(function(page){ %>
+        <li class="<%= paginate.page == page.number ? 'active' : ''%>">
+          <a href="<%= page.url %>"><%= page.number %></a>
+        </li>
+        <%})%> <%if(paginate.hasNextPages(pageCount)){%>
+        <li class="pagination-next">
+          <a href="<%= paginate.href() %>"></a>
+        </li>
+        <%}%>
+      </ul>
+    </div>
 
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -235,7 +261,7 @@
     <!-- Custom scripts for all pages-->
     <script src="../../../public/js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="../../../public/js/sb-admin-datatables.min.js"></script>
+    <!-- <script src="../../../public/js/sb-admin-datatables.min.js"></script> -->
   </div>
 </body>
 

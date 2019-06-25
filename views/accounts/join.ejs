@@ -1,83 +1,75 @@
+<% include ../member-header.ejs %>
 
-    
-<% include ../header.ejs %>
-
-
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <div class="login-panel panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">회원가입</h3>
-            </div>
-            <div class="panel-body">
-                <form role="form" action="" id="join_form" method="post">
-                    <fieldset>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="학번" name="user_id" type="text" autofocus="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="패스워드" name="password" type="password" value="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="패스워드 확인" name="password2" type="password" value="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" id="onlyHangul" placeholder="이름" name="user_name" type="text" autofocus="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" id="onlyHangul" placeholder="생년월일" name="user_birth" type="text" autofocus="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="전공" name="major" type="text" value="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="블록체인 비밀번호" id="blockchainpwd" name="blockchainpwd" type="password" value="" required="">
-                            </input>
-                            <span>
-                                <button class="btn btn-lg btn-success btn-block" onclick="etherjoin()" > 계정생성
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="블록체인 아이디" id="blockchainid" name="blockchainid" readonly type="text" value="" required="" >
-                        </div>
-
-
-
-                        <!-- <div class="form-group">
-                            <input class="form-control" id="onlyNumber" placeholder="핸드폰 번호" name="user_phone" type="text" value="" required="">
-                        </div>
-                        <div class="form-group">
-                            <select name="user_sex" class="form-control" >
-                                <option value="M" selected="selected">M</option> 
-                                <option value="F">F</option> 
-                            </select>
-                        </div> -->
-                        <!-- <div class="form-group">
-                            <input type="date" name="user_birth" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="E-Mail" name="user_email" type="email" autofocus="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="주소" name="user_addr" type="text" readonly value="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="상세주소" name="user_addr2" type="text" value="" required="">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" id="onlyNumber" placeholder="우편번호" name="user_post" type="text" value="" required="">
-                            <span style="margin-top:10px" class="btn btn-primary" onclick="setDaumPostcode()">우편번호 찾기</span>
-                        </div> -->
-                        
-                        <!-- Change this to a button or input when using this as a form -->
-                        <!-- <input type="button" class="btn btn-lg btn-success btn-block" onclick="etherjoin()" value="블록체인 계정생성"> -->
-                        <input type="submit" class="btn btn-lg btn-success btn-block" value="가입하기">
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
+<div class="member">
+	<div class="page-logo"><span class="sr-only">3K 대학교 블록체인 기반의 인터넷증명발급센터</span></div>
+	<h4 class="tit-line"><span>JOIN</span></h4>
+	
+	<form role="form" action="" id="join_form" method="post">
+		<fieldset>
+			<div class="input-group">
+				<input class="form-control" placeholder="학번" name="user_id" type="text" autofocus="" required="">
+				<div class="input-group-append">
+					<button class="btn btn-lg btn-min95 btn-lg-min185 btn-sky" onclick="" >CHECK 
+				</div>
+			</div>
+		   <div class="form-group">
+		       <input class="form-control" placeholder="PASSWORD를 입력해 주세요." name="password" type="password" value="" required="">
+		   </div>
+		   <div class="form-group">
+		       <input class="form-control" placeholder="PASSWORD를 재확인 입력해 주세요." name="password2" type="password" value="" required="">
+		   </div>
+		   <div class="form-group">
+		       <input class="form-control" id="onlyHangul" placeholder="이름을 입력해 주세요." name="user_name" type="text" autofocus="" required="">
+		   </div>
+		   <div class="form-group">
+		       <input class="form-control" id="onlyHangul" placeholder="생년월일을 입력해주세요. (YYYYMMDD)" name="user_birth" type="text" autofocus="" required="">
+		   </div>
+		   <div class="form-group">
+		       <input class="form-control" placeholder="전공" name="major" type="text" value="" required="">
+		   </div>
+			<div class="input-group">
+				<input class="form-control" placeholder="블록체인 PASSWORD를 입력해 주세요." id="blockchainpwd" name="blockchainpwd" type="password" value="" required="">
+				<div class="input-group-append">
+					<button class="btn btn-lg btn-min95 btn-lg-min185 btn-sky" onclick="etherjoin()" > 계정생성
+				</div>
+			</div>
+			<div class="form-group">
+			    <input class="form-control" placeholder="PASSWORD 입력 후 계정생성을 누르시면 블록체인 ID가 자동 생성됩니다." id="blockchainid" name="blockchainid" readonly type="text" value="" required="" >
+			</div>
+			<!-- <div class="form-group">
+			    <input class="form-control" id="onlyNumber" placeholder="핸드폰 번호" name="user_phone" type="text" value="" required="">
+			</div>
+			<div class="form-group">
+			    <select name="user_sex" class="form-control" >
+			        <option value="M" selected="selected">M</option> 
+			        <option value="F">F</option> 
+			    </select>
+			</div> -->
+			<!-- <div class="form-group">
+			    <input type="date" name="user_birth" class="form-control">
+			</div>
+			<div class="form-group">
+			    <input class="form-control" placeholder="E-Mail" name="user_email" type="email" autofocus="" required="">
+			</div>
+			<div class="form-group">
+			    <input class="form-control" placeholder="주소" name="user_addr" type="text" readonly value="" required="">
+			</div>
+			<div class="form-group">
+			    <input class="form-control" placeholder="상세주소" name="user_addr2" type="text" value="" required="">
+			</div>
+			<div class="form-group">
+			    <input class="form-control" id="onlyNumber" placeholder="우편번호" name="user_post" type="text" value="" required="">
+			    <span style="margin-top:10px" class="btn btn-primary" onclick="setDaumPostcode()">우편번호 찾기</span>
+			</div> -->
+		   
+			<div class="btn-wrap">
+			<!-- <input type="button" class="btn btn-lg btn-success btn-block" onclick="etherjoin()" value="블록체인 계정생성"> -->
+			       <input type="submit" class="btn btn-lg btn-success btn-block" value="가입하기">
+			</div>
+		</fieldset>
+	</form>
 </div>
+
 
 <!-- iamport daum address api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -346,4 +338,4 @@ function etherjoin(){
     }
 </script>
 
-<% include ../footer.ejs %>
+<% include ../member-footer.ejs %>

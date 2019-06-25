@@ -1,0 +1,39 @@
+/* app-form */
+.app-form-box{
+	padding:40px;
+}
+.app-form-header {
+    padding: 15px 0 40px;
+}
+.app-form-footer{
+	padding:45px 0 50px;
+}
+.app-form-txt{
+	font-size: 22px;
+}
+.app-form-txt2{
+    font-size: 20px;
+}
+.app-form-box .btn-wrap{
+	width:435px;
+	margin:auto;
+}
+.app-form-box .btn-wrap .btn,
+.app-form-box .btn-wrap .button {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.app-form-sign-wrap {
+    margin: 60px 0 10px;
+}
+
+/* popup-box */
+.popup-box-header{
+	padding: 25px 20px;
+}
+.popup-box-body{
+	padding:40px;
+}
+.popup-box .btn-wrap{
+	margin-top:40px;
+}

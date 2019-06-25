@@ -6,7 +6,7 @@
 		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 	}
 </script>
-<body>
+<body class="page-member">
 <div id="wrap">
 	<!-- S: Header -->
 	<header id="header">
@@ -35,7 +35,7 @@
 						</li>
 						<li>
 							<a href="/accounts/acceptList">
-							<i class="icon icon-view"></i>승인내역</a>
+							<i class="icon icon-view"></i>승인내역 조회</a>
 						</li>
 						<li class="gnb-wallet">
 							<a style="cursor: pointer" onclick="window.open('/accounts/wallet','팝업창', 'height=680, width=500; return false;')">
@@ -65,11 +65,3 @@
 	<!-- S: Container -->
 	<div id="container">
 		<div class="container">
-			<div class="breadcrumb">
-				<ul>
-					<li><span>HOME</span></li>
-					<li><span>승인내역</span></li>
-				</ul>
-			</div>
-			<h3 class="title">승인내역</h3>
-			<div id="content">

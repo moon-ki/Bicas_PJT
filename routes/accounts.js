@@ -59,12 +59,12 @@ passport.use(new LocalStrategy({
         UserModel.findOne(
             {
                 user_id : user_id,
-                password : passwordHash(password)
+                password : password
             }, function(err, user){
                 
                 UserModel.findOne({
                     user_id : user_id,
-                    password : passwordHash(password)
+                    password : password
                 }, function(err, user){
                     
                     if(!user){
@@ -176,7 +176,7 @@ router.post('/myinfo', loginRequired, function(req, res){
         var _id = req.user._id;
         var user_id = req.body.user_id;
         // 비밀번호는 패스워드해쉬 라이브러리 js 파일로 암호화시킨다.
-        var password = passwordHash(req.body.password);
+        var password = req.body.password;
         var major = req.body.major;
         var blockchainid = req.body.blockchainid;
         var blockchainpwd = passwordHash(req.body.blockchainpwd);

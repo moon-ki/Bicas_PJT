@@ -242,6 +242,26 @@ router.get('/products/productslist', paginate.middleware(100, 50), async (req,re
         });
 });
 
+// 접수목록 페이지
+router.get('/acceptList/:formatFilter/:userName', paginate.middleware(10, 50), async (req,res) => {
+    console.log(req.params.formatFilter+','+req.params.userName);
+    // const [ results, itemCount ] = await Promise.all([
+    //     // sort : minus 하면 내림차순(날짜명)이다.
+    //     RequestDetailModel.find({"fee_yn" : 'Y'}).sort('-seq').limit(req.query.limit).skip(req.skip).exec(),
+    //     RequestDetailModel.count({"fee_yn" : 'Y'})
+    // ]);
+
+    // const pageCount = Math.ceil(itemCount / req.query.limit);
+    // const pages = paginate.getArrayPages(req)( 4 , pageCount, req.query.page);
+
+    // res.render('admin/adminproductslist', 
+    //     { 
+    //         requestdetail : results , 
+    //         pages: pages,
+    //         pageCount : pageCount,
+    //         user: req.user
+    //     });
+});
 
 // 증명서 출력
 router.get('/cetificate/:seq', async (req,res)=>{

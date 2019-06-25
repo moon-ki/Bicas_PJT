@@ -98,20 +98,23 @@
     }
 
     //신청 버튼 onclick 이벤트
-    function ontx(){
-        var answer = confirm('신청서를 제출하겠습니까?');
-        if(answer){
-            //1. authXML엔진을 통해 xml파일생성 및 IPFS 업로드
-            var filename = getFileName();
-            createXML(0,filename,'user');
-            // alert(ipfs_hash);
-            // saveSysLog(ipfs_hash);
-            setTimeout(function(){
+    function ontx(goOrStop){
+        if(goOrStop=='cancel'){
+            if(confirm('취소하겠습니까?')){
+                self.close();
+            }
+        }else{
+            if(confirm('신청서를 제출하겠습니까?')){
+                //1. authXML엔진을 통해 xml파일생성 및 IPFS 업로드
+                var filename = getFileName();
+                createXML(0,filename,'user');
+                // alert(ipfs_hash);
+                // saveSysLog(ipfs_hash);
                 alert('신청을 완료했습니다.');
                 self.close();
                 parent.opener.location.href='/accounts/acceptList';
                 // location.href='/accounts/acceptList';
-            },3000);
+            }
         }
     }
 
@@ -145,7 +148,6 @@
                                 alert('정상적으로 수수료를 납부하였습니다.');
                                 location.href='/accounts/acceptList';
 
-
                             }else{
                                 alert('이더가 충분하지 않습니다.');
                             }
@@ -156,6 +158,7 @@
             }
         });
     }
+
 
     function getFileName(){
         var curlDate = new Date();

@@ -7,4 +7,8 @@ $(function(){
 		$('.gnb').hide();
 	});
 	
+	$('.gnb-close').on('each', function(){
+		$('.breadcrumb ul li').index();
+	});
+	
 });
