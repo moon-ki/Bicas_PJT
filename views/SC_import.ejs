@@ -159,6 +159,11 @@
         });
     }
 
+    function cancelFunc(){
+        if(confirm('작성을 취소하겠습니까?')){
+            location.href='/';
+        }
+    }
 
     function getFileName(){
         var curlDate = new Date();

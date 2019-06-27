@@ -1,49 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Admin - 3K대학교 Administrator</title>
+<% include ../admin-app-header.ejs %>
+<body class="page-member">
+	<div id="wrap">
+		<!-- S: Container -->
+		<div id="container">
+			<div class="container">
+				<div id="content">
+				
+				<div class="admin-member">
+					<div class="page-logo"><span class="sr-only">3K 대학교 블록체인 기반의 인터넷증명발급센터</span></div>
+					<h4 class="tit-line"><span>ADMIN - LOGIN</span></h4>
+					
+						<form role="form" action="" id="login_form" method="post">
+							<div class="form-group">
+				                 <input class="form-control" id="exampleInputEmail1" name="user_id" type="text" aria-describedby="emailHelp" placeholder="IDENTITY">
+							</div>
+							 <div class="form-group">
+				                 <input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="PASSWORD
+				                 ">
+							</div>
+							<input type="submit" class="btn btn-lg btn-success btn-block" value="LOGIN">
+						</form>
+					<p class="login-txt">Register an Account</p>
+				</div>
   
-  <link href="../../public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="../../public/css/sb-admin.min.css" rel="stylesheet"/>
-  <link href="../../public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
-  
-</head>
-
-<body class="bg-dark">
-  <div class="container">
-    <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Login</div>
-      <div class="card-body">
-        <form role="form" action="" id="login_form" method="post">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Identity</label>
-            <input class="form-control" id="exampleInputEmail1" name="user_id" type="text" aria-describedby="emailHelp" placeholder="아이디">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" id="exampleInputPassword1" name="password" type="password" placeholder="패스워드">
-          </div>
-          <input type="submit" class="btn btn-lg btn-success btn-block" value="로그인">
-        </form>
-        <div class="text-center">
-          <a class="d-block small mt-3" href="register.html">Register an Account</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script src="../../public/vendor/jquery/jquery.min.js"></script>
-  <script src="../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../../public/vendor/jquery-easing/jquery.easing.min.js"></script>
-  
-</body>
-
-
-
-</html>
+<% include ../admin-footer.ejs %>

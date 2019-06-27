@@ -106,43 +106,43 @@ cursor: pointer;
 		<form class="myForm" method="get" enctype="application/x-www-form-urlencoded" action="/html/codes/html_form_handler.cfm">
 			<div class="form-group">
 				<label>transactionHash</label>
-				<input type="text" name="transactionHash"  value="<%=txInfo.hash%>" readonly>
+				<input class="form-control" type="text" name="transactionHash"  value="<%=txInfo.hash%>" readonly>
 			</div>
 			<div class="form-group">
 				<label>blockNumber</label>
-				<input type="text" name="blockNumber" value="<%=txInfo.blockNumber%>" readonly>
+				<input class="form-control" type="text" name="blockNumber" value="<%=txInfo.blockNumber%>" readonly>
 			</div>
 			<div class="form-group">
 				<label>blockHash</label>
-				<input type="text" name="blockHash" value="<%=txInfo.blockHash%>" readonly>
+				<input class="form-control" type="text" name="blockHash" value="<%=txInfo.blockHash%>" readonly>
 			</div>
 			<div class="form-group">
 				<label>from</label>
-				<input type="text" name="from" value="<%=txInfo.from%>" readonly>
+				<input class="form-control" type="text" name="from" value="<%=txInfo.from%>" readonly>
 			</div>
 			<div class="form-group">
 				<label>to</label>
-				<input type="text" name="to" value="<%=txInfo.to%>" readonly>
+				<input class="form-control" type="text" name="to" value="<%=txInfo.to%>" readonly>
 			</div>
 			<div class="form-group">
 				<label>nonce</label>
-				<input type="text" name="nonce" value="<%=txInfo.nonce%>" readonly>
+				<input class="form-control" type="text" name="nonce" value="<%=txInfo.nonce%>" readonly>
 			</div>
 			<div class="form-group">
 				<label>value</label>
-				<input type="text" name="value" value="<%=txInfo.value%>" readonly>
+				<input class="form-control" type="text" name="value" value="<%=txInfo.value%>" readonly>
 			</div>
 			<div class="form-group">
 				<label>gas</label>
-				<input type="text" name="gas" value="<%=txInfo.gas%>" readonly>
+				<input class="form-control" type="text" name="gas" value="<%=txInfo.gas%>" readonly>
 				
 			</div>
 			<div class="form-group">
 				<label>gasPrice</label>
-				<input type="text" name="gasPrice" value="<%=txInfo.gasPrice%>" readonly>
+				<input class="form-control" type="text" name="gasPrice" value="<%=txInfo.gasPrice%>" readonly>
 			</div>
 			<div class="btn-wrap">
-				<button class="btn btn-md btn-blue" onclick="javascript:self.close();">확인</button>
+				<button class="btn btn-md btn-min230 btn-blue" onclick="javascript:self.close();">확인</button>
 			</div>
 		</form>
 	</div>

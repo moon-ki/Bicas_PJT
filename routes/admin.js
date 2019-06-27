@@ -223,7 +223,7 @@ router.post('/products/productsregist', loginRequired, upload.single('thumbnail'
 });
 
 // 접수목록 페이지
-router.get('/products/productslist', paginate.middleware(100, 50), async (req,res) => {
+router.get('/products/productslist', paginate.middleware(10, 50), async (req,res) => {
     const [ results, itemCount ] = await Promise.all([
         // sort : minus 하면 내림차순(날짜명)이다.
         RequestDetailModel.find({"fee_yn" : 'Y'}).sort('-seq').limit(req.query.limit).skip(req.skip).exec(),
@@ -596,14 +596,23 @@ router.post('/createContract/:from/:seq', async (req,res) =>{
 });
 
 // GET 어드민 홈 전체 학생목록 불러오기 
-router.get('/adminstudentlist', function(req, res){
+router.get('/adminstudentlist', paginate.middleware(5, 10), async (req,res) =>{
     
-    UserModel.find( function(err, stuList){ //첫번째 인자는 err, 두번째는 받을 변수명
-    
-        res.render( 'admin/adminstudentlist' ,   
-            { stulist : stuList }
-        );
-    });
+    const [ results, itemCount ] = await Promise.all([
+        // sort : minus 하면 내림차순(날짜명)이다.
+        UserModel.find().sort('-seq').limit(req.query.limit).skip(req.skip).exec(),
+        UserModel.count()
+    ]);
+
+    const pageCount = Math.ceil(itemCount / req.query.limit);
+    const pages = paginate.getArrayPages(req)( 4 , pageCount, req.query.page);
+    console.log(pageCount, pages);
+    res.render('admin/adminstudentlist', 
+        { 
+            stulist : results , 
+            pages: pages,
+            pageCount : pageCount
+        });
 });
    
 

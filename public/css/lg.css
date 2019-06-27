@@ -4,8 +4,9 @@
 	height: 88px;
 	background-color: #fff;
 	border-top: 2px solid #01203f;
-	margin-bottom: 0;
-	overflow: hidden;
+	overflow: hidden;	
+	border-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 #header:after{
 	content: '';
@@ -19,10 +20,6 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-image: url(/images/layout/header-bg.png);
-}
-#header {
-	border-bottom: 0 !important;
-    margin-bottom: 0 !important;
 }
 .menu-btn {
 	display: none;
@@ -46,6 +43,8 @@ body.page-main .logo a {
 	background-image: url("/images/layout/logo-lg.png.png");
 }
 }
+
+/* gnb */
 .gnb {
 	display: inline-block !important;
 	background-color: #ecf0f3;
@@ -245,7 +244,7 @@ body.page-main .logo a {
 .btn-md{
 	font-size:16px;
 	min-height:52px;
-	padding: 8px 15px;
+	padding: 14px 15px;
 }
 .btn-lg{
 	font-size:20px;

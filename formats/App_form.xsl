@@ -108,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-		<p class="app-form-txt2">3K BICAS 대학교 교무처 귀중</p>
+		<p class="app-form-txt2">3K 대학교 교무처 귀중</p>
 	</div>
 </form>
 

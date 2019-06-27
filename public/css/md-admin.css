@@ -1,11 +1,84 @@
+.search-con{
+	width:auto;
+}
+.search-con .custom-select {
+    width: 170px;
+	margin-bottom:0px;
+}
+.search-text {
+    width: 335px;
+}
+.btn-search{
+    height: 52px;
+}
+.search-text:before{
+    width: 1px;
+    height: 40px;
+    margin-top: -24px;
+}
+
+/* table */
+.table-style3 tr th,
+.table-style3 tr td,
+.table-style3-2 tr th,
+.table-style3-2 tr td{
+	font-size:16px;
+	height: 59px;
+}
+.table-style3 tr th,
+.table-style3 tr td{
+	padding:17px 15px;
+}
+
+.table-style3-2 tr th,
+.table-style3-2 tr td{
+	padding:17px 10px;
+}
+
+.table-style4 tr th,
+.table-style4 tr td{
+	font-size:16px;
+	padding:20px 10px;
+}
+
+.table-responsive .row >div:first-child{
+	padding-right:5px;
+}
+.table-responsive .row >div:nth-child(2){
+	padding-left:5px;
+}
+
+
+/* title */
+.tit-line{
+    font-size: 15px;
+	margin: 15px 0;
+}
+.tit-line span{
+    padding: 3px 15px;
+}
+
+.title{
+	font-size: 22px;
+    margin-bottom: 30px;
+}
+
+/* modal */
+.modal-content{
+	padding: 20px;
+}
+.modal-header{
+	padding: 0 10px 15px;
+}
+
 /* app-form */
 .app-form-box{
 	padding:40px;
 }
-.app-form-header {
+.app-form-box-header {
     padding: 15px 0 40px;
 }
-.app-form-footer{
+.app-form-box-footer{
 	padding:45px 0 50px;
 }
 .app-form-txt{
@@ -36,4 +109,28 @@
 }
 .popup-box .btn-wrap{
 	margin-top:40px;
+}
+
+/* certificate-box */
+.certificate-box-container {
+    margin-bottom: 10px;
+    padding: 0 70px;
+    border: 1px solid #7f7f7f;
+}
+.certificate-box-header {
+	font-size:30px;
+    margin: 55px 0;
+}
+.certificate-box-footer {
+    padding: 55px 0;
+}
+.certificate-txt,
+.certificate-date{	
+	font-size: 18px;
+}
+.certificate-date input {
+    width: 120px;
+}
+.certificate-box .btn-wrap{
+	margin-top:35px;
 }

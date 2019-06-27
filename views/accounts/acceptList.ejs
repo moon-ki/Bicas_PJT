@@ -1,5 +1,13 @@
 <% include ../header.ejs %>
 
+<div class="breadcrumb">
+	<ul>
+		<li><span>HOME</span></li>
+		<li><span>승인내역</span></li>
+	</ul>
+</div>
+<h3 class="title">승인내역</h3>
+
 <div class="table-responsive">
 	<table class="table-style" id="dataTable" width="100%" cellspacing="0">
 		<thead>
@@ -67,20 +75,26 @@
 				<td>
 					<input class="btn btn-sm btn-border btn-sky" type="button" value="납부" onclick="sendFee(<%=requestdetail.seq%>)" />
 				</td>
-				<%}else {%>
-				<td>완료</td>
-				<%}%> <% if (requestdetail.certi_yn=='N' && requestdetail.reject_yn=='N'&& requestdetail.fee_yn=='Y'){ %>
-				<td>승인중</td>
+				<%}else if(requestdetail.fee_yn=='Y'&& requestdetail.accept_yn=='N'&& requestdetail.certi_yn=='N' && requestdetail.reject_yn=='N'){%>
+					<td>승인중</td>
+				<%}else if(requestdetail.fee_yn=='Y'&& requestdetail.accept_yn=='Y'&& requestdetail.certi_yn=='N'){%>
+					<td>발급중</td>
+				<%}else if(requestdetail.reject_yn=='Y'){%>
+					<td>반려</td>>
+				<%}else{%>
+					<td>완료</td>	
+				<%}%>
+				<!-- 증명서 시작 -->
+				<% if (requestdetail.certi_yn=='N' && requestdetail.reject_yn=='N'&& requestdetail.fee_yn=='Y'){ %>
+				<td></td>
 				<%}else if(requestdetail.certi_yn=='Y'){%>
 				<td>
 					<!-- <a href="/accounts/transaction.id %>"> -->
 					<a class="btn btn-link-arrow" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.certi_ipfs%>','팝업창', 'height=700, width=500; return false;')">보기</a>
 
 				</td>
-				<%}else if(requestdetail.fee_yn=='Y' && requestdetail.reject_yn=='Y'){%>
-				<td>반려</td>
 				<%}else{%>
-				<td></td>
+					<td></td>
 				<%}%>
 
 			</tr>

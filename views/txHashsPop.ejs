@@ -85,7 +85,7 @@
 					<%}%>
 				</tr>
 				<tr>
-					<td>증명서승인 트랜젝션</td>
+					<td>증명서발급 트랜젝션</td>
 					<td><a href='http://220.76.95.91:3000/accounts/getTransaction/<%=txHashs.certi_tx%>' onclick="window.open(this.href, '_blank', 'width=530,height=915'); return false"><%=txHashs.certi_tx%></a></td>
 					<% if (txHashs.certi_yn=='Y'){ %>
 					<td><a class="btn btn-link-arrow" href='https://ropsten.etherscan.io/tx/<%=txHashs.certi_tx%>' onclick="window.open(this.href, '_blank', 'width=450,height=600'); return false">조회</a></td>

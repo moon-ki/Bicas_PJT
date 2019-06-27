@@ -419,6 +419,8 @@ body.page-main .menu-btn{
 /* btn */
 .btn-wrap{
 	margin-top:15px;
+	text-align:center;
+	overflow: hidden;
 }
 .btn-wrap .btn,
 .btn-wrap .button{
@@ -486,8 +488,13 @@ body.page-main .menu-btn{
 .btn-min95{
 	min-width:95px;
 }
+.btn-min230{
+	min-width:230px;
+}
+
 .btn-success,
 .btn-blue{
+	color:#fff;
 	background-color: #0b4e92;
     background-image: -webkit-linear-gradient(left, #0b4e92 0%, #1260af 100%);
     background-image: -moz-linear-gradient(left, #0b4e92 0%, #1260af 100%);
@@ -591,6 +598,96 @@ body.page-main .menu-btn{
 	background-size:3px 4px;
 	background-image:url("/images/common/btn-link-arrow@x2.png") !important;
 }
+}
+
+div.button{
+	height:auto;
+}
+.button-blue .button {
+	position: relative;
+	background-image: none;
+}
+.button-blue .button:hover span {
+	background-color: #084077;
+}
+.button-blue .button span {
+	margin: 0;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 16px;
+	letter-spacing: -0.5px;
+	height: 52px;
+	padding: 18px 15px;
+	color: #fff  !important;
+	background-image: none;
+	background-color: #0b4e92;
+	background-image: -webkit-linear-gradient(left, #0b4e92 0%, #1260af 100%);
+	background-image: -moz-linear-gradient(left, #0b4e92 0%, #1260af 100%);
+	background-image: -ms-linear-gradient(left, #0b4e92 0%, #1260af 100%);
+	background-image: -o-linear-gradient(left, #0b4e92 0%, #1260af 100%);
+	backgground-image: linear-gradient(left, #0b4e92 0%, #1260af 100%);
+}
+.button-blue .button input {
+	opacity: 0;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+.button-gray .button {
+	position: relative;
+	background-image: none;
+}
+.button-gray .button span{
+	margin: 0;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	font-size: 16px;
+	letter-spacing: -0.5px;
+	height: 52px;
+	padding: 18px 15px;
+	color: #fff  !important;
+	background-image: none;
+	background-color: #b5b5b5;
+}
+.button-gray .button:hover span{
+	margin: 0;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 16px;
+	letter-spacing: -0.5px;
+	height: 52px;
+	padding: 18px 15px;
+	color: #fff  !important;
+	background-color: #a1a1a1;
+	border-color: transparent;
+}
+.button-gray .button input {
+	opacity: 0;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
 }
 
 /* main */
@@ -1056,14 +1153,14 @@ table a{
 .app-form-box{
 	padding:20px;
 }
-.app-form-header{
+.app-form-box-header{
 	font-size: 22px;
     font-weight: 900;
     color: #083c71;
     text-align: center;
     padding: 10px 0 20px;
 }
-.app-form-header input{
+.app-form-box-header input{
 	display: inline;
     width: auto;
     border: 0;
@@ -1074,7 +1171,7 @@ table a{
 	text-align: right;
     color: #083c71;
 }
-.app-form-footer{
+.app-form-box-footer{
 	padding:20px 0 30px;
 }
 .app-form-box .form-control{
@@ -1137,9 +1234,6 @@ table a{
     background-image: none;
 	
 }
-.app-form-box .button:hover span{
-	background-color: #084077;
-}
 .app-form-box .button span{
 	margin: 0;
     display: inline-block;
@@ -1152,7 +1246,7 @@ table a{
 	letter-spacing:-0.5px;
     height: 52px;
     padding: 18px 15px;
-	color:#fff;
+	color:#fff !important;
     background-image: none;
 	background-color: #0b4e92;
     background-image: -webkit-linear-gradient(left, #0b4e92 0%, #1260af 100%);
@@ -1160,6 +1254,10 @@ table a{
     background-image: -ms-linear-gradient(left, #0b4e92 0%, #1260af 100%);
     background-image: -o-linear-gradient(left, #0b4e92 0%, #1260af 100%);
     backgground-image: linear-gradient(left, #0b4e92 0%, #1260af 100%);
+}
+.app-form-box .button:hover span{
+	color:#fff;
+	background-color: #084077;
 }
 .app-form-box .button input{
 	opacity: 0;
@@ -1171,6 +1269,16 @@ table a{
     top: 0;
     left: 0;
 	cursor:pointer;
+}
+.app-form-box .btn-gray .button span{
+	color:#fff !important;
+	background-image: none;
+	background-color: #b5b5b5;
+}
+.app-form-box .btn-gray .button:hover span{
+	color: #fff;
+	background-color: #a1a1a1;
+	border-color: transparent;
 }
 .app-form-sign-wrap{
     text-align: right;
