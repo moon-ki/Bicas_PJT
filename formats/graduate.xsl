@@ -13,11 +13,18 @@
 	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/soaxml_webformReset.css" rel="stylesheet"  media="screen"/>
 	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/uniform.default.css" rel="stylesheet" media="screen" />
 	<link type="text/css" href="http://www.uccxml.com/xdrp/baseXML/lib/css/jquery-ui.1.10.3.smoothness.css" rel="stylesheet" media="screen" />
-	<style></style>
-<style>
-.texts { background-color: rgba( 255, 255, 255, 0.5 ); }
-.inputs { font-size: 10pt }
-</style>
+	
+	<link type="text/css" href="http://220.76.95.91:3000/public/vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+	<link type="text/css" href="http://220.76.95.91:3000/public/css/sm-admin.css" rel="stylesheet"/>
+	<link type="text/css" href="http://220.76.95.91:3000/public/css/md-admin.css" rel="stylesheet" media="screen and (min-width: 768px)" />
+	<link type="text/css" href="http://220.76.95.91:3000/public/css/lg-admin.css" rel="stylesheet" media="screen and (min-width: 1240px)" />
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&amp;display=swap&amp;subset=korean" rel="stylesheet" />
+
+	<style type="text/css">
+	body {
+		font-family: 'Noto Sans KR', "Nanum Gothic", NanumGothic, 나눔고딕, "Malgun Gothic", MalgunGothic, 맑은고딕, Arial, sans-serif
+	}
+	</style>
 
 	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxControl.js"></script>
 	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxCommon.js"></script>
@@ -41,367 +48,57 @@
 	</script>
 	<script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxFormForMongo.js"></script>
 </head>
-<body onLoad='javascript:basexml_checktype( );'>
+<body onLoad='javascript:basexml_checktype( );' class="certificate-body">
+
 <form name="graduate">
-<P>
-<TABLE id="1" style="WIDTH: 98%" borderColor="#000000" cellSpacing="0" cellPadding="5" align="center" border="2">
-<COLGROUP>
-<COL width="700">
-</COL>
-</COLGROUP>
-<TBODY id="1">
-<TR>
-<TD>
-<P>
-<TABLE style="WIDTH: 100%" borderColor="#e0e0e0" cellSpacing="0" cellPadding="3" align="center" border="1">
-<COLGROUP>
-<COL>
-</COL>
-</COLGROUP>
-<TBODY>
-<TR>
-<TD style="BACKGROUND-IMAGE: url(http://www.uccxml.com/SOAXML/XCMS/sys/client/kr/usr/kura71/uploads/images/Image/Ethereumlogo.png); BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center center" bgColor="#ffffff">
-<P>
-<TABLE id="20190531_192027" class="texts" style="WIDTH: 100%" borderColor="#000000" cellSpacing="0" cellPadding="3" align="center" border="0">
-<COLGROUP>
-<COL width="7%">
-</COL>
-<COL width="43%">
-</COL>
-<COL width="43%">
-</COL>
-<COL width="7%">
-</COL>
-</COLGROUP>
-<TBODY>
-<TR style="HEIGHT: 25px">
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR>
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD colSpan="2">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">졸&#160; 업&#160; 증 &#160;명 &#160;서
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 35px">
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR>
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD colSpan="2">
-<SPAN style="FONT-SIZE: 10pt">
-<STRONG>성명 :
-<xsl:value-of select="root/contents/name"/>
-</STRONG>
-</SPAN>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 4px">
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD colSpan="2">
-<P>
-<SPAN style="FONT-SIZE: 10pt">
-<STRONG>주민등록번호 :
-<xsl:value-of select="root/contents/registration_num"/>
-</STRONG>
-</SPAN>
-</P>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 4px">
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD colSpan="2">
-<SPAN style="FONT-SIZE: 10pt">
-<STRONG>학과/전공 :
-<xsl:value-of select="root/contents/department_major"/>
-</STRONG>
-</SPAN>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-<P>&#160;
-</P>
-</TD>
-<TD colSpan="2">
-<SPAN style="FONT-SIZE: 10pt">
-<STRONG>학위 :
-<xsl:value-of select="root/contents/degree"/>
-</STRONG>
-</SPAN>
-</TD>
-<TD>
-<P>&#160;
-</P>
-</TD>
-</TR>
-<TR style="HEIGHT: 4px">
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-</TD>
-<TD colSpan="2">
-<SPAN style="FONT-SIZE: 10pt">
-<STRONG>졸업일자 :&#160;
-<xsl:value-of select="root/contents/graduation_date"/>
-</STRONG>
-</SPAN>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR style="HEIGHT: 4px">
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-</TD>
-<TD colSpan="2">
-<SPAN style="FONT-SIZE: 10pt">
-<STRONG>학위등록번호 :&#160;
-<xsl:value-of select="root/contents/degree_num"/>
-</STRONG>
-</SPAN>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR style="HEIGHT: 30px">
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-</TD>
-<TD colSpan="2">
-<P align="center">
-<SPAN style="FONT-SIZE: 10pt">위의 사실을 증명 합니다.
-</SPAN>
-</P>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR style="HEIGHT: 10px">
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-</TD>
-<TD colSpan="2">
-<P align="center">
-<xsl:value-of select="root/contents/date"/>
-</P>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR style="HEIGHT: 15px">
-<TD>
-</TD>
-<TD colSpan="2">
-<P align="center">&#160;
-</P>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-</TD>
-<TD>
-<P>&#160;
-</P>
-<P>&#160;
-</P>
-<P>&#160;
-</P>
-<P>&#160;
-</P>
-<P>&#160;
-</P>
-<P>&#160;
-</P>
-<P>&#160;
-</P>
-</TD>
-<TD>
-<P align="center">&#160;
-</P>
-<TABLE style="HEIGHT: 85px; WIDTH: 100px" borderColor="#000000" cellSpacing="0" cellPadding="1" align="center" border="0">
-<COLGROUP>
-<COL>
-</COL>
-</COLGROUP>
-<TBODY>
-<TR>
-<TD>
-<P align="center">
-<IMG src="http://www.uccxml.com/SOAXML/XCMS/sys/client/kr/usr/kura71/uploads/images/Image/dojang_signature.jpg" width="95" height="80"/>
-</P>
-</TD>
-</TR>
-</TBODY>
-</TABLE>&#160;
-</TD>
-<TD>
-</TD>
-</TR>
-<TR>
-<TD>
-</TD>
-<TD colSpan="2">
-<P align="center">
-<STRONG>
-<SPAN style="FONT-SIZE: 16pt">3K 대학교 총장
-</SPAN>
-</STRONG>
-</P>
-</TD>
-<TD>
-</TD>
-</TR>
-<TR style="HEIGHT: 25px">
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-<TD>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
-</TD>
-</TR>
-</TBODY>
-</TABLE>
-</P>
+	<div class="certificate-box" id="1">
+		<div class="certificate-box-container">			
+			<div id="20190531_192027">
+				<div class="certificate-box-header">
+					졸&#160; 업&#160; 증 &#160;명 &#160;서
+				</div>
+				<div class="certificate-box-body">
+					<div class="table-responsive">
+						<table class="table-style3">
+							<tr>
+								<th>성명</th>
+								<td><xsl:value-of select="root/contents/name"/></td>
+							</tr>
+							<tr>
+								<th>생년월일</th>
+								<td><xsl:value-of select="root/contents/registration_num"/></td>
+							</tr>
+							<tr>
+								<th>학과/전공</th>
+								<td><xsl:value-of select="root/contents/department_major"/></td>
+							</tr>
+							<tr>
+								<th>학위</th>
+								<td><xsl:value-of select="root/contents/degree"/></td>
+							</tr>
+							<tr>
+								<th>졸업일자</th>
+								<td><xsl:value-of select="root/contents/graduation_date"/></td>
+							</tr>
+							<tr>
+								<th>학위등록번호</th>
+								<td><xsl:value-of select="root/contents/degree_num"/></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="certificate-box-footer">
+					<p class="certificate-txt">위의 사실을 증명 합니다.</p>
+					<p class="certificate-date"><xsl:value-of select="root/contents/date"/></p>
+					<div class="certificate-sign">
+						<strong>3K 대학교 총장</strong>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
+
 <script language="JavaScript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxXsl.js"></script>
 
 </body>

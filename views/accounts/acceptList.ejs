@@ -14,11 +14,11 @@
 			<tr align="center">
 				<th width="2%" class="d-none d-lg-th">번호</th>
 				<th width="8%">구분</th>
-				<th width="10%">접수 트랜젝션</th>
+				<th width="10%">블록체인 처리</th>
 				<!-- <th width="10%">승인 트랜젝션</th> -->
 				<th width="8%">신청시간</th>
 				<th width="8%">승인시간</th>
-				<th width="5%">신청</th>
+				<th width="5%">상태</th>
 				<th width="6%">증명서</th>
 				<!-- <th width="5%">view</th> -->
 				<!-- <th width="1%">GasPrice</th> -->
@@ -29,7 +29,7 @@
                     <th>번호</th>
                     <th>증명서</th>
                     <th>접수</th>
-                    <th>승인</th>
+                    <th>승인</th> 
                     <th>시간</th>
                     <th>신청</th>
                     <th>view</th>
@@ -46,7 +46,7 @@
 				</td>
 				<td>
 					<!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
-					<a onclick="window.open('txHashPop/<%=requestdetail.seq%>','_blank', 'height=490, width=1000; return false;')">트렌젝션처리 보기</a>
+					<a onclick="window.open('txHashPop/<%=requestdetail.seq%>','_blank', 'height=430, width=1000; return false;')">트렌젝션처리 보기</a>
 				</td>
 				<!-- <td> -->
 				<!-- <a href='http://ropsten.etherscan.io/tx/<%=requestdetail.fee_tx%>'><%= requestdetail.fee_tx %></a> -->
@@ -80,7 +80,7 @@
 				<%}else if(requestdetail.fee_yn=='Y'&& requestdetail.accept_yn=='Y'&& requestdetail.certi_yn=='N'){%>
 					<td>발급중</td>
 				<%}else if(requestdetail.reject_yn=='Y'){%>
-					<td>반려</td>>
+					<td>반려</td>
 				<%}else{%>
 					<td>완료</td>	
 				<%}%>
@@ -90,7 +90,7 @@
 				<%}else if(requestdetail.certi_yn=='Y'){%>
 				<td>
 					<!-- <a href="/accounts/transaction.id %>"> -->
-					<a class="btn btn-link-arrow" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.certi_ipfs%>','팝업창', 'height=700, width=500; return false;')">보기</a>
+					<a class="btn btn-link-arrow" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.certi_ipfs%>','팝업창', 'height=600, width=480; return false;')">보기</a>
 
 				</td>
 				<%}else{%>

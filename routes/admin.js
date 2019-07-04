@@ -223,7 +223,7 @@ router.post('/products/productsregist', loginRequired, upload.single('thumbnail'
 });
 
 // 접수목록 페이지
-router.get('/products/productslist', paginate.middleware(10, 50), async (req,res) => {
+router.get('/products/productslist', paginate.middleware(6, 50), async (req,res) => {
     const [ results, itemCount ] = await Promise.all([
         // sort : minus 하면 내림차순(날짜명)이다.
         RequestDetailModel.find({"fee_yn" : 'Y'}).sort('-seq').limit(req.query.limit).skip(req.skip).exec(),
@@ -376,7 +376,6 @@ router.post('/callAPI',  async (req,res)=> {
                                 {seq : req.body.seq},
                                 {   $set : {
                                         // accept_at : Date.now(),
-                                        certi_yn : 'Y',
                                         certi_ipfs:res[0].hash,
                                         certi_xml:xmlString
                                     }
@@ -411,10 +410,10 @@ router.post('/callAPI',  async (req,res)=> {
 
 });
 
-
+ 
 // 서식을 이더리움에 업로드!
 //1.신청서 업로드할 경우, App_form.xsl에서 호출
-//2.증명서 업로드할 경우, 
+//2.증명서 업로드할 경우, graduate or attend
 router.post('/createContract/:from/:seq', async (req,res) =>{
     // 0. web3 초기화
     console.log('createContract 시작!!!!');

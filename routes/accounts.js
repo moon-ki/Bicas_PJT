@@ -95,7 +95,7 @@ router.post('/join', function(req, res){
     var User = new UserModel({
         user_id : req.body.user_id,
         // 비밀번호는 패스워드해쉬 라이브러리 js 파일로 암호화시킨다.
-        password : passwordHash(req.body.password),
+        password : req.body.password,
         major : req.body.major,
         blockchainid : req.body.blockchainid,
         blockchainpwd : req.body.blockchainpwd,
@@ -302,6 +302,23 @@ router.post('/songguem', function(req, res){
         location.href="/accounts/songguem";</script>');
     });
 });
+
+//사용자 ID check 프로세스
+router.post('/checkUser', async (req,res) => {
+
+    await Promise.all([
+        UserModel.count({"user_id" : req.body.user_id},function(err, count){
+            if(count==0){
+                console.log('0000000000000000000');
+                res.send('<script>alert("사용가능한 ID입니다."); </script>');
+            }else{
+                console.log('1111111111111111111');
+                res.send('<script>alert("이미 존재하는 ID 입니다. 다시 입력해주세요.");</script>');
+            }
+        })
+    ]);
+});
+
 //get 내 승인조회 보기 페이지
 router.get('/studentlist', loginRequired, function(req, res){
 
@@ -523,48 +540,34 @@ router.post('/callAPI',  function (req,resp) {
                         },0);
                         // console.log('----------------------------------------err: '+err);
                         // console.log('----------------------------------------spot: '+spot);
-                        if(err==null && spot=='user'){
-                            // console.log('ipfsHash: '+res[0].hash);
-                            // console.log('--------------------------------------------저장로직 실행');
-                            
-                            var RequestDetail = await 
-                                new RequestDetailModel({
-                                    user_id : req.user.user_id,
-                                    name : req.user.user_name,
-                                    form_type : req.body.form_type,
-                                    form_name : req.body.form_name,
-                                    apply_ipfs : res[0].hash,
-                                    file_name : req.body.file_name,
-                                    apply_xml: xmlString
-                                    // spot:req.body.spot
-                                });
-                            await RequestDetail.save(
-                                function(err){
-                                    // resp.send('<script>alert("신청완료");\
-                                    // location.href="/admin/adminstudentslist";</script>');
-                                }
-                            );
 
-                            // await response.end('<script>alert("신청서 제출 완료");parent.opener.location.href="/accounts/acceptList";</script>');
-
-                        // }else if(spot=='admin'){
-                        //     //승인시간 업데이트
-                        //     await RequestDetailModel.update(
-                        //         {seq : req.body.seq},
-                        //         {   $set : {
-                        //                 accept_at : Date.now(),
-                        //                 // accept_yn : 'Y',
-                        //                 accept_ipfs:res[0].hash,
-                        //                 accept_xml:xmlString
-                        //             }
-                        //         }, function(err){
-                        //             if(err){
-                        //                 throw err;
-                        //             }
-                        //         }
-                        //     );
+                        if(typeof res =='undefined'||res==null||res==""){
+                            console.log("IPFS too many load files 에러 예외처리");
                         }else{
-                            console.error('IPFS '+err);
+                            if(err==null && spot=='user'){
+                                // console.log('ipfsHash: '+res[0].hash);
+                                // console.log('--------------------------------------------저장로직 실행');
+                                
+                                var RequestDetail = await 
+                                    new RequestDetailModel({
+                                        user_id : req.user.user_id,
+                                        name : req.user.user_name,
+                                        form_type : req.body.form_type,
+                                        form_name : req.body.form_name,
+                                        apply_ipfs : res[0].hash,
+                                        file_name : req.body.file_name,
+                                        apply_xml: xmlString
+                                        // spot:req.body.spot
+                                    });
+                                await RequestDetail.save(
+                                    function(err){
+                                        // resp.send('<script>alert("신청완료");\
+                                        // location.href="/admin/adminstudentslist";</script>');
+                                    }
+                                );
+                            }else{
+                                console.error('IPFS '+err);
+                            }
                         }
                         // res.send('<script>alert("내역저장 성공");\
                         // location.href="/accounts/songguem";</script>');

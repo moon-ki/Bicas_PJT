@@ -49,11 +49,11 @@
 				<!-- 구분 -->
 				<!-- IPFS -->
 				<% if (requestdetail.reject_yn=='N' && requestdetail.certi_yn=='N'){ %>
-					<td><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.apply_ipfs%>?seq=<%=requestdetail.seq%>','팝업창', 'height=700, width=500; return false;')"><%=requestdetail.form_name %> 신청서</a></td>
+					<td><a onclick="window.open('http://220.76.95.91:8080/ipfs/<%=requestdetail.apply_ipfs%>?seq=<%=requestdetail.seq%>','팝업창', 'height=750, width=500; return false;')"><%=requestdetail.form_name %>증명 신청서</a></td>
 				<%}else if(requestdetail.reject_yn=='Y'){%>
-					<td><a href="javascript:window.alert('반려된 신청서 입니다.');"><%=requestdetail.form_name %> 신청서</a></td>
+					<td><a href="javascript:window.alert('반려된 신청서 입니다.');"><%=requestdetail.form_name %>증명 신청서</a></td>
 				<%}else if(requestdetail.reject_yn=='N' && requestdetail.certi_yn=='Y'){%>
-					<td><a href="javascript:window.alert('이미 승인된 신청서 입니다.');"><%=requestdetail.form_name %> 신청서</a></td>
+					<td><a href="javascript:window.alert('이미 승인된 신청서 입니다.');"><%=requestdetail.form_name %>증명 신청서</a></td>
 				<%}%>
 				<!-- Test -->
 				<!-- <td><a onclick="window.open('http://220.76.95.91:3000/xmldata/<%=requestdetail.file_name%>?seq=<%=requestdetail.seq%>&fileName=<%=requestdetail.file_name%>','팝업창', 'height=600, width=500; return false;')"><%=requestdetail.form_name %></a></td> -->

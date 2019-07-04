@@ -74,7 +74,7 @@
 								<td><input readonly name=root/contents/name value="<%=user.user_name%>"></td>
 							</tr>
 							<tr>
-								<th>주민등록번호</th>
+								<th>생년월일</th>
 								<td><input readonly name=root/contents/registration_num value="<%=user.user_birth%>"></td>
 							</tr>
 							<tr>
@@ -91,7 +91,7 @@
 							</tr>
 							<tr>
 								<th>학위등록번호</th>
-								<td><input readonly name=root/contents/degree_num value="1882-1호"></td>
+								<td><input readonly name=root/contents/degree_num id="graduNum"></td>
 							</tr>
 						</table>
 					</div>
@@ -149,5 +149,13 @@
 		pad(date.getMonth()+1,2)+'-'+
 		pad(date.getDate(),2)
 	);
+	$('#graduNum').val(
+		date.getFullYear()+
+		pad(date.getMonth()+1,2)+
+		pad(date.getDate(),2)+'-'+
+		<%=txInfo.seq%>+'호'
+	);
+	
+
 </script>
 <% include ../SC_import.ejs %>

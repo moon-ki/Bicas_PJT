@@ -7,9 +7,9 @@
 	<form role="form" action="" id="join_form" method="post">
 		<fieldset>
 			<div class="input-group">
-				<input class="form-control" placeholder="학번" name="user_id" type="text" autofocus="" required="">
+				<input class="form-control" placeholder="학번" id="user_id" name="user_id" type="text" autofocus="" required="">
 				<div class="input-group-append">
-					<button class="btn btn-lg btn-min95 btn-lg-min185 btn-sky" onclick="" >CHECK 
+					<button class="btn btn-lg btn-min95 btn-lg-min185 btn-sky" onclick="javascript:userCheck();" >CHECK 
 				</div>
 			</div>
 		   <div class="form-group">
@@ -82,7 +82,6 @@ function etherjoin(){
     var blockchainpwd = $("#blockchainpwd").val();
     var $blockchainpwd = $('#join_form input[name=blockchainpwd]');
         if(!$blockchainpwd.val()){
-                        alert("블록체인 비밀번호를 입력해주세요.");
                         $blockchainpwd.focus();
                         return true;
         }
@@ -299,6 +298,15 @@ function etherjoin(){
 </script>
 <script type="text/javascript">
 // Daum Address API Function
+    function userCheck(){
+        
+        var userId = $('#user_id').val();
+        var client = new XMLHttpRequest();
+        client.open('POST','/accounts/checkUser/', true);
+        client.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        client.send('user_id='+userId);
+    }
+
     function setDaumPostcode() {
         new daum.Postcode({
             

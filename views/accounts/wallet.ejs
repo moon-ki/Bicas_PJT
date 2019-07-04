@@ -92,7 +92,7 @@ function comma(str) {
 					<input class="form-control" placeholder="블록체인 PASSWORD" id="blockchainpwd" name="blockchainpwd" readonly type="password" value="<%= user.blockchainpwd %>" required>
 					<div class="input-group-append">
 						<input type="button" class="btn btn-md btn-sky" onclick="login();" value="블록체인 계정인증"></input>
-						<h2 id="instructor"></h2>	
+						<h4 id="instructor"></h4>
 					</div>
 				</div>
 				<div class="form-group"> 
@@ -160,17 +160,20 @@ var url = "http://220.76.95.91:8485"; // 서버 URL
             // 로그인 성공
             if (data.error == null) {
                 console.log("login success!");
-                document.getElementById("instructor").innerHTML = "계정 인증성공";
+                // document.getElementById("instructor").innerHTML = "계정 인증성공";
+                alert("계정 인증성공");
             } else {
                 // 로그인 실패
                 console.log("login failure");
-                document.getElementById("instructor").innerHTML = "계정 인증실패";
+                alert("계정 인증실패");
+                // document.getElementById("instructor").innerHTML = "계정 인증실패";
             }
             init();
         }, function error(data) {
             // 로그인 실패
             console.log("data receive failure");
-            document.getElementById("instructor").innerHTML = "관리자에게 문의";
+            // document.getElementById("instructor").innerHTML = "관리자에게 문의";
+            alert("관리자에게 문의");
         });
     }
 
