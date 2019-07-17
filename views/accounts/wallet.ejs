@@ -92,7 +92,7 @@ function comma(str) {
 					<input class="form-control" placeholder="블록체인 PASSWORD" id="blockchainpwd" name="blockchainpwd" readonly type="password" value="<%= user.blockchainpwd %>" required>
 					<div class="input-group-append">
 						<input type="button" class="btn btn-md btn-sky" onclick="login();" value="블록체인 계정인증"></input>
-						<h4 id="instructor"></h4>
+						<h2 id="instructor"></h2>	
 					</div>
 				</div>
 				<div class="form-group"> 
@@ -103,13 +103,13 @@ function comma(str) {
 				<div class="form-control-label mt-30 mt-lg-40">내 증명서</div>		
 				<div class="btn-wrap btn-flex num-3" style="margin-top:0;">					
 					<% if(certiData.graduate_yn=='Y'){%>
-					<input type="button" class="btn btn-md btn-blue2" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=certiData.graduate_ipfs %>', '_blank', 'width=450,height=620'); return false" value="졸업 증명서">
+					<input type="button" class="btn btn-md btn-blue2" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=certiData.graduate_ipfs %>', '_blank', 'width=450,height=560'); return false" value="졸업 증명서">
 					</input>
 					<%}if(certiData.attend_yn=='Y'){%>
-					<input type="button" class="btn btn-md btn-blue3" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=certiData.attend_ipfs %>', '_blank', 'width=450,height=600'); return false" value="재학 증명서">
+					<input type="button" class="btn btn-md btn-blue3" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=certiData.attend_ipfs %>', '_blank', 'width=450,height=520'); return false" value="재학 증명서">
 					</input>
 					<%}if(certiData.score_yn=='Y'){%>
-					<input type="button" class="btn btn-md btn-blue4" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=certiData.score_ipfs %>', '_blank', 'width=450,height=600'); return false" value="성적 증명서">
+					<input type="button" class="btn btn-md btn-blue4" onclick="window.open('http://220.76.95.91:8080/ipfs/<%=certiData.score_ipfs %>', '_blank', 'width=450,height=860'); return false" value="성적 증명서">
 					</input>
 					<%}%>
 					<!-- <h2 id="instructor"></h2> --> 
@@ -160,20 +160,17 @@ var url = "http://220.76.95.91:8485"; // 서버 URL
             // 로그인 성공
             if (data.error == null) {
                 console.log("login success!");
-                // document.getElementById("instructor").innerHTML = "계정 인증성공";
-                alert("계정 인증성공");
+                document.getElementById("instructor").innerHTML = "계정 인증성공";
             } else {
                 // 로그인 실패
                 console.log("login failure");
-                alert("계정 인증실패");
-                // document.getElementById("instructor").innerHTML = "계정 인증실패";
+                document.getElementById("instructor").innerHTML = "계정 인증실패";
             }
             init();
         }, function error(data) {
             // 로그인 실패
             console.log("data receive failure");
-            // document.getElementById("instructor").innerHTML = "관리자에게 문의";
-            alert("관리자에게 문의");
+            document.getElementById("instructor").innerHTML = "관리자에게 문의";
         });
     }
 

@@ -27,6 +27,13 @@
 <link type="text/css" href="http://220.76.95.91:3000/public/css/sm-admin.css" rel="stylesheet"/>
 <link type="text/css" href="http://220.76.95.91:3000/public/css/md-admin.css" rel="stylesheet" media="screen and (min-width: 768px)" />
 <link type="text/css" href="http://220.76.95.91:3000/public/css/lg-admin.css" rel="stylesheet" media="screen and (min-width: 1240px)" />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Noto+Serif+KR&display=swap&subset=korean" rel="stylesheet">
+
+<style type="text/css">
+body {
+    font-family: 'Noto Sans KR', "Nanum Gothic", NanumGothic, 나눔고딕, "Malgun Gothic", MalgunGothic, 맑은고딕, Arial, sans-serif
+}
+</style>
 
 <script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxControl.js"></script>
 <script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxCommon.js"></script>
@@ -52,69 +59,75 @@
 
 </head>
 <body onLoad='javascript:basexml_checktype( );' class="app-form-body">
-<form name="App_form">
-	<div id="3" class="app-form-header">
-		<xsl:value-of select="root/contents/title"/>증명 신청서
-	</div>
-	<div class="app-form-body">
-		<table id="20190531_162323" class="table-style2">
-			<tbody>
-				<tr>
-					<th>이  름</th>
-					<td><div class="form-group">
-							<xsl:value-of select="root/contents/name"/>
-						</div></td>
-					<th>전공학과</th>
-					<td><div class="form-group">
-							<xsl:value-of select="root/contents/department"/>
-						</div></td>
-				</tr>
-				<tr>
-					<th>생년월일</th>
-					<td><div class="form-group">
-							<xsl:value-of select="root/contents/birthday"/>
-						</div></td>
-					<th>학  번</th>
-					<td><div class="form-group">
-							<xsl:value-of select="root/contents/class_of"/>
-						</div></td>
-				</tr>
-				<tr>
-					<th>용  도</th>
-					<td><div class="form-group">
-							<xsl:value-of select="root/contents/purpose"/>
-						</div></td>
-					<th>신청일</th>
-					<td><div class="form-group">
-							<xsl:value-of select="root/contents/Application_date"/>
-						</div></td>
-				</tr>
-				<tr >
-					<th>기타사항</th>
-					<td colspan="3"><div class="form-group">
-							<xsl:apply-templates select="root/contents/Other"/>
-						</div></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div id="1" class="app-form-footer">
-		<p class="app-form-txt">상기 본인은 증명서 발급을 요청 합니다.</p>
-		<div class="app-form-sign-wrap">
-			<div class="app-form-sign-box"> 
-				<span class="app-form-sign-txt">신청자</span>
-				<div id="20190526_124756">
-					<div id="div_root_contents_sign" class="app-form-sign"></div>
+<div class="app-form-box">
+
+	<form name="App_form">
+		<div id="3" class="app-form-box-header">
+			<xsl:value-of select="root/contents/title"/>증명 신청서
+		</div>
+		<div class="app-form-box-body">
+			<table id="20190531_162323" class="table-style2">
+				<tbody>
+					<tr>
+						<th>이  름</th>
+						<td><div class="form-group">
+								<xsl:value-of select="root/contents/name"/>
+							</div></td>
+						<th>전공학과</th>
+						<td><div class="form-group">
+								<xsl:value-of select="root/contents/department"/>
+							</div></td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td><div class="form-group">
+								<xsl:value-of select="root/contents/birthday"/>
+							</div></td>
+						<th>학  번</th>
+						<td><div class="form-group">
+								<xsl:value-of select="root/contents/class_of"/>
+							</div></td>
+					</tr>
+					<tr>
+						<th>용  도</th>
+						<td><div class="form-group">
+								<xsl:value-of select="root/contents/purpose"/>
+							</div></td>
+						<th>신청일</th>
+						<td><div class="form-group">
+								<xsl:value-of select="root/contents/Application_date"/>
+							</div></td>
+					</tr>
+					<tr >
+						<th>기타사항</th>
+						<td colspan="3"><div class="form-group">
+								<xsl:apply-templates select="root/contents/Other"/>
+							</div></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="1" class="app-form-box-footer">
+			<p class="app-form-txt">상기 본인은 증명서 발급을 요청 합니다.</p>
+			<div class="app-form-sign-wrap">
+				<div class="app-form-sign-box"> 
+					<span class="app-form-sign-txt">신청자</span>
+					<div id="20190526_124756">
+						<div id="div_root_contents_sign" class="app-form-sign"></div>
+					</div>
 				</div>
 			</div>
+			<p class="app-form-txt2">3K BICAS 대학교 교무처 귀중</p>
 		</div>
-		<p class="app-form-txt2">3K 대학교 교무처 귀중</p>
+	</form>
+	
+	<div class="btn-wrap btn-flex">
+		<div class="btn-gray">			
+			<input type="button" value="반려" onclick='adminReject();'/>
+		</div>
+		<input type="button" value="승인" onclick='adminAccept();'/>
 	</div>
-</form>
 
-<div class="btn-wrap btn-flex">
-	<input type="button" value="반려" onclick='adminReject();'/>
-	<input type="button" value="승인" onclick='adminAccept();'/>
 </div>
 
 <script type="text/javascript">

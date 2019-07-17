@@ -1,7 +1,10 @@
 $(function(){
 	
 	$('.menu-btn').on('click', function(){
-		$('.menu-list').stop().slideToggle(300);
+		$('.gnb').show();
+	});
+	$('.gnb-close').on('click', function(){
+		$('.gnb').hide();
 	});
 	
 });

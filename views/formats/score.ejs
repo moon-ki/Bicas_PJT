@@ -26,10 +26,10 @@
 <script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jquery.timepicker.js"></script>
 <script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/jSignature.custom.js"></script>
 <script type="text/javascript" charset="utf-8">
-	$(function(){
-		$("input, textarea, select, button").uniform();
-			$( ".bxTimePicker" ).timepicker({ 'scrollDefaultNow': true });
-		});
+$(function(){
+	$("input, textarea, select, button").uniform();
+		$( ".bxTimePicker" ).timepicker({ 'scrollDefaultNow': true });
+	});
 </script>
 <script type="text/javascript">
 	function basexml_checktype() {
@@ -37,7 +37,7 @@
 </script>
 <script type="text/javascript" src="http://www.uccxml.com/xdrp/baseXML/lib/scripts/bxFormForMongo.js"></script>
 </head>
-<body class="certificate-body">
+<body>
 <form name="score">
 	<textarea id="calXMLcontent" name="calXMLcontent" style="display:none"></textarea>
 	<textarea id="inXMLcontent" name="inXMLcontent" style="display:none"></textarea>
@@ -82,129 +82,126 @@
 	<input type="hidden" name="H_root/recognized_credit/total" value=""/>
 	<input type="hidden" name="H_root/contents/date" value=""/>
 	
-	
-	<div class="certificate-box" id="1">
+	<div class="certificate-box">
 		<div class="certificate-box-container">
-			<div id="20190531_192027">
-				<div class="certificate-box-header">
-					성 적 증 명 서
-				</div>
-				<div class="certificate-box-body">
-					<div class="table-responsive">
-						<div class="row">
-							<div class="col-sm-12 col-md-6">								
-								<table class="table-style3">
-									<colgroup>
-										<col style="width:40%;"/>
-										<col style="width:60%;"/>
-									</colgroup>
-									<tr>
-										<th class="bg-gray text-center">성명</th>
-										<td><input name="root/contents/name" value="<%=user.user_name%>" readonly></td>
-									</tr>
-									<tr>
-										<th class="bg-gray text-center">학번</th>
-										<td><input name="root/contents/class_of" readonly value="<%=user.user_id%>"></td>
-									</tr>
-								</table>
-							</div>
-							<div class="col-sm-12 col-md-6">								
-								<table class="table-style3">
-									<colgroup>
-										<col style="width:40%;"/>
-										<col style="width:60%;"/>
-									</colgroup>
-									<tr>
-										<th class="bg-gray text-center">전공학과</th>
-										<td><input name="root/contents/major_course" value="<%=user.major%>" readonly></td>
-									</tr>
-									<tr>
-										<th class="bg-gray text-center">졸업년도</th>
-										<td><input name="root/contents/graduation_year" value="2019년2월"></td>
-									</tr>
-								</table>
-							</div>
+			<div class="certificate-box-header" id="2">
+				성 적 증 명 서
+			</div>
+			<div class="certificate-box-body">
+				<div class="table-responsive" id="9">
+					<div class="row">
+						<div class="col-sm-12 col-md-6">								
+							<table class="table-style3">
+								<colgroup>
+									<col style="width:40%;"/>
+									<col style="width:60%;"/>
+								</colgroup>
+								<tr>
+									<th class="bg-gray text-center">성명</th>
+									<td><input name="root/contents/name" value="<%=user.user_name%>" readonly></td>
+								</tr>
+								<tr>
+									<th class="bg-gray text-center">학번</th>
+									<td><input name="root/contents/class_of" readonly value="<%=user.user_id%>"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-sm-12 col-md-6">								
+							<table class="table-style3">
+								<colgroup>
+									<col style="width:40%;"/>
+									<col style="width:60%;"/>
+								</colgroup>
+								<tr>
+									<th class="bg-gray text-center">전공학과</th>
+									<td><input name="root/contents/major_course" value="<%=user.major%>" readonly></td>
+								</tr>
+								<tr>
+									<th class="bg-gray text-center">졸업년도</th>
+									<td><input name="root/contents/graduation_year" value="2019년2월"></td>
+								</tr>
+							</table>
 						</div>
 					</div>
-					<div class="table-responsive" style="margin-bottom:5px;">
-						<table class="table-style3-2">
-							<tr>
-								<th class="bg-gray text-center">구분</th>
-								<th class="bg-gray text-center">과목명</th>
-								<th class="bg-gray text-center">학점</th>
-								<th class="bg-gray text-center">이수년월</th>
-							</tr>
-							<tr>
-								<th class="text-center"><input name="root/Sortation/s1" value="전필" readonly></th>
-								<td><input name="root/Subject_name/sn1" value="식물과광합성" readonly></td>
-								<td class="text-center"><input name="root/Grades/g1" value="4.0" readonly></td>
-								<td class="text-center"><input name="root/Completion/c1 value="201812" readonly></td>
-							</tr>
-							<tr>
-								<th class="text-center"><input name="root/Sortation/s2" value="전선" readonly></th>
-								<td><input name="root/Subject_name/sn2" value="C프로그래밍" readonly></td>
-								<td class="text-center"><input name="root/Grades/g2" value="4.0" readonly></td>
-								<td class="text-center"><input name="root/Completion/c2" value="201812" readonly></td>
-							</tr>
-							<tr>
-								<th class="text-center"><input name="root/Sortation/s3" value="전선" readonly></th>
-								<td><input name="root/Subject_name/sn3" value="xml의활용" readonly></td>
-								<td class="text-center"><input name="root/Grades/g3" value="4.0" readonly></td>
-								<td class="text-center"><input name="root/Completion/c3" value="201812" readonly></td>
-							</tr>
-							<tr>
-								<th class="text-center"><input name="root/Sortation/s4" value="교양" readonly></th>
-								<td><input name="root/Subject_name/sn4" value="결혼과가족" readonly></td>
-								<td class="text-center"><input name="root/Grades/g4" value="4.0" readonly></td>
-								<td class="text-center"><input name="root/Completion/c4" value="201812" readonly></td>
-							</tr>
-							<tr>
-								<th class="text-center"></th>
-								<td></td>
-								<td class="text-center"></td>
-								<td class="text-center"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="table-responsive">
-						<table class="table-style3">
-							<tr>
-								<th class="bg-gray text-center" colspan="4">인정학점</th>
-								<th class="bg-gray text-center">학점합계</th>
-							</tr>
-							<tr>
-								<td class="text-center">전공필수</td>
-								<td class="text-center">전공선택</td>
-								<td class="text-center">교양</td>
-								<td class="text-center">일반선택</td>
-								<td class="text-center" rowspan="2"><input name="root/recognized_credit/total" value="12" readonly></td>
-							</tr>
-							
-							<tr>
-								<td class="text-center"><input name="root/recognized_credit/rc1" value="3" readonly></td>
-								<td class="text-center"><input name="root/recognized_credit/rc2" value="6" readonly></td>
-								<td class="text-center"><input name="root/recognized_credit/rc3" value="3" readonly></td>
-								<td class="text-center"><input name="root/recognized_credit/rc4"></td>
-							</tr>
-						</table>
-					</div>
 				</div>
-				<div class="certificate-box-footer">
-					<p class="certificate-txt">상기인의 학습과목별 성적을 위와 같이 증명합니다.</p>
-					<p class="certificate-date"><input name="root/contents/date" id="acceptDate" readonly></p>
-					<div class="certificate-sign">
-						<strong>3K BICAS 대학교</strong>
-					</div>
+				<div class="table-responsive" id="44" style="margin-bottom:5px;">
+					<table class="table-style3-2">
+						<tr>
+							<th class="bg-gray text-center">구분</th>
+							<th class="bg-gray text-center">과목명</th>
+							<th class="bg-gray text-center">학점</th>
+							<th class="bg-gray text-center">이수년월</th>
+						</tr>
+						<tr>
+							<th class="text-center"><input name="root/Sortation/s1" value="전필" readonly></th>
+							<td><input name="root/Subject_name/sn1" value="식물과광합성" readonly></td>
+							<td class="text-center"><input name="root/Grades/g1" value="4.0" readonly></td>
+							<td class="text-center"><input name="root/Completion/c1" value="201812" readonly></td>
+						</tr>
+						<tr>
+							<th class="text-center"><input name="root/Sortation/s2" value="전선" readonly></th>
+							<td><input name="root/Subject_name/sn2" value="C프로그래밍" readonly></td>
+							<td class="text-center"><input name="root/Grades/g2" value="4.0" readonly></td>
+							<td class="text-center"><input name="root/Completion/c2" value="201812" readonly></td>
+						</tr>
+						<tr>
+							<th class="text-center"><input name="root/Sortation/s3" value="전선" readonly></th>
+							<td><input name="root/Subject_name/sn3" value="xml의활용" readonly></td>
+							<td class="text-center"><input name="root/Grades/g3" value="4.0" readonly></td>
+							<td class="text-center"><input name="root/Completion/c3" value="201812" readonly></td>
+						</tr>
+						<tr>
+							<th class="text-center"><input name="root/Sortation/s4" value="교양" readonly></th>
+							<td><input name="root/Subject_name/sn4" value="결혼과가족" readonly></td>
+							<td class="text-center"><input name="root/Grades/g4" value="4.0" readonly></td>
+							<td class="text-center"><input name="root/Completion/c4" value="201812" readonly></td>
+						</tr>
+						<tr>
+							<th class="text-center"><input name="root/Sortation/s5"></th>
+							<td><input name="root/Subject_name/sn5"></td>
+							<td class="text-center"><input name="root/Grades/g5"></td>
+							<td class="text-center"><input name="root/Completion/c5"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="table-responsive">
+					<table class="table-style3">
+						<tr>
+							<th class="bg-gray text-center" colspan="4">인정학점</th>
+							<th class="bg-gray text-center">학점합계</th>
+						</tr>
+						<tr>
+							<td class="text-center">전공필수</td>
+							<td class="text-center">전공선택</td>
+							<td class="text-center">교양</td>
+							<td class="text-center">일반선택</td>
+							<td class="text-center" rowspan="2"><input name="root/recognized_credit/total" value="12" readonly></td>
+						</tr>
+						
+						<tr>
+							<td class="text-center"><input name=root/recognized_credit/rc1 value="3" readonly></td>
+							<td class="text-center"><input name="root/recognized_credit/rc2" value="6" readonly></td>
+							<td class="text-center"><input name="root/recognized_credit/rc3" value="3" readonly></td>
+							<td class="text-center"><input name="root/recognized_credit/rc4"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="certificate-box-footer" id="6">
+				<p class="certificate-txt">상기인의 학습과목별 성적을 위와 같이 증명합니다.</p>
+				<p class="certificate-date"><input name="root/contents/date" id="acceptDate" readonly></p>
+				<div class="certificate-sign">
+					<strong>3K BICAS 대학교</strong>
 				</div>
 			</div>
 		</div>
 		<div class="btn-wrap">
-			<input type="button" value="발급" onclick="certiAccept(<%=txInfo.seq%>, '<%=txInfo.file_name%>');" />
+			<input type="button" value="승인" onclick="certiAccept(<%=txInfo.seq%>, '<%=txInfo.file_name%>');" />
 			<!-- <input type="button" value="List" onclick="javascript:bxfXmlListMongodb();" /> &#160;
 			<input type="button" value="Search" onclick="javascript:bxfXmlSearchMongodb();" /> -->
 		</div>
 	</div>
-	
+
 </form>
 <script type="text/javascript" src="http://www.uccxml.com/xdrp/sys/lib/bxComponent/tinymce/js/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="http://www.uccxml.com/xdrp/sys/lib/bxComponent/bxComponent.js"></script>
