@@ -344,8 +344,8 @@ router.post('/callAPI',  async (req,res)=> {
     
     await request({
         // uri: "http://xmlapi.datafarm.co.kr/soaxmlEngineApi.jsp?apiKey=5acda40a5de6a72c70b12679",
-        uri:'http://220.76.95.91:8011',
-        // uri:'http://192.168.0.159:8001',
+        // uri:'http://220.76.95.91:8011',
+        uri:'http://192.168.0.159:8001',
         method: "POST",
         enctype: 'multipart/form-data',
         form: {
